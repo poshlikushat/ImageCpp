@@ -1,0 +1,3 @@
+D:/OneDrive/Документы/GitHub/ImageCpp/cmake-build-debug/CMakeFiles/ImageCpp.dir
+D:/OneDrive/Документы/GitHub/ImageCpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/OneDrive/Документы/GitHub/ImageCpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
