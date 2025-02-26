@@ -1,25 +1,44 @@
 #include <iostream>
+#include "Image.hpp"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-    // <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+void createAnImage()
+{
+    Image image;
+    image.create(480, 640, 3);
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // breakpoint for you, but you can always add more by pressing
-        // <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
-
-    return 0;
+    std::cout << "Rows: " << image.rows() << std::endl;
+    std::cout << "Cols: " << image.cols() << std::endl;
+    std::cout << "Channels: " << image.channels() << std::endl;
 }
 
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
+void copyAnImage() {
+    Image image;
+    image.create(480, 640, 3);
+    std::cout << "countRef: " << image.countRef() << std::endl;
+    std::cout << "Cols: " << image.cols() << std::endl;
+    std::cout << "Rows: " << image.rows() << std::endl;
+    std::cout << "Total: " << image.total() << std::endl;
+    // std::cout << "Data: " << image.data << std::endl;
+    const Image image2 = image.clone();
+    std::cout << "countRef: " << image.countRef() << std::endl;
+    std::cout << "Cols: " << image.cols() << std::endl;
+    std::cout << "Rows: " << image.rows() << std::endl;
+    std::cout << "Total: " << image.total() << std::endl;
+    image.release();
+    std::cout << "countRef: " << image.countRef() << std::endl;
+    std::cout << "Cols: " << image.cols() << std::endl;
+    std::cout << "Rows: " << image.rows() << std::endl;
+    std::cout << "Total: " << image.total() << std::endl;
+    image.release();
+    std::cout << "countRef: " << image.countRef() << std::endl;
+    std::cout << "Cols: " << image.cols() << std::endl;
+    std::cout << "Rows: " << image.rows() << std::endl;
+    std::cout << "Total: " << image.total() << std::endl;
+}
+
+
+int main() {
+    // createAnImage();
+    copyAnImage();
+    return 0;
+}

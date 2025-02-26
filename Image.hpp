@@ -1,5 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
+#include <iostream>
 
 enum class MirrorType {
   Vertical,
@@ -8,42 +9,54 @@ enum class MirrorType {
 
 
 class Image {
+  struct ImageData {
+      unsigned char* data;
+      int rows;
+      int cols;
+      int channels;
+      int total;
+      size_t countRef;
+    };
+
+    ImageData* imgData_;
+
   public:
     Image();
     Image(int rows, int cols, int channels);
+    Image(int rows, int cols, int channels, unsigned char* data);
     Image(const Image& image);
     virtual ~Image();
 
     Image& operator=(const Image& image);
 
     //Вернуть клон изображения
-    Image clone() const; //Не меняет ориг
+    [[nodiscard]] Image clone() const; //Не меняет ориг
     //Скопировать изображение
     void copyTo(Image& image) const;
     void create(int rows, int cols, int channels);
-    bool empty() const; //Только проверяет состояние
+    [[nodiscard]] bool empty() const; //Только проверяет состояние
 
-    //декрементирует счетчик ссылок и в случае необходимости свобождает ресурсы (память).
-    void release();
+    //декрементирует счетчик ссылок и в случае необходимости освобождает ресурсы (память).
+    void release() const;
 
-    Image col(int x) const;
+    [[nodiscard]] Image col(int x) const;
 
-    Image row(int y) const;
+    [[nodiscard]] Image row(int y) const;
 
-    const unsigned char* data() const;  //Возвращает часть пикселя без модификации
+    [[nodiscard]] const unsigned char* data() const;  //Возвращает часть пикселя без модификации
     unsigned char* data();
 
-    int rows() const;
-    int cols() const;
-    int total() const;
-    int channels() const;
+    [[nodiscard]] int rows() const;
+    [[nodiscard]] int cols() const;
+    [[nodiscard]] int total() const;
+    [[nodiscard]] int channels() const;
 
     //Вернуть ЧАСТЬ пикселя
-    unsigned char& at(int index);
-    const unsigned char& at(int index) const;
+    // static unsigned char& at(int index);  // Что делает?
+    // [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
 
-    Image zeros(int rows, int cols, int channels);
-    Image values(int rows, int cols, int channels, unsigned char value);
+    Image zeros(int rows, int cols, int channels);  // Что делает? Зануляет все?
+    Image values(int rows, int cols, int channels, unsigned char value);  // Что делает?
 
     //Отразить изображение по вертикали или по горизонтали
     void Mirror(MirrorType type);
@@ -53,7 +66,7 @@ class Image {
 
     //Возвращает текущее количество ссылок на изображение.
     //Т.е. количество объектов, которые ссылаются на данное изображение Этот метод нужен для untiy test'ов.
-    size_t countRef() const;
+    [[nodiscard]] size_t countRef() const;
 };
 
 

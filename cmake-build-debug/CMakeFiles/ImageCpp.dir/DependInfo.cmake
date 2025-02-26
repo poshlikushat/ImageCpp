@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/Image.cpp" "CMakeFiles/ImageCpp.dir/Image.cpp.o" "gcc" "CMakeFiles/ImageCpp.dir/Image.cpp.o.d"
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/main.cpp" "CMakeFiles/ImageCpp.dir/main.cpp.o" "gcc" "CMakeFiles/ImageCpp.dir/main.cpp.o.d"
   )
 
