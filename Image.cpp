@@ -2,30 +2,26 @@
 #include <iostream>
 
 void Image::create(const int rows, const int cols, const int channels) {
+  if (rows <= 0 || cols <= 0 || channels <= 0) {
+    throw std::invalid_argument("Invalid image size");
+  }
   imgData_ = new ImageData;
   imgData_->rows = rows;
   imgData_->cols = cols;
   imgData_->channels = channels;
   imgData_->countRef = 1;
-  imgData_->total = (rows + cols) * channels;
-  imgData_->data = new unsigned char[imgData_->total];
+  imgData_->data = new unsigned char[rows*cols*channels]();
+
   }
 
 Image::Image() : imgData_(nullptr) {}  // Создаем пустое изображение
 
-Image::Image(const int rows, const int cols, const int channels) : imgData_(nullptr) {
-  if (rows <= 0 || cols <= 0 || channels <= 0) {
-    throw std::invalid_argument("Invalid image size");
-  }
+Image::Image(const int rows, const int cols, const int channels) : Image() {
   create(rows, cols, channels);
 }
 
-Image::Image(const int rows, const int cols, const int channels, unsigned char* data): imgData_(nullptr) {
-  if (rows <= 0 || cols <= 0 || channels <= 0) {
-    throw std::invalid_argument("Invalid image size");
-  }
+Image::Image(const int rows, const int cols, const int channels, unsigned char* data): Image() {
   create(rows, cols, channels);
-  imgData_->total = rows * cols * channels;
   imgData_->data = data;
 }
 
@@ -48,12 +44,7 @@ Image& Image::operator=(const Image& image) {
 }
 
 Image::~Image() {
-  if (imgData_) {
-    if (--(imgData_->countRef) == 0) {
-      delete[] imgData_->data;
-      delete imgData_;
-    }
-  }
+  release();
 }
 
 void Image::release() {
@@ -80,18 +71,18 @@ int Image::channels() const {
 }
 
 int Image::total() const {
-  return imgData_ ? imgData_->total : 0;
+  return imgData_ ? imgData_->rows * imgData_->cols * imgData_->channels : 0;
 }
 
 unsigned char &Image::at(const int index) {
-  if (!imgData_ || index >= imgData_->total) {
+  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels)) {
     throw std::out_of_range("Invalid index");
   }
   return imgData_->data[index];
 }
 
 const unsigned char &Image::at(const int index) const {
-  if (!imgData_ || index >= imgData_->total) {
+  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels)) {
     throw std::out_of_range("Invalid index");
   }
   return imgData_->data[index];
@@ -100,11 +91,6 @@ const unsigned char &Image::at(const int index) const {
 
 Image Image::clone() const {
   Image copy = *this;
-  // copy.imgData_ = new ImageData;
-  // copy.imgData_->rows = imgData_->rows;
-  // copy.imgData_->cols = imgData_->cols;
-  // copy.imgData_->channels = imgData_->channels;
-  // copy.imgData_->data = new unsigned char[copy.imgData_->total];
   return copy;
 }
 

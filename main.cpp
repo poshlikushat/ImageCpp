@@ -18,7 +18,7 @@ void copyAnImage() {
     std::cout << "Cols: " << image.cols() << std::endl;
     std::cout << "Rows: " << image.rows() << std::endl;
     std::cout << "Total: " << image.total() << std::endl;
-    // std::cout << "Data: " << image.data << std::endl;
+    std::cout << "Data: " << static_cast<int>(*image.data()) << std::endl;
     const Image image2 = image.clone();
     std::cout << "countRef: " << image.countRef() << std::endl;
     std::cout << "Cols: " << image.cols() << std::endl;
@@ -37,7 +37,7 @@ void copyAnImage() {
 }
 
 void testZero() {
-    Image img = img.zeros(3, 3, 3);
+    Image img = Image::zeros(3, 3, 3);
 
     for (int i = 0; i < img.total(); ++i) {
         std::cout << static_cast<int>(img.at(i)) << " ";
@@ -46,8 +46,5 @@ void testZero() {
 }
 
 int main() {
-    // createAnImage();
-    /*copyAnImage();*/
-    testZero();
-    return 0;
+
 }

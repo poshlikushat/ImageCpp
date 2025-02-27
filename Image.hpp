@@ -14,7 +14,6 @@ class Image final {
       int rows;
       int cols;
       int channels;
-      int total;
       size_t countRef;
     };
 
@@ -55,14 +54,14 @@ class Image final {
     unsigned char& at(int index);  // Что делает?
     [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
 
-    static Image zeros(int rows, int cols, int channels);  // Что делает? Зануляет все?
+    static Image zeros(int rows, int cols, int channels);
     Image values(int rows, int cols, int channels, unsigned char value);  // Что делает?
 
     //Отразить изображение по вертикали или по горизонтали
-    void Mirror(MirrorType type);
+    void Mirror(MirrorType type);  // Нужно сделать
 
     //Повернуть на угол кратный 90
-    void Rotate(double angle);
+    void Rotate(double angle);  // Нужно сделать
 
     //Возвращает текущее количество ссылок на изображение.
     //Т.е. количество объектов, которые ссылаются на данное изображение Этот метод нужен для untiy test'ов.
