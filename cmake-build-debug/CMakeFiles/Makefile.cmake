@@ -7,30 +7,19 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeCInformation.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeCXXInformation.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeDependentOption.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakePackageConfigHelpers.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CheckIncludeFile.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CheckLibraryExists.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Compiler/AppleClang-C.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Compiler/AppleClang-CXX.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Compiler/Clang.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Compiler/GNU.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/FindPackageMessage.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/FindThreads.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/GNUInstallDirs.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/Apple-AppleClang-C.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/Apple-AppleClang-CXX.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/Apple-Clang-C.cmake"
@@ -39,20 +28,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/Darwin-Initialize.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/Darwin.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/Platform/UnixPaths.cmake"
-  "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/WriteBasicConfigVersionFile.cmake"
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/CMakeLists.txt"
   "CMakeFiles/3.30.5/CMakeCCompiler.cmake"
   "CMakeFiles/3.30.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.30.5/CMakeSystem.cmake"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/CMakeLists.txt"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googlemock/CMakeLists.txt"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googlemock/cmake/gmock.pc.in"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googlemock/cmake/gmock_main.pc.in"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googletest/CMakeLists.txt"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googletest/cmake/Config.cmake.in"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googletest/cmake/gtest.pc.in"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googletest/cmake/gtest_main.pc.in"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/googletest/googletest/cmake/internal_utils.cmake"
   )
 
 # The corresponding makefile is:
@@ -64,22 +43,9 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "googletest/googletest/generated/gmock.pc"
-  "googletest/googletest/generated/gmock_main.pc"
-  "googletest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "googletest/googletest/generated/GTestConfigVersion.cmake"
-  "googletest/googletest/generated/GTestConfig.cmake"
-  "googletest/googletest/generated/gtest.pc"
-  "googletest/googletest/generated/gtest_main.pc"
-  "googletest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ImageCpp.dir/DependInfo.cmake"
-  "googletest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
-  "googletest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
-  "googletest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
-  "googletest/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   )
