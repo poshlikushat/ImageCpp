@@ -1,7 +1,4 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/kuimovmihail/Documents/GitHub/ImageCpp -B /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug
-CMake Error at CMakeLists.txt:6 (add_subdirectory):
-  add_subdirectory given source "googletest" which is not an existing
-  directory.
-
-
--- Configuring incomplete, errors occurred!
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug

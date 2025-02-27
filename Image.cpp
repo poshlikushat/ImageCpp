@@ -34,8 +34,7 @@ Image::Image(const Image& image) : imgData_(image.imgData_) {
 Image& Image::operator=(const Image& image) {
   if (this != &image) {
     if (imgData_ && --(imgData_->countRef) == 0)
-      delete[] imgData_;
-
+      delete imgData_;
     imgData_ = image.imgData_;
     if (imgData_)
       ++(imgData_->countRef);
@@ -112,5 +111,4 @@ Image Image::zeros(const int rows, const int cols, const int channels) {
   std::memset(img.data(), 0, img.total());
   return img;
 }
-
 
