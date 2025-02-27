@@ -1,4 +1,5 @@
 #include "Image.hpp"
+#include <iostream>
 
 void Image::create(const int rows, const int cols, const int channels) {
   imgData_ = new ImageData;
@@ -55,11 +56,12 @@ Image::~Image() {
   }
 }
 
-void Image::release() const {
+void Image::release() {
   if (imgData_) {
     if (--(imgData_->countRef) == 0) {
-      delete[] imgData_;
-      imgData_->rows = 0;  // Если это не указать, то значение будет 2043. Почему?
+      delete[] imgData_->data;
+      delete imgData_;
+      imgData_ = nullptr;
     }
   }
 }
@@ -81,27 +83,48 @@ int Image::total() const {
   return imgData_ ? imgData_->total : 0;
 }
 
-// unsigned char &Image::at(int index) {
-//   if (index < 0)
-//     throw std::out_of_range("Invalid index");
-//   return data[index];
-// }
+unsigned char &Image::at(const int index) {
+  if (!imgData_ || index >= imgData_->total) {
+    throw std::out_of_range("Invalid index");
+  }
+  return imgData_->data[index];
+}
 
-// const unsigned char* Image::data() const {
-//   return imgData_ ? imgData_->data : nullptr;
-// }
+const unsigned char &Image::at(const int index) const {
+  if (!imgData_ || index >= imgData_->total) {
+    throw std::out_of_range("Invalid index");
+  }
+  return imgData_->data[index];
+}
+
 
 Image Image::clone() const {
   Image copy = *this;
-  copy.imgData_ = new ImageData;
-  copy.imgData_->rows = imgData_->rows;
-  copy.imgData_->cols = imgData_->cols;
-  copy.imgData_->channels = imgData_->channels;
-  copy.imgData_->data = new unsigned char[copy.imgData_->total];
+  // copy.imgData_ = new ImageData;
+  // copy.imgData_->rows = imgData_->rows;
+  // copy.imgData_->cols = imgData_->cols;
+  // copy.imgData_->channels = imgData_->channels;
+  // copy.imgData_->data = new unsigned char[copy.imgData_->total];
   return copy;
 }
 
 size_t Image::countRef() const {
   return imgData_ ? imgData_->countRef : 0;
 }
+
+unsigned char* Image::data() {
+  return imgData_ ? imgData_->data : nullptr;
+}
+
+const unsigned char* Image::data() const {
+  return imgData_ ? imgData_->data : nullptr;
+}
+
+
+Image Image::zeros(const int rows, const int cols, const int channels) {
+  Image img(rows, cols, channels);
+  std::memset(img.data(), 0, img.total());
+  return img;
+}
+
 

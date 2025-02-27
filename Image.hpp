@@ -8,7 +8,7 @@ enum class MirrorType {
 };
 
 
-class Image {
+class Image final {
   struct ImageData {
       unsigned char* data;
       int rows;
@@ -25,7 +25,7 @@ class Image {
     Image(int rows, int cols, int channels);
     Image(int rows, int cols, int channels, unsigned char* data);
     Image(const Image& image);
-    virtual ~Image();
+    ~Image();
 
     Image& operator=(const Image& image);
 
@@ -37,7 +37,7 @@ class Image {
     [[nodiscard]] bool empty() const; //Только проверяет состояние
 
     //декрементирует счетчик ссылок и в случае необходимости освобождает ресурсы (память).
-    void release() const;
+    void release();
 
     [[nodiscard]] Image col(int x) const;
 
@@ -52,10 +52,10 @@ class Image {
     [[nodiscard]] int channels() const;
 
     //Вернуть ЧАСТЬ пикселя
-    // static unsigned char& at(int index);  // Что делает?
-    // [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
+    unsigned char& at(int index);  // Что делает?
+    [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
 
-    Image zeros(int rows, int cols, int channels);  // Что делает? Зануляет все?
+    static Image zeros(int rows, int cols, int channels);  // Что делает? Зануляет все?
     Image values(int rows, int cols, int channels, unsigned char value);  // Что делает?
 
     //Отразить изображение по вертикали или по горизонтали
