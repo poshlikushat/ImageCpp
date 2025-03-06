@@ -63,6 +63,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageC
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_malloc.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_malloc_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_ptrcheck.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/math.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/nl_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/pthread.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/pthread/pthread_impl.h \
@@ -381,6 +382,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageC
   /Library/Developer/CommandLineTools/usr/include/c++/v1/cerrno \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/chrono \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/climits \
+  /Library/Developer/CommandLineTools/usr/include/c++/v1/cmath \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/compare \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/concepts \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/cstddef \
@@ -405,6 +407,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageC
   /Library/Developer/CommandLineTools/usr/include/c++/v1/limits.h \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/locale \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/locale.h \
+  /Library/Developer/CommandLineTools/usr/include/c++/v1/math.h \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/memory \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/mutex \
   /Library/Developer/CommandLineTools/usr/include/c++/v1/new \
@@ -960,6 +963,8 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/memory:
 
+/Library/Developer/CommandLineTools/usr/include/c++/v1/math.h:
+
 /Library/Developer/CommandLineTools/usr/include/c++/v1/limits:
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/iterator:
@@ -974,10 +979,6 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/ctime:
 
-/Library/Developer/CommandLineTools/usr/include/c++/v1/__algorithm/push_heap.h:
-
-/Library/Developer/CommandLineTools/usr/include/c++/v1/cstdlib:
-
 /Library/Developer/CommandLineTools/usr/include/c++/v1/cstdio:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/resource.h:
@@ -985,6 +986,8 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 /Library/Developer/CommandLineTools/usr/include/c++/v1/__iterator/insert_iterator.h:
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/cstddef:
+
+/Library/Developer/CommandLineTools/usr/include/c++/v1/cmath:
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/chrono:
 
@@ -1256,10 +1259,6 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/__algorithm/partial_sort_copy.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/machine/_mcontext.h:
-
-/Library/Developer/CommandLineTools/usr/include/c++/v1/iosfwd:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_ino_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_stdlib.h:
@@ -1490,6 +1489,12 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_fd_isset.h:
 
+/Library/Developer/CommandLineTools/usr/include/c++/v1/__functional/hash.h:
+
+/Library/Developer/CommandLineTools/usr/include/c++/v1/__functional/invoke.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_fd_clr.h:
+
 /Library/Developer/CommandLineTools/usr/include/c++/v1/concepts:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/machine/_types.h:
@@ -1514,25 +1519,19 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_caddr_t.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_wint_t.h:
-
-/Library/Developer/CommandLineTools/usr/include/c++/v1/__algorithm/generate_n.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/xlocale/_time.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_fd_copy.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_ctype.h:
 
+/Library/Developer/CommandLineTools/usr/include/c++/v1/iosfwd:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/machine/_mcontext.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_pthread/_pthread_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_endian.h:
-
-/Library/Developer/CommandLineTools/usr/include/c++/v1/__functional/hash.h:
-
-/Library/Developer/CommandLineTools/usr/include/c++/v1/__functional/invoke.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_fd_clr.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/stdint.h:
 
@@ -1571,6 +1570,12 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/pthread/sched.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/nl_types.h:
+
+/Library/Developer/CommandLineTools/usr/include/c++/v1/__algorithm/push_heap.h:
+
+/Library/Developer/CommandLineTools/usr/include/c++/v1/cstdlib:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/math.h:
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/__functional/unwrap_ref.h:
 
@@ -1789,6 +1794,10 @@ CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCp
 /Library/Developer/CommandLineTools/usr/include/c++/v1/stdio.h:
 
 /Library/Developer/CommandLineTools/usr/include/c++/v1/__availability:
+
+/Library/Developer/CommandLineTools/usr/include/c++/v1/__algorithm/generate_n.h:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_wint_t.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/sys/_types/_u_int.h:
 

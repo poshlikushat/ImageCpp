@@ -1,41 +1,41 @@
-#include <iostream>
 #include "Image.hpp"
+#include <iostream>
+
+void printImage(const Image& img) {
+    for (int i = 0; i < img.rows(); i++) {
+        for (int j = 0; j < img.cols(); j++) {
+            int idx = (i * img.cols() + j) * img.channels();
+            unsigned char r = img.data()[idx];
+            std::cout << (r > 0 ? "⬜" : "⬛");
+        }
+        std::cout << '\n';
+    }
+}
 
 int main() {
-    // Define flag dimensions.
-    constexpr int rows = 13;
-    constexpr int cols = 25;
+    constexpr int height = 5;
+    constexpr int width = 5;
+    constexpr int channels = 3;
+    Image img = Image::zeros(height, width, channels);
 
-    // Create an image with 1 channel.
-    Image flag = Image::zeros(13, 25, 1);
-
-    // Fill the whole flag with '-' for stripes.
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            flag.at(i * cols + j) = '-';
+    // Заполняем левую половину белым
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width / 2; j++) {
+            const int idx = (i * width + j) * channels;
+            img.data()[0] = 0;
+            img.data()[idx]     = 255; // R
+            img.data()[idx + 1] = 255; // G
+            img.data()[idx + 2] = 255; // B
         }
     }
 
-    // Draw the union (blue area with stars) on the top-left.
-    // For this simple implementation we use 7 rows and 10 columns.
-    constexpr int union_rows = 7;
-    for (int i = 0; i < union_rows; i++) {
-        constexpr int union_cols = 10;
-        for (int j = 0; j < union_cols; j++) {
-            // Apply a star pattern at alternating positions
-            if ((i + j) % 2 == 0) {
-                flag.at(i * cols + j) = '*';
-            }
-        }
-    }
+    std::cout << "Original Image:\n";
+    printImage(img);
 
-    // Output the flag in the console.
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            std::cout << flag.at(i * cols + j);
-        }
-        std::cout << std::endl;
-    }
+    img.Mirror(MirrorType::Vertical);
+
+    std::cout << "Mirrored Image:\n";
+    printImage(img);
 
     return 0;
 }

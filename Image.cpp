@@ -1,5 +1,6 @@
 #include "Image.hpp"
 #include <iostream>
+#include <cmath>
 
 void Image::create(const int rows, const int cols, const int channels) {
   if (rows <= 0 || cols <= 0 || channels <= 0) {
@@ -111,4 +112,91 @@ Image Image::zeros(const int rows, const int cols, const int channels) {
   std::memset(img.data(), 0, img.total());
   return img;
 }
+
+void Image::Mirror(const MirrorType type) {
+  if (empty()) return;
+
+  const int rows = this->rows();
+  const int cols = this->cols();
+  const int channels = this->channels();
+
+  switch (type) {
+    case MirrorType::Vertical:
+      for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols / 2; j++) {
+          for (int c = 0; c < channels; c++) {
+            const int idx1 = (i * cols + j) * channels + c;
+            const int idx2 = (i * cols + (cols - 1 - j)) * channels + c;
+            std::swap(imgData_->data[idx1], imgData_->data[idx2]);
+          }
+        }
+      }
+    case MirrorType::Horizontal:
+      for (int i = 0; i < rows / 2; i++) {
+          for (int j = 0; j < cols; j++) {
+            for (int c = 0; c < channels; c++) {
+              const int idx1 = (i * cols + j) * channels + c;
+              const int idx2 = ((rows - 1 - i) * cols + j) * channels + c;
+              std::swap(imgData_->data[idx1], imgData_->data[idx2]);
+            }
+          }
+        }
+      break;
+    default:
+      break;
+  }
+
+}
+
+bool Image::empty() const {
+  return imgData_ == nullptr;
+}
+
+Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) {
+  Image img(rows, cols, channels);
+  std::memset(img.data(), value, img.total());
+  return img;
+}
+
+void Image::Rotate(const double angle) {
+  if (empty()) return;
+
+  Image img = this->clone();
+
+  // Handle 180 degree rotations
+  if (std::fmod(angle, 180.0) == 0.0 || std::fmod(angle, -180.0) == 0.0) {
+    img.Mirror(MirrorType::Vertical);
+    *this = img;
+    return;
+  }
+
+  // Handle 90 degree rotations
+  if (std::fmod(angle, 90.0) == 0.0 || std::fmod(angle, -90.0) == 0.0) {
+    const int rows = this->rows();
+    const int cols = this->cols();
+    const int channels = this->channels();
+
+    // Create new image with swapped dimensions
+    Image rotated(cols, rows, channels);
+
+    // Transpose and mirror based on rotation direction
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        for (int c = 0; c < channels; c++) {
+          if (std::fmod(angle, 90.0) == 0.0) {
+            // 90 degrees clockwise
+            rotated.at((j * rows + (rows - 1 - i)) * channels + c) =
+              img.at((i * cols + j) * channels + c);
+          } else {
+            // -90 degrees counterclockwise
+            rotated.at(((cols - 1 - j) * rows + i) * channels + c) =
+              img.at((i * cols + j) * channels + c);
+          }
+          }
+        }
+      }
+    *this = rotated;
+    }
+}
+
 

@@ -1,5 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
+// ReSharper disable once CppUnusedIncludeDirective
 #include <iostream>
 
 enum class MirrorType {
@@ -55,7 +56,7 @@ class Image final {
     [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
 
     static Image zeros(int rows, int cols, int channels);
-    Image values(int rows, int cols, int channels, unsigned char value);  // Что делает?
+    Image values(int rows, int cols, int channels, unsigned char value);
 
     //Отразить изображение по вертикали или по горизонтали
     void Mirror(MirrorType type);  // Нужно сделать

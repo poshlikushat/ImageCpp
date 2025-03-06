@@ -64,6 +64,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_malloc.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_malloc_type.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/malloc/_ptrcheck.h
+ /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/math.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/nl_types.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/pthread.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/pthread/pthread_impl.h
@@ -382,6 +383,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o
  /Library/Developer/CommandLineTools/usr/include/c++/v1/cerrno
  /Library/Developer/CommandLineTools/usr/include/c++/v1/chrono
  /Library/Developer/CommandLineTools/usr/include/c++/v1/climits
+ /Library/Developer/CommandLineTools/usr/include/c++/v1/cmath
  /Library/Developer/CommandLineTools/usr/include/c++/v1/compare
  /Library/Developer/CommandLineTools/usr/include/c++/v1/concepts
  /Library/Developer/CommandLineTools/usr/include/c++/v1/cstddef
@@ -406,6 +408,7 @@ CMakeFiles/ImageCpp.dir/Image.cpp.o
  /Library/Developer/CommandLineTools/usr/include/c++/v1/limits.h
  /Library/Developer/CommandLineTools/usr/include/c++/v1/locale
  /Library/Developer/CommandLineTools/usr/include/c++/v1/locale.h
+ /Library/Developer/CommandLineTools/usr/include/c++/v1/math.h
  /Library/Developer/CommandLineTools/usr/include/c++/v1/memory
  /Library/Developer/CommandLineTools/usr/include/c++/v1/mutex
  /Library/Developer/CommandLineTools/usr/include/c++/v1/new
