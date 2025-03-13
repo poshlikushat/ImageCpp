@@ -122,19 +122,20 @@ void Image::Mirror(const MirrorType type) {
 
   switch (type) {
     case MirrorType::Vertical:
-      for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols / 2; j++) {
-          for (int c = 0; c < channels; c++) {
+      for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols / 2; ++j) {
+          for (int c = 0; c < channels; ++c) {
             const int idx1 = (i * cols + j) * channels + c;
             const int idx2 = (i * cols + (cols - 1 - j)) * channels + c;
             std::swap(imgData_->data[idx1], imgData_->data[idx2]);
           }
         }
       }
+    break;
     case MirrorType::Horizontal:
-      for (int i = 0; i < rows / 2; i++) {
-          for (int j = 0; j < cols; j++) {
-            for (int c = 0; c < channels; c++) {
+      for (int i = 0; i < rows / 2; ++i) {
+          for (int j = 0; j < cols; ++j) {
+            for (int c = 0; c < channels; ++c) {
               const int idx1 = (i * cols + j) * channels + c;
               const int idx2 = ((rows - 1 - i) * cols + j) * channels + c;
               std::swap(imgData_->data[idx1], imgData_->data[idx2]);
@@ -153,6 +154,7 @@ bool Image::empty() const {
 }
 
 Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) {
+  if (empty()) throw std::out_of_range("Image is empty");
   Image img(rows, cols, channels);
   std::memset(img.data(), value, img.total());
   return img;
@@ -161,42 +163,43 @@ Image Image::values(const int rows, const int cols, const int channels, const un
 void Image::Rotate(const double angle) {
   if (empty()) return;
 
-  Image img = this->clone();
-
-  // Handle 180 degree rotations
-  if (std::fmod(angle, 180.0) == 0.0 || std::fmod(angle, -180.0) == 0.0) {
-    img.Mirror(MirrorType::Vertical);
-    *this = img;
+  int numRotations = 0;
+  if (angle == 90 || angle == -270)
+    numRotations = 1;
+  else if (angle == 180 || angle == -180)
+    numRotations = 2;
+  else if (angle == -90 || angle == 270)
+    numRotations = 3;
+  else {
+    throw std::cerr << "Unsupported angle. Only multiples of 90 are supported.\n";
     return;
   }
 
-  // Handle 90 degree rotations
-  if (std::fmod(angle, 90.0) == 0.0 || std::fmod(angle, -90.0) == 0.0) {
-    const int rows = this->rows();
-    const int cols = this->cols();
-    const int channels = this->channels();
+  Image result = *this;
+  for (int i = 0; i < numRotations; ++i) {
+    const int rows = result.rows();
+    const int cols = result.cols();
+    const int channels = result.channels();
 
-    // Create new image with swapped dimensions
-    Image rotated(cols, rows, channels);
-
-    // Transpose and mirror based on rotation direction
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < cols; j++) {
-        for (int c = 0; c < channels; c++) {
-          if (std::fmod(angle, 90.0) == 0.0) {
-            // 90 degrees clockwise
-            rotated.at((j * rows + (rows - 1 - i)) * channels + c) =
-              img.at((i * cols + j) * channels + c);
-          } else {
-            // -90 degrees counterclockwise
-            rotated.at(((cols - 1 - j) * rows + i) * channels + c) =
-              img.at((i * cols + j) * channels + c);
-          }
-          }
+    Image temp(cols, rows, channels);
+    for (int r = 0; r < rows; ++r) {
+      for (int c = 0; c < cols; ++c) {
+        for (int ch = 0; ch < channels; ++ch) {
+          //90 degree rotation
+          temp.at((c * rows + (rows - 1 - r)) * channels + ch) =
+              result.at((r * cols + c) * channels + ch);
         }
       }
-    *this = rotated;
     }
+    result = temp;
+  }
+  *this = result;
 }
+
+void Image::copyTo(Image& image) const {
+  if (empty()) return;
+
+
+
 
 
