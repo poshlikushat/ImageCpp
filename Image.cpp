@@ -81,6 +81,7 @@ unsigned char &Image::at(const int index) {
   return imgData_->data[index];
 }
 
+
 const unsigned char &Image::at(const int index) const {
   if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels)) {
     throw std::out_of_range("Invalid index");
@@ -160,6 +161,8 @@ Image Image::values(const int rows, const int cols, const int channels, const un
   return img;
 }
 
+// Переделать, чтобы несколько раз изображение не поворачивалось на 90 градусов
+// А для каждого поворота была своя логика
 void Image::Rotate(const double angle) {
   if (empty()) return;
 
