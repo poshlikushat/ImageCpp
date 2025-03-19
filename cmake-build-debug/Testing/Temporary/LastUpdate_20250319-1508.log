@@ -1,0 +1,57 @@
+--- Begin Cleanup ---
+--- End Cleanup ---
+"/opt/homebrew/bin/git" "rev-list" "-n" "1" "HEAD" "--"
+rl-out> 015fb723bfdcb19b8a4e6cf2b2c749ba4d6755bf
+--- Begin Update ---
+"/opt/homebrew/bin/git" "fetch"
+fetch-err> From https://github.com/poshlikushat/ImageCpp
+fetch-err>    6ff92c6..4138b82  main       -> origin/main
+"/opt/homebrew/bin/git" "rev-parse" "--git-dir"
+rev-parse-out> .git
+FETCH_HEAD> 4138b820b43d6d8881f32e57df1bcc65011936df		branch 'main' of https://github.com/poshlikushat/ImageCpp
+"/opt/homebrew/bin/git" "reset" "--hard" "4138b820b43d6d8881f32e57df1bcc65011936df"
+reset-out> HEAD is now at 4138b82 updated gitignore
+"/opt/homebrew/bin/git" "rev-parse" "--show-cdup"
+rev-parse-out> 
+"/opt/homebrew/bin/git" "--version"
+version-out> git version 2.47.1
+"/opt/homebrew/bin/git" "submodule" "sync" "--recursive"
+"/opt/homebrew/bin/git" "submodule" "update" "--recursive"
+--- End Update ---
+"/opt/homebrew/bin/git" "rev-list" "-n" "1" "HEAD" "--"
+rl-out> 4138b820b43d6d8881f32e57df1bcc65011936df
+--- Begin Revisions ---
+"/opt/homebrew/bin/git" "rev-list" "--reverse" "015fb723bfdcb19b8a4e6cf2b2c749ba4d6755bf..4138b820b43d6d8881f32e57df1bcc65011936df" "--" | "/opt/homebrew/bin/git" "diff-tree" "--stdin" "--always" "-z" "-r" "--pretty=raw" "--encoding=utf-8"
+dt-out> commit 7d56f1841194933d9a5e0ebb3ede7b78526c9004
+dt-out> tree 88181fdc6a3f18b29d3230cbf3195d9609b5849b
+dt-out> parent 6ff92c60269cf5dab277642253636f650cabb48d
+dt-out> author poshlikushat <161361012+poshlikushat@users.noreply.github.com> 1742107858 +0700
+dt-out> committer poshlikushat <161361012+poshlikushat@users.noreply.github.com> 1742107858 +0700
+dt-out> 
+dt-out>     Updated Image.cpp, added a commentory
+dt-out> 
+dt-out> :100644 100644 3199d410551a4bf3d771f5751545f2cac026fcd0 c8a722f23c176e9d4f01afd59da68c6c38ef5265 M
+dt-out> Image.cpp
+dt-out> 
+Found revision 7d56f1841194933d9a5e0ebb3ede7b78526c9004
+  author = poshlikushat
+  date = 2025-03-16 06:50:58 +0700
+  M Image.cpp 
+dt-out> commit 4138b820b43d6d8881f32e57df1bcc65011936df
+dt-out> tree 53e25fb232d5ff6f539eca016b55c94a498305e0
+dt-out> parent 7d56f1841194933d9a5e0ebb3ede7b78526c9004
+dt-out> author poshlikushat <161361012+poshlikushat@users.noreply.github.com> 1742108202 +0700
+dt-out> committer poshlikushat <161361012+poshlikushat@users.noreply.github.com> 1742108202 +0700
+dt-out> 
+dt-out>     updated gitignore
+dt-out> 
+dt-out> :100644 100644 d99efa91a0f18df14f1617f1ecb24365c6166e97 66144daa72133ef5d30b4f6e7426e9bd71e4dc56 M
+dt-out> .gitignore
+dt-out> 
+Found revision 4138b820b43d6d8881f32e57df1bcc65011936df
+  author = poshlikushat
+  date = 2025-03-16 06:56:42 +0700
+  M .gitignore 
+"/opt/homebrew/bin/git" "update-index" "--refresh"
+"/opt/homebrew/bin/git" "diff-index" "-z" "HEAD" "--"
+--- End Revisions ---

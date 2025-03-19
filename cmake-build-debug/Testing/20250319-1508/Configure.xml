@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Darwin-c++"
+	BuildStamp="20250319-1508-Continuous"
+	Name="MacBook-Air-2.local"
+	Generator="ctest-3.30.5"
+	CompilerName="/Library/Developer/CommandLineTools/usr/bin/c++"
+	CompilerVersion="16.0.0.16000026"
+	OSName="macOS"
+	Hostname="MacBook-Air-2.local"
+	OSRelease="15.0.1"
+	OSVersion="24A348"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="Apple"
+	VendorID="Apple"
+	FamilyID="0"
+	ModelID="0"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="8"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="4096"
+	TotalPhysicalMemory="8192"
+	LogicalProcessorsPerPhysical="8"
+	ProcessorClockFrequency="0"
+	>
+	<Configure>
+		<StartDateTime>Mar 19 22:08 +07</StartDateTime>
+		<StartConfigureTime>1742396889</StartConfigureTime>
+		<ConfigureCommand>"/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake" "/Users/kuimovmihail/Documents/GitHub/ImageCpp"</ConfigureCommand>
+		<Log>-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug
+</Log>
+		<ConfigureStatus>0</ConfigureStatus>
+		<EndDateTime>Mar 19 22:08 +07</EndDateTime>
+		<EndConfigureTime>1742396889</EndConfigureTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Configure>
+</Site>
