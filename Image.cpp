@@ -154,7 +154,7 @@ bool Image::empty() const {
   return imgData_ == nullptr;
 }
 
-Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) {
+Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) const {
   if (empty()) throw std::out_of_range("Image is empty");
   Image img(rows, cols, channels);
   std::memset(img.data(), value, img.total());
@@ -166,42 +166,44 @@ Image Image::values(const int rows, const int cols, const int channels, const un
 void Image::Rotate(const double angle) {
   if (empty()) return;
 
-  int numRotations = 0;
-  if (angle == 90 || angle == -270)
-    numRotations = 1;
-  else if (angle == 180 || angle == -180)
-    numRotations = 2;
-  else if (angle == -90 || angle == 270)
-    numRotations = 3;
-  else {
-    throw std::cerr << "Unsupported angle. Only multiples of 90 are supported.\n";
-    return;
-  }
+  const int rows = this->rows();
+  const int cols = this->cols();
+  const int channels = this->channels();
 
-  Image result = *this;
-  for (int i = 0; i < numRotations; ++i) {
-    const int rows = result.rows();
-    const int cols = result.cols();
-    const int channels = result.channels();
-
+  if (angle == 90.0 || angle == -270) {
     Image temp(cols, rows, channels);
     for (int r = 0; r < rows; ++r) {
       for (int c = 0; c < cols; ++c) {
         for (int ch = 0; ch < channels; ++ch) {
-          //90 degree rotation
-          temp.at((c * rows + (rows - 1 - r)) * channels + ch) =
-              result.at((r * cols + c) * channels + ch);
+          temp.at(((cols - 1 - c) * rows + r) * channels + ch) =
+              this->at((r * cols + c) * channels + ch);
         }
       }
     }
-    result = temp;
+    *this = temp;
   }
-  *this = result;
+  else if (angle == -90.0 || angle == 270) {
+    Image temp(cols, rows, channels);
+    for (int r = 0; r < rows; ++r) {
+      for (int c = 0; c < cols; ++c) {
+        for (int ch = 0; ch < channels; ++ch) {
+          temp.at((c * rows + (rows - 1 - r)) * channels + ch)
+          = this->at((r * cols + c) * channels + ch);
+        }
+      }
+    }
+    *this = temp;
+  }
+  else if (angle == 180 || angle == -180) {
+    this->Mirror(MirrorType::Horizontal);
+    this->Mirror(MirrorType::Vertical);
+  }
 }
 
 void Image::copyTo(Image& image) const {
   if (empty()) return;
-
+  image = *this;
+}
 
 
 

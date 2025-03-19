@@ -56,7 +56,7 @@ class Image final {
     [[nodiscard]] const unsigned char& at(int index) const; // Что делает?
 
     static Image zeros(int rows, int cols, int channels);
-    Image values(int rows, int cols, int channels, unsigned char value);
+    Image values(int rows, int cols, int channels, unsigned char value) const;
 
     //Отразить изображение по вертикали или по горизонтали
     void Mirror(MirrorType type);  // Нужно сделать
