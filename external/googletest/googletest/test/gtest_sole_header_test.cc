@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //
-// This test verifies that it's possible to use Google Test by including
+// This __Tests__ verifies that it's possible to use Google Test by including
 // the gtest.h header file alone.
 
 #include "gtest/gtest.h"

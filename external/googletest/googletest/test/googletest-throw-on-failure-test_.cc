@@ -30,7 +30,7 @@
 // Tests Google Test's throw-on-failure mode with exceptions disabled.
 //
 // This program must be compiled with exceptions disabled.  It will be
-// invoked by googletest-throw-on-failure-test.py, and is expected to exit
+// invoked by googletest-throw-on-failure-__Tests__.py, and is expected to exit
 // with non-zero in the throw-on-failure mode or 0 otherwise.
 
 #include <stdio.h>   // for fflush, fprintf, NULL, etc.

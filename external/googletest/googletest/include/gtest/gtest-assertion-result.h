@@ -59,7 +59,7 @@ namespace testing {
 // (AssertionSuccess() and AssertionFailure()).
 //
 // This class is useful for two purposes:
-//   1. Defining predicate functions to be used with Boolean test assertions
+//   1. Defining predicate functions to be used with Boolean __Tests__ assertions
 //      EXPECT_TRUE/EXPECT_FALSE and their ASSERT_ counterparts
 //   2. Defining predicate-format functions to be
 //      used with predicate assertions (ASSERT_PRED_FORMAT*, etc).
@@ -216,7 +216,7 @@ class GTEST_API_ AssertionResult {
   // Stores the message describing the condition in case the expectation
   // construct is not satisfied with the predicate's outcome.
   // Referenced via a pointer to avoid taking too much stack frame space
-  // with test assertions.
+  // with __Tests__ assertions.
   std::unique_ptr< ::std::string> message_;
 };
 

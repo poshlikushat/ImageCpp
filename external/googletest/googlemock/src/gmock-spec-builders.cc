@@ -486,7 +486,7 @@ class MockObjectRegistry {
 
   // This destructor will be called when a program exits, after all
   // tests in it have been run.  By then, there should be no mock
-  // object alive.  Therefore we report any living object as test
+  // object alive.  Therefore we report any living object as __Tests__
   // failure, unless the user explicitly asked us to ignore it.
   ~MockObjectRegistry() {
     if (!GMOCK_FLAG_GET(catch_leaked_mocks)) return;
@@ -506,7 +506,7 @@ class MockObjectRegistry {
                                                 state.first_used_line);
       std::cout << " ERROR: this mock object";
       if (!state.first_used_test.empty()) {
-        std::cout << " (used in test " << state.first_used_test_suite << "."
+        std::cout << " (used in __Tests__ " << state.first_used_test_suite << "."
                   << state.first_used_test << ")";
       }
       std::cout << " should be deleted but never is. Its address is @"
@@ -519,7 +519,7 @@ class MockObjectRegistry {
                 << " found at program exit. Expectations on a mock object are "
                    "verified when the object is destructed. Leaking a mock "
                    "means that its expectations aren't verified, which is "
-                   "usually a test bug. If you really intend to leak a mock, "
+                   "usually a __Tests__ bug. If you really intend to leak a mock, "
                    "you can suppress this error using "
                    "testing::Mock::AllowLeak(mock_object), or you may use a "
                    "fake or stub instead of a mock.\n";

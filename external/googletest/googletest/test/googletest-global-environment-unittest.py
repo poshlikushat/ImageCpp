@@ -25,9 +25,9 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""Unit test for Google Test's global test environment behavior.
+"""Unit __Tests__ for Google Test's global __Tests__ environment behavior.
 
-A user can specify a global test environment via
+A user can specify a global __Tests__ environment via
 testing::AddGlobalTestEnvironment. Failures in the global environment should
 result in all unit tests being skipped.
 
@@ -40,7 +40,7 @@ from googletest.test import gtest_test_utils
 
 
 def RunAndReturnOutput(args=None):
-  """Runs the test program and returns its output."""
+  """Runs the __Tests__ program and returns its output."""
 
   return gtest_test_utils.Subprocess(
       [
@@ -53,29 +53,29 @@ def RunAndReturnOutput(args=None):
 
 
 class GTestGlobalEnvironmentUnitTest(gtest_test_utils.TestCase):
-  """Tests global test environment failures."""
+  """Tests global __Tests__ environment failures."""
 
   def testEnvironmentSetUpFails(self):
     """Tests the behavior of not specifying the fail_fast."""
 
-    # Run the test.
+    # Run the __Tests__.
     txt = RunAndReturnOutput()
 
     # We should see the text of the global environment setup error.
     self.assertIn('Canned environment setup error', txt)
 
-    # Our test should have been skipped due to the error, and not treated as a
+    # Our __Tests__ should have been skipped due to the error, and not treated as a
     # pass.
-    self.assertIn('[  SKIPPED ] 1 test', txt)
+    self.assertIn('[  SKIPPED ] 1 __Tests__', txt)
     self.assertIn('[  PASSED  ] 0 tests', txt)
 
-    # The test case shouldn't have been run.
+    # The __Tests__ case shouldn't have been run.
     self.assertNotIn('Unexpected call', txt)
 
   def testEnvironmentSetUpAndTornDownForEachRepeat(self):
-    """Tests the behavior of test environments and gtest_repeat."""
+    """Tests the behavior of __Tests__ environments and gtest_repeat."""
 
-    # When --gtest_recreate_environments_when_repeating is true, the global test
+    # When --gtest_recreate_environments_when_repeating is true, the global __Tests__
     # environment should be set up and torn down for each iteration.
     txt = RunAndReturnOutput([
         '--gtest_repeat=2',
@@ -86,19 +86,19 @@ class GTestGlobalEnvironmentUnitTest(gtest_test_utils.TestCase):
         '(.|\n)*'
         r'Repeating all tests \(iteration 1\)'
         '(.|\n)*'
-        'Global test environment set-up.'
+        'Global __Tests__ environment set-up.'
         '(.|\n)*'
         'SomeTest.DoesFoo'
         '(.|\n)*'
-        'Global test environment tear-down'
+        'Global __Tests__ environment tear-down'
         '(.|\n)*'
         r'Repeating all tests \(iteration 2\)'
         '(.|\n)*'
-        'Global test environment set-up.'
+        'Global __Tests__ environment set-up.'
         '(.|\n)*'
         'SomeTest.DoesFoo'
         '(.|\n)*'
-        'Global test environment tear-down'
+        'Global __Tests__ environment tear-down'
         '(.|\n)*'
     )
     self.assertRegex(txt, expected_pattern)
@@ -107,7 +107,7 @@ class GTestGlobalEnvironmentUnitTest(gtest_test_utils.TestCase):
     """Tests environment and --gtest_recreate_environments_when_repeating."""
 
     # By default the environment should only be set up and torn down once, at
-    # the start and end of the test respectively.
+    # the start and end of the __Tests__ respectively.
     txt = RunAndReturnOutput(
         [
             '--gtest_repeat=2',
@@ -118,7 +118,7 @@ class GTestGlobalEnvironmentUnitTest(gtest_test_utils.TestCase):
         '(.|\n)*'
         r'Repeating all tests \(iteration 1\)'
         '(.|\n)*'
-        'Global test environment set-up.'
+        'Global __Tests__ environment set-up.'
         '(.|\n)*'
         'SomeTest.DoesFoo'
         '(.|\n)*'
@@ -126,14 +126,14 @@ class GTestGlobalEnvironmentUnitTest(gtest_test_utils.TestCase):
         '(.|\n)*'
         'SomeTest.DoesFoo'
         '(.|\n)*'
-        'Global test environment tear-down'
+        'Global __Tests__ environment tear-down'
         '(.|\n)*'
     )
     self.assertRegex(txt, expected_pattern)
 
-    self.assertEqual(len(re.findall('Global test environment set-up', txt)), 1)
+    self.assertEqual(len(re.findall('Global __Tests__ environment set-up', txt)), 1)
     self.assertEqual(
-        len(re.findall('Global test environment tear-down', txt)), 1
+        len(re.findall('Global __Tests__ environment tear-down', txt)), 1
     )
 
 

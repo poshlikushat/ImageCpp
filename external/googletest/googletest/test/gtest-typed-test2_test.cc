@@ -32,7 +32,7 @@
 #include "gtest/gtest.h"
 #include "test/gtest-typed-test_test.h"
 
-// Tests that the same type-parameterized test case can be
+// Tests that the same type-parameterized __Tests__ case can be
 // instantiated in different translation units linked together.
 // (ContainerTest is also instantiated in gtest-typed-test_test.cc.)
 INSTANTIATE_TYPED_TEST_SUITE_P(Vector, ContainerTest,

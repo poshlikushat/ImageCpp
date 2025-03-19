@@ -285,7 +285,7 @@ For example:
 
 ```c++
 TEST(SkipTest, DoesSkip) {
-  GTEST_SKIP() << "Skipping single test";
+  GTEST_SKIP() << "Skipping single __Tests__";
   FAIL();  // Won't fail; it won't be executed
 }
 
@@ -483,7 +483,7 @@ For example,
 
 ```c++
 TEST(MyDeathTest, Foo) {
-  // This death test uses a compound statement.
+  // This death __Tests__ uses a compound statement.
   ASSERT_DEATH({
     int n = 5;
     Foo(&n);
@@ -546,11 +546,11 @@ class FooTest : public testing::Test { ... };
 using FooDeathTest = FooTest;
 
 TEST_F(FooTest, DoesThis) {
-  // normal test
+  // normal __Tests__
 }
 
 TEST_F(FooDeathTest, DoesThat) {
-  // death test
+  // death __Tests__
 }
 ```
 
@@ -607,12 +607,12 @@ int main(int argc, char** argv) {
 
 TEST(MyDeathTest, TestOne) {
   GTEST_FLAG_SET(death_test_style, "threadsafe");
-  // This test is run in the "threadsafe" style:
+  // This __Tests__ is run in the "threadsafe" style:
   ASSERT_DEATH(ThisShouldDie(), "");
 }
 
 TEST(MyDeathTest, TestTwo) {
-  // This test is run in the "fast" style:
+  // This __Tests__ is run in the "fast" style:
   ASSERT_DEATH(ThisShouldDie(), "");
 }
 ```
@@ -747,7 +747,7 @@ void Subroutine() {
 
 TEST(FooTest, Bar) {
   Subroutine();  // The intended behavior is for the fatal failure
-                 // in Subroutine() to abort the entire test.
+                 // in Subroutine() to abort the entire __Tests__.
 
   // The actual behavior: the function goes on after Subroutine() returns.
   int* p = nullptr;
@@ -933,8 +933,8 @@ Here's an example of per-test-suite set-up and tear-down:
 ```c++
 class FooTest : public testing::Test {
  protected:
-  // Per-test-suite set-up.
-  // Called before the first test in this test suite.
+  // Per-__Tests__-suite set-up.
+  // Called before the first __Tests__ in this __Tests__ suite.
   // Can be omitted if not needed.
   static void SetUpTestSuite() {
     shared_resource_ = new ...;
@@ -948,18 +948,18 @@ class FooTest : public testing::Test {
     // }
   }
 
-  // Per-test-suite tear-down.
-  // Called after the last test in this test suite.
+  // Per-__Tests__-suite tear-down.
+  // Called after the last __Tests__ in this __Tests__ suite.
   // Can be omitted if not needed.
   static void TearDownTestSuite() {
     delete shared_resource_;
     shared_resource_ = nullptr;
   }
 
-  // You can define per-test set-up logic as usual.
+  // You can define per-__Tests__ set-up logic as usual.
   void SetUp() override { ... }
 
-  // You can define per-test tear-down logic as usual.
+  // You can define per-__Tests__ tear-down logic as usual.
   void TearDown() override { ... }
 
   // Some expensive resource shared by all tests.
@@ -1084,7 +1084,7 @@ they must be declared **public** rather than **protected** in order to use
 class FooTest :
     public testing::TestWithParam<absl::string_view> {
   // You can implement all the usual fixture class members here.
-  // To access the test parameter, call GetParam() from class
+  // To access the __Tests__ parameter, call GetParam() from class
   // TestWithParam<T>.
 };
 
@@ -1104,7 +1104,7 @@ prefer to think.
 
 ```c++
 TEST_P(FooTest, DoesBlah) {
-  // Inside a test, access the test parameter with the GetParam() method
+  // Inside a __Tests__, access the __Tests__ parameter with the GetParam() method
   // of the TestWithParam<T> class:
   EXPECT_TRUE(foo.Blah(GetParam()));
   ...
@@ -1322,7 +1322,7 @@ test suite. You can repeat this as many times as you want:
 
 ```c++
 TYPED_TEST(FooTest, DoesBlah) {
-  // Inside a test, refer to the special name TypeParam to get the type
+  // Inside a __Tests__, refer to the special name TypeParam to get the type
   // parameter.  Since we are inside a derived class template, C++ requires
   // us to visit the members of FooTest via 'this'.
   TypeParam n = this->value_;
@@ -1381,7 +1381,7 @@ this as many times as you want:
 
 ```c++
 TYPED_TEST_P(FooTest, DoesBlah) {
-  // Inside a test, refer to TypeParam to get the type parameter.
+  // Inside a __Tests__, refer to TypeParam to get the type parameter.
   TypeParam n = 0;
 
   // You will need to use `this` explicitly to refer to fixture members.
@@ -1673,12 +1673,12 @@ To obtain a `TestInfo` object for the currently running test, call
 singleton object:
 
 ```c++
-  // Gets information about the currently running test.
+  // Gets information about the currently running __Tests__.
   // Do NOT delete the returned object - it's managed by the UnitTest class.
   const testing::TestInfo* const test_info =
       testing::UnitTest::GetInstance()->current_test_info();
 
-  printf("We are in test %s of test suite %s.\n",
+  printf("We are in __Tests__ %s of __Tests__ suite %s.\n",
          test_info->name(),
          test_info->test_suite_name());
 ```
@@ -1725,7 +1725,7 @@ Here's an example:
 
 ```c++
   class MinimalistPrinter : public testing::EmptyTestEventListener {
-    // Called before a test starts.
+    // Called before a __Tests__ starts.
     void OnTestStart(const testing::TestInfo& test_info) override {
       printf("*** Test %s.%s starting.\n",
              test_info.test_suite_name(), test_info.name());
@@ -1740,7 +1740,7 @@ Here's an example:
              test_part_result.summary());
     }
 
-    // Called after a test ends.
+    // Called after a __Tests__ ends.
     void OnTestEnd(const testing::TestInfo& test_info) override {
       printf("*** Test %s.%s ending.\n",
              test_info.test_suite_name(), test_info.name());
@@ -2334,7 +2334,7 @@ could generate this report:
       "testsuite": [
         {
           "name": "Addition",
-          "file": "test.cpp",
+          "file": "__Tests__.cpp",
           "line": 1,
           "status": "RUN",
           "time": "0.007s",
@@ -2352,7 +2352,7 @@ could generate this report:
         },
         {
           "name": "Subtraction",
-          "file": "test.cpp",
+          "file": "__Tests__.cpp",
           "line": 2,
           "status": "RUN",
           "time": "0.005s",
@@ -2369,7 +2369,7 @@ could generate this report:
       "testsuite": [
         {
           "name": "NonContradiction",
-          "file": "test.cpp",
+          "file": "__Tests__.cpp",
           "line": 3,
           "status": "RUN",
           "time": "0.005s",

@@ -47,7 +47,7 @@ OUTPUT = gtest_test_utils.Subprocess([EXE_PATH]).output
 class SkipEntireEnvironmentTest(gtest_test_utils.TestCase):
 
   def testSkipEntireEnvironmentTest(self):
-    self.assertIn('Skipped\nskipping single test\n', OUTPUT)
+    self.assertIn('Skipped\nskipping single __Tests__\n', OUTPUT)
     skip_fixture = 'Skipped\nskipping all tests for this fixture\n'
     self.assertIsNotNone(
         re.search(skip_fixture + '.*' + skip_fixture, OUTPUT, flags=re.DOTALL),

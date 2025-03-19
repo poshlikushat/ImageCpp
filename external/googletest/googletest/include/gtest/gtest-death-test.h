@@ -43,9 +43,9 @@
 #include "gtest/internal/gtest-death-test-internal.h"
 
 // This flag controls the style of death tests.  Valid values are "threadsafe",
-// meaning that the death test child process will re-execute the test binary
-// from the start, running only a single death test, or "fast",
-// meaning that the child process will execute the test logic immediately
+// meaning that the death __Tests__ child process will re-execute the __Tests__ binary
+// from the start, running only a single death __Tests__, or "fast",
+// meaning that the child process will execute the __Tests__ logic immediately
 // after forking.
 GTEST_DECLARE_string_(death_test_style);
 
@@ -56,7 +56,7 @@ namespace testing {
 namespace internal {
 
 // Returns a Boolean value indicating whether the caller is currently
-// executing in the context of the death test child process.  Tools such as
+// executing in the context of the death __Tests__ child process.  Tools such as
 // Valgrind heap checkers may need this to modify their behavior in death
 // tests.  IMPORTANT: This is an internal utility.  Using it may break the
 // implementation of death tests.  User code MUST NOT use it.
@@ -74,8 +74,8 @@ GTEST_API_ bool InDeathTestChild();
 //   when there is a single thread.
 //
 //   2. The parent process clone()s a sub-process and runs the death
-//   test in it; the sub-process exits with code 0 at the end of the
-//   death test, if it hasn't exited already.
+//   __Tests__ in it; the sub-process exits with code 0 at the end of the
+//   death __Tests__, if it hasn't exited already.
 //
 //   3. The parent process waits for the sub-process to terminate.
 //
@@ -151,19 +151,19 @@ GTEST_API_ bool InDeathTestChild();
 //
 //   This implementation is *not* meant to be as highly tuned or robust
 //   as a compiled regex library, but should perform well enough for a
-//   death test, which already incurs significant overhead by launching
+//   death __Tests__, which already incurs significant overhead by launching
 //   a child process.
 //
 // Known caveats:
 //
-//   A "threadsafe" style death test obtains the path to the test
+//   A "threadsafe" style death __Tests__ obtains the path to the __Tests__
 //   program from argv[0] and re-executes it in the sub-process.  For
 //   simplicity, the current implementation doesn't search the PATH
 //   when launching the sub-process.  This means that the user must
-//   invoke the test program via a path that contains at least one
+//   invoke the __Tests__ program via a path that contains at least one
 //   path separator (e.g. path/to/foo_test and
 //   /absolute/path/to/bar_test are fine, but foo_test is not).  This
-//   is rarely a problem as people usually don't put the test binary
+//   is rarely a problem as people usually don't put the __Tests__ binary
 //   directory in PATH.
 //
 
@@ -174,7 +174,7 @@ GTEST_API_ bool InDeathTestChild();
   GTEST_DEATH_TEST_(statement, predicate, matcher, GTEST_FATAL_FAILURE_)
 
 // Like `ASSERT_EXIT`, but continues on to successive tests in the
-// test suite, if any:
+// __Tests__ suite, if any:
 #define EXPECT_EXIT(statement, predicate, matcher) \
   GTEST_DEATH_TEST_(statement, predicate, matcher, GTEST_NONFATAL_FAILURE_)
 
@@ -185,7 +185,7 @@ GTEST_API_ bool InDeathTestChild();
   ASSERT_EXIT(statement, ::testing::internal::ExitedUnsuccessfully, matcher)
 
 // Like `ASSERT_DEATH`, but continues on to successive tests in the
-// test suite, if any:
+// __Tests__ suite, if any:
 #define EXPECT_DEATH(statement, matcher) \
   EXPECT_EXIT(statement, ::testing::internal::ExitedUnsuccessfully, matcher)
 
@@ -221,7 +221,7 @@ class GTEST_API_ KilledBySignal {
 // since the sideeffects of the call are only visible in opt mode, and not
 // in debug mode.
 //
-// In practice, this can be used to test functions that utilize the
+// In practice, this can be used to __Tests__ functions that utilize the
 // LOG(DFATAL) macro using the following style:
 //
 // int DieInDebugOr12(int* sideeffect) {
@@ -249,7 +249,7 @@ class GTEST_API_ KilledBySignal {
 // This will assert that DieInDebugReturn12InOpt() crashes in debug
 // mode, usually due to a DCHECK or LOG(DFATAL), but returns the
 // appropriate fallback value (12 in this case) in opt mode. If you
-// need to test that a function has appropriate side-effects in opt
+// need to __Tests__ that a function has appropriate side-effects in opt
 // mode, include assertions against the side-effects.  A general
 // pattern for this is:
 //
@@ -282,19 +282,19 @@ class GTEST_API_ KilledBySignal {
 // if and only if EXPECT_DEATH and ASSERT_DEATH compile with the same parameters
 // on systems that support death tests. This allows one to write such a macro on
 // a system that does not support death tests and be sure that it will compile
-// on a death-test supporting system. It is exposed publicly so that systems
+// on a death-__Tests__ supporting system. It is exposed publicly so that systems
 // that have death-tests with stricter requirements than GTEST_HAS_DEATH_TEST
 // can write their own equivalent of EXPECT_DEATH_IF_SUPPORTED and
 // ASSERT_DEATH_IF_SUPPORTED.
 //
 // Parameters:
-//   statement -  A statement that a macro such as EXPECT_DEATH would test
+//   statement -  A statement that a macro such as EXPECT_DEATH would __Tests__
 //                for program termination. This macro has to make sure this
 //                statement is compiled but not executed, to ensure that
 //                EXPECT_DEATH_IF_SUPPORTED compiles with a certain
 //                parameter if and only if EXPECT_DEATH compiles with it.
 //   regex_or_matcher -  A regex that a macro such as EXPECT_DEATH would use
-//                to test the output of statement.  This parameter has to be
+//                to __Tests__ the output of statement.  This parameter has to be
 //                compiled but not evaluated by this macro, to ensure that
 //                this macro only accepts expressions that a macro such as
 //                EXPECT_DEATH would accept.
@@ -326,8 +326,8 @@ class GTEST_API_ KilledBySignal {
 // EXPECT_DEATH_IF_SUPPORTED(statement, regex) and
 // ASSERT_DEATH_IF_SUPPORTED(statement, regex) expand to real death tests if
 // death tests are supported; otherwise they just issue a warning.  This is
-// useful when you are combining death test assertions with normal test
-// assertions in one test.
+// useful when you are combining death __Tests__ assertions with normal __Tests__
+// assertions in one __Tests__.
 #ifdef GTEST_HAS_DEATH_TEST
 #define EXPECT_DEATH_IF_SUPPORTED(statement, regex) \
   EXPECT_DEATH(statement, regex)

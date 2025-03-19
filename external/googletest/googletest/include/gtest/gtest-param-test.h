@@ -37,8 +37,8 @@
 #ifndef GOOGLETEST_INCLUDE_GTEST_GTEST_PARAM_TEST_H_
 #define GOOGLETEST_INCLUDE_GTEST_GTEST_PARAM_TEST_H_
 
-// Value-parameterized tests allow you to test your code with different
-// parameters without writing multiple copies of the same test.
+// Value-parameterized tests allow you to __Tests__ your code with different
+// parameters without writing multiple copies of the same __Tests__.
 //
 // Here is how you use value-parameterized tests:
 
@@ -61,7 +61,7 @@ class FooTest : public ::testing::TestWithParam<const char*> {
 // or "pattern", whichever you prefer to think.
 
 TEST_P(FooTest, DoesBlah) {
-  // Inside a test, access the test parameter with the GetParam() method
+  // Inside a __Tests__, access the __Tests__ parameter with the GetParam() method
   // of the TestWithParam<T> class:
   EXPECT_TRUE(foo.Blah(GetParam()));
   ...
@@ -71,9 +71,9 @@ TEST_P(FooTest, HasBlahBlah) {
   ...
 }
 
-// Finally, you can use INSTANTIATE_TEST_SUITE_P to instantiate the test
+// Finally, you can use INSTANTIATE_TEST_SUITE_P to instantiate the __Tests__
 // case with any set of parameters you want. Google Test defines a number
-// of functions for generating test parameters. They return what we call
+// of functions for generating __Tests__ parameters. They return what we call
 // (surprise!) parameter generators. Here is a summary of them, which
 // are all in the testing namespace:
 //
@@ -92,7 +92,7 @@ TEST_P(FooTest, HasBlahBlah) {
 // For more details, see comments at the definitions of these functions below
 // in this file.
 //
-// The following statement will instantiate tests from the FooTest test suite
+// The following statement will instantiate tests from the FooTest __Tests__ suite
 // each with parameter values "meeny", "miny", and "moe".
 
 INSTANTIATE_TEST_SUITE_P(InstantiationName,
@@ -102,7 +102,7 @@ INSTANTIATE_TEST_SUITE_P(InstantiationName,
 // To distinguish different instances of the pattern, (yes, you
 // can instantiate it more than once) the first argument to the
 // INSTANTIATE_TEST_SUITE_P macro is a prefix that will be added to the
-// actual test suite name. Remember to pick unique prefixes for different
+// actual __Tests__ suite name. Remember to pick unique prefixes for different
 // instantiations. The tests from the instantiation above will have
 // these names:
 //
@@ -129,7 +129,7 @@ INSTANTIATE_TEST_SUITE_P(AnotherInstantiationName, FooTest, ValuesIn(pets));
 //    * AnotherInstantiationName/FooTest.HasBlahBlah/1 for "dog"
 //
 // Please note that INSTANTIATE_TEST_SUITE_P will instantiate all tests
-// in the given test suite, whether their definitions come before or
+// in the given __Tests__ suite, whether their definitions come before or
 // AFTER the INSTANTIATE_TEST_SUITE_P statement.
 //
 // Please also note that generator expressions (including parameters to the
@@ -147,7 +147,7 @@ INSTANTIATE_TEST_SUITE_P(AnotherInstantiationName, FooTest, ValuesIn(pets));
 // implementation and is subject to change.
 //
 //
-// A parameterized test fixture must be derived from testing::Test and from
+// A parameterized __Tests__ fixture must be derived from testing::Test and from
 // testing::WithParamInterface<T>, where T is the type of the parameter
 // values. Inheriting from TestWithParam<T> satisfies that requirement because
 // TestWithParam<T> inherits from both Test and WithParamInterface. In more
@@ -155,16 +155,16 @@ INSTANTIATE_TEST_SUITE_P(AnotherInstantiationName, FooTest, ValuesIn(pets));
 // separately from Test and WithParamInterface. For example:
 
 class BaseTest : public ::testing::Test {
-  // You can inherit all the usual members for a non-parameterized test
+  // You can inherit all the usual members for a non-parameterized __Tests__
   // fixture here.
 };
 
 class DerivedTest : public BaseTest, public ::testing::WithParamInterface<int> {
-  // The usual test fixture members go here too.
+  // The usual __Tests__ fixture members go here too.
 };
 
 TEST_F(BaseTest, HasFoo) {
-  // This is an ordinary non-parameterized test.
+  // This is an ordinary non-parameterized __Tests__.
 }
 
 TEST_P(DerivedTest, DoesBlah) {
@@ -186,11 +186,11 @@ namespace testing {
 // Functions producing parameter generators.
 //
 // Google Test uses these generators to produce parameters for value-
-// parameterized tests. When a parameterized test suite is instantiated
+// parameterized tests. When a parameterized __Tests__ suite is instantiated
 // with a particular generator, Google Test creates and runs tests
 // for each element in the sequence produced by the generator.
 //
-// In the following sample, tests from test suite FooTest are instantiated
+// In the following sample, tests from __Tests__ suite FooTest are instantiated
 // each three times with parameter values 3, 5, and 8:
 //
 // class FooTest : public TestWithParam<int> { ... };
@@ -256,13 +256,13 @@ internal::ParamGenerator<T> Range(T start, T end) {
 //
 // Examples:
 //
-// This instantiates tests from test suite StringTest
+// This instantiates tests from __Tests__ suite StringTest
 // each with C-string values of "foo", "bar", and "baz":
 //
 // const char* strings[] = {"foo", "bar", "baz"};
 // INSTANTIATE_TEST_SUITE_P(StringSequence, StringTest, ValuesIn(strings));
 //
-// This instantiates tests from test suite StlStringTest
+// This instantiates tests from __Tests__ suite StlStringTest
 // each with STL strings with values "a" and "b":
 //
 // ::std::vector< ::std::string> GetParameterStrings() {
@@ -318,14 +318,14 @@ internal::ParamGenerator<typename Container::value_type> ValuesIn(
 // Values(T v1, T v2, ..., T vN)
 //   - returns a generator producing sequences with elements v1, v2, ..., vN.
 //
-// For example, this instantiates tests from test suite BarTest each
+// For example, this instantiates tests from __Tests__ suite BarTest each
 // with values "one", "two", and "three":
 //
 // INSTANTIATE_TEST_SUITE_P(NumSequence,
 //                          BarTest,
 //                          Values("one", "two", "three"));
 //
-// This instantiates tests from test suite BazTest each with values 1, 2, 3.5.
+// This instantiates tests from __Tests__ suite BazTest each with values 1, 2, 3.5.
 // The exact type of values will depend on the type of parameter in BazTest.
 //
 // INSTANTIATE_TEST_SUITE_P(FloatingNumbers, BazTest, Values(1, 2, 3.5));
@@ -346,7 +346,7 @@ internal::ValueArray<T...> Values(T... v) {
 // of multiple flags can be tested when several Bool()'s are combined using
 // Combine() function.
 //
-// In the following example all tests in the test suite FlagDependentTest
+// In the following example all tests in the __Tests__ suite FlagDependentTest
 // will be instantiated twice with parameters false and true.
 //
 // class FlagDependentTest : public testing::TestWithParam<bool> {
@@ -371,7 +371,7 @@ inline internal::ParamGenerator<bool> Bool() { return Values(false, true); }
 //
 // Example:
 //
-// This will instantiate tests in test suite AnimalTest each one with
+// This will instantiate tests in __Tests__ suite AnimalTest each one with
 // the parameter values tuple("cat", BLACK), tuple("cat", WHITE),
 // tuple("dog", BLACK), and tuple("dog", WHITE):
 //
@@ -408,7 +408,7 @@ internal::CartesianProductHolder<Generator...> Combine(const Generator&... g) {
 }
 
 // ConvertGenerator() wraps a parameter generator in order to cast each produced
-// value through a known type before supplying it to the test suite
+// value through a known type before supplying it to the __Tests__ suite
 //
 // Synopsis:
 // ConvertGenerator<T>(gen)
@@ -420,7 +420,7 @@ internal::CartesianProductHolder<Generator...> Combine(const Generator&... g) {
 //
 // Example:
 //
-// This will instantiate tests in test suite AnimalTest each one with
+// This will instantiate tests in __Tests__ suite AnimalTest each one with
 // the parameter values tuple("cat", BLACK), tuple("cat", WHITE),
 // tuple("dog", BLACK), and tuple("dog", WHITE):
 //
@@ -477,15 +477,15 @@ internal::ParamConverterGenerator<T> ConvertGenerator(
   void GTEST_TEST_CLASS_NAME_(test_suite_name, test_name)::TestBody()
 
 // The last argument to INSTANTIATE_TEST_SUITE_P allows the user to specify
-// generator and an optional function or functor that generates custom test name
-// suffixes based on the test parameters. Such a function or functor should
+// generator and an optional function or functor that generates custom __Tests__ name
+// suffixes based on the __Tests__ parameters. Such a function or functor should
 // accept one argument of type testing::TestParamInfo<class ParamType>, and
 // return std::string.
 //
-// testing::PrintToStringParamName is a builtin test suffix generator that
+// testing::PrintToStringParamName is a builtin __Tests__ suffix generator that
 // returns the value of testing::PrintToString(GetParam()).
 //
-// Note: test names must be non-empty, unique, and may only contain ASCII
+// Note: __Tests__ names must be non-empty, unique, and may only contain ASCII
 // alphanumeric characters or underscore. Because PrintToString adds quotes
 // to std::string and C strings, it won't work for these types.
 
@@ -527,7 +527,7 @@ internal::ParamConverterGenerator<T> ConvertGenerator(
                   &gtest_##prefix##test_suite_name##_EvalGenerateName_,      \
                   __FILE__, __LINE__)
 
-// Allow Marking a Parameterized test class as not needing to be instantiated.
+// Allow Marking a Parameterized __Tests__ class as not needing to be instantiated.
 #define GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST(T)                  \
   namespace gtest_do_not_use_outside_namespace_scope {}                   \
   static const ::testing::internal::MarkAsIgnored gtest_allow_ignore_##T( \

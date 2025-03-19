@@ -37,11 +37,11 @@
 
 #include "gtest/gtest.h"
 
-// Test fixture for testing definition and instantiation of a test
+// Test fixture for testing definition and instantiation of a __Tests__
 // in separate translation units.
 class ExternalInstantiationTest : public ::testing::TestWithParam<int> {};
 
-// Test fixture for testing instantiation of a test in multiple
+// Test fixture for testing instantiation of a __Tests__ in multiple
 // translation units.
 class InstantiationInMultipleTranslationUnitsTest
     : public ::testing::TestWithParam<int> {};

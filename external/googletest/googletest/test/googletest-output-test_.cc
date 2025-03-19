@@ -29,7 +29,7 @@
 //
 // The purpose of this file is to generate Google Test output under
 // various conditions.  The output will then be verified by
-// googletest-output-test.py to ensure that Google Test generates the
+// googletest-output-__Tests__.py to ensure that Google Test generates the
 // desired messages.  Therefore, most tests in this file are MEANT TO
 // FAIL.
 
@@ -56,19 +56,19 @@ namespace posix = ::testing::internal::posix;
 
 // Tests catching fatal failures.
 
-// A subroutine used by the following test.
+// A subroutine used by the following __Tests__.
 void TestEq1(int x) { ASSERT_EQ(1, x); }
 
-// This function calls a test subroutine, catches the fatal failure it
+// This function calls a __Tests__ subroutine, catches the fatal failure it
 // generates, and then returns early.
 void TryTestSubroutine() {
   // Calls a subrountine that yields a fatal failure.
   TestEq1(2);
 
-  // Catches the fatal failure and aborts the test.
+  // Catches the fatal failure and aborts the __Tests__.
   //
   // The testing::Test:: prefix is necessary when calling
-  // HasFatalFailure() outside of a TEST, TEST_F, or test fixture.
+  // HasFatalFailure() outside of a TEST, TEST_F, or __Tests__ fixture.
   if (testing::Test::HasFatalFailure()) return;
 
   // If we get here, something is wrong.
@@ -80,18 +80,18 @@ TEST(PassingTest, PassingTest1) {}
 TEST(PassingTest, PassingTest2) {}
 
 // Tests that parameters of failing parameterized tests are printed in the
-// failing test summary.
+// failing __Tests__ summary.
 class FailingParamTest : public testing::TestWithParam<int> {};
 
 TEST_P(FailingParamTest, Fails) { EXPECT_EQ(1, GetParam()); }
 
-// This generates a test which will fail. Google Test is expected to print
+// This generates a __Tests__ which will fail. Google Test is expected to print
 // its parameter when it outputs the list of all failed tests.
 INSTANTIATE_TEST_SUITE_P(PrintingFailingParams, FailingParamTest,
                          testing::Values(2));
 
-// Tests that an empty value for the test suite basename yields just
-// the test name without any prior /
+// Tests that an empty value for the __Tests__ suite basename yields just
+// the __Tests__ name without any prior /
 class EmptyBasenameParamInst : public testing::TestWithParam<int> {};
 
 TEST_P(EmptyBasenameParamInst, Passes) { EXPECT_EQ(1, GetParam()); }
@@ -127,9 +127,9 @@ TEST(FatalFailureTest, FatalFailureInNestedSubroutine) {
   // Calls a subrountine that yields a fatal failure.
   TryTestSubroutine();
 
-  // Catches the fatal failure and aborts the test.
+  // Catches the fatal failure and aborts the __Tests__.
   //
-  // When calling HasFatalFailure() inside a TEST, TEST_F, or test
+  // When calling HasFatalFailure() inside a TEST, TEST_F, or __Tests__
   // fixture, the testing::Test:: prefix is not needed.
   if (HasFatalFailure()) return;
 
@@ -255,7 +255,7 @@ TEST(SCOPED_TRACETest, CanBeRepeated) {
 // threads.  Namely, an assertion should be affected by
 // SCOPED_TRACE()s in its own thread only.
 
-// Here's the sequence of actions that happen in the test:
+// Here's the sequence of actions that happen in the __Tests__:
 //
 //   Thread A (main)                | Thread B (spawned)
 //   ===============================|================================
@@ -331,22 +331,22 @@ TEST(ScopedTraceTest, WithExplicitFileAndLine) {
 
 TEST(DisabledTestsWarningTest,
      DISABLED_AlsoRunDisabledTestsFlagSuppressesWarning) {
-  // This test body is intentionally empty.  Its sole purpose is for
+  // This __Tests__ body is intentionally empty.  Its sole purpose is for
   // verifying that the --gtest_also_run_disabled_tests flag
   // suppresses the "YOU HAVE 12 DISABLED TESTS" warning at the end of
-  // the test output.
+  // the __Tests__ output.
 }
 
 // Tests using assertions outside of TEST and TEST_F.
 //
 // This function creates two failures intentionally.
 void AdHocTest() {
-  printf("The non-test part of the code is expected to have 2 failures.\n\n");
+  printf("The non-__Tests__ part of the code is expected to have 2 failures.\n\n");
   EXPECT_TRUE(false);
   EXPECT_EQ(2, 3);
 }
 
-// Runs all TESTs, all TEST_Fs, and the ad hoc test.
+// Runs all TESTs, all TEST_Fs, and the ad hoc __Tests__.
 int RunAllTests() {
   AdHocTest();
   return RUN_ALL_TESTS();
@@ -357,11 +357,11 @@ class NonFatalFailureInFixtureConstructorTest : public testing::Test {
  protected:
   NonFatalFailureInFixtureConstructorTest() {
     printf("(expecting 5 failures)\n");
-    ADD_FAILURE() << "Expected failure #1, in the test fixture c'tor.";
+    ADD_FAILURE() << "Expected failure #1, in the __Tests__ fixture c'tor.";
   }
 
   ~NonFatalFailureInFixtureConstructorTest() override {
-    ADD_FAILURE() << "Expected failure #5, in the test fixture d'tor.";
+    ADD_FAILURE() << "Expected failure #5, in the __Tests__ fixture d'tor.";
   }
 
   void SetUp() override { ADD_FAILURE() << "Expected failure #2, in SetUp()."; }
@@ -372,7 +372,7 @@ class NonFatalFailureInFixtureConstructorTest : public testing::Test {
 };
 
 TEST_F(NonFatalFailureInFixtureConstructorTest, FailureInConstructor) {
-  ADD_FAILURE() << "Expected failure #3, in the test body.";
+  ADD_FAILURE() << "Expected failure #3, in the __Tests__ body.";
 }
 
 // Tests fatal failures in the fixture constructor.
@@ -384,28 +384,28 @@ class FatalFailureInFixtureConstructorTest : public testing::Test {
   }
 
   ~FatalFailureInFixtureConstructorTest() override {
-    ADD_FAILURE() << "Expected failure #2, in the test fixture d'tor.";
+    ADD_FAILURE() << "Expected failure #2, in the __Tests__ fixture d'tor.";
   }
 
   void SetUp() override {
     ADD_FAILURE() << "UNEXPECTED failure in SetUp().  "
-                  << "We should never get here, as the test fixture c'tor "
+                  << "We should never get here, as the __Tests__ fixture c'tor "
                   << "had a fatal failure.";
   }
 
   void TearDown() override {
     ADD_FAILURE() << "UNEXPECTED failure in TearDown().  "
-                  << "We should never get here, as the test fixture c'tor "
+                  << "We should never get here, as the __Tests__ fixture c'tor "
                   << "had a fatal failure.";
   }
 
  private:
-  void Init() { FAIL() << "Expected failure #1, in the test fixture c'tor."; }
+  void Init() { FAIL() << "Expected failure #1, in the __Tests__ fixture c'tor."; }
 };
 
 TEST_F(FatalFailureInFixtureConstructorTest, FailureInConstructor) {
-  ADD_FAILURE() << "UNEXPECTED failure in the test body.  "
-                << "We should never get here, as the test fixture c'tor "
+  ADD_FAILURE() << "UNEXPECTED failure in the __Tests__ body.  "
+                << "We should never get here, as the __Tests__ fixture c'tor "
                 << "had a fatal failure.";
 }
 
@@ -422,11 +422,11 @@ class NonFatalFailureInSetUpTest : public testing::Test {
   void TearDown() override { FAIL() << "Expected failure #3, in TearDown()."; }
 
  private:
-  void Deinit() { FAIL() << "Expected failure #4, in the test fixture d'tor."; }
+  void Deinit() { FAIL() << "Expected failure #4, in the __Tests__ fixture d'tor."; }
 };
 
 TEST_F(NonFatalFailureInSetUpTest, FailureInSetUp) {
-  FAIL() << "Expected failure #2, in the test function.";
+  FAIL() << "Expected failure #2, in the __Tests__ function.";
 }
 
 // Tests fatal failures in SetUp().
@@ -442,11 +442,11 @@ class FatalFailureInSetUpTest : public testing::Test {
   void TearDown() override { FAIL() << "Expected failure #2, in TearDown()."; }
 
  private:
-  void Deinit() { FAIL() << "Expected failure #3, in the test fixture d'tor."; }
+  void Deinit() { FAIL() << "Expected failure #3, in the __Tests__ fixture d'tor."; }
 };
 
 TEST_F(FatalFailureInSetUpTest, FailureInSetUp) {
-  FAIL() << "UNEXPECTED failure in the test function.  "
+  FAIL() << "UNEXPECTED failure in the __Tests__ function.  "
          << "We should never get here, as SetUp() failed.";
 }
 
@@ -458,14 +458,14 @@ TEST(GtestFailAtTest, MessageContainsSpecifiedFileAndLineNumber) {
   GTEST_FAIL_AT("foo.cc", 42) << "Expected fatal failure in foo.cc";
 }
 
-// The MixedUpTestSuiteTest test case verifies that Google Test will fail a
-// test if it uses a different fixture class than what other tests in
-// the same test case use.  It deliberately contains two fixture
+// The MixedUpTestSuiteTest __Tests__ case verifies that Google Test will fail a
+// __Tests__ if it uses a different fixture class than what other tests in
+// the same __Tests__ case use.  It deliberately contains two fixture
 // classes with the same name but defined in different namespaces.
 
-// The MixedUpTestSuiteWithSameTestNameTest test case verifies that
-// when the user defines two tests with the same test case name AND
-// same test name (but in different namespaces), the second test will
+// The MixedUpTestSuiteWithSameTestNameTest __Tests__ case verifies that
+// when the user defines two tests with the same __Tests__ case name AND
+// same __Tests__ name (but in different namespaces), the second __Tests__ will
 // fail.
 
 namespace foo {
@@ -500,9 +500,9 @@ TEST_F(MixedUpTestSuiteWithSameTestNameTest,
 
 }  // namespace bar
 
-// The following two test cases verify that Google Test catches the user
-// error of mixing TEST and TEST_F in the same test case.  The first
-// test case checks the scenario where TEST_F appears before TEST, and
+// The following two __Tests__ cases verify that Google Test catches the user
+// error of mixing TEST and TEST_F in the same __Tests__ case.  The first
+// __Tests__ case checks the scenario where TEST_F appears before TEST, and
 // the second one checks where TEST appears before TEST_F.
 
 class TEST_F_before_TEST_in_same_test_case : public testing::Test {};
@@ -693,7 +693,7 @@ INSTANTIATE_TEST_SUITE_P(ThisIsOdd, NoTests, ::testing::Values("Hello"));
 class DetectNotInstantiatedTest : public testing::TestWithParam<int> {};
 TEST_P(DetectNotInstantiatedTest, Used) {}
 
-// This would make the test failure from the above go away.
+// This would make the __Tests__ failure from the above go away.
 // INSTANTIATE_TEST_SUITE_P(Fix, DetectNotInstantiatedTest, testing::Values(1));
 
 template <typename T>
@@ -771,19 +771,19 @@ TYPED_TEST_P(DetectNotInstantiatedTypesTest, Used) {
 REGISTER_TYPED_TEST_SUITE_P(DetectNotInstantiatedTypesTest, Used);
 
 // kErrorOnUninstantiatedTypeParameterizedTest=true would make the above fail.
-// Adding the following would make that test failure go away.
+// Adding the following would make that __Tests__ failure go away.
 //
 // typedef ::testing::Types<char, int, unsigned int> MyTypes;
 // INSTANTIATE_TYPED_TEST_SUITE_P(All, DetectNotInstantiatedTypesTest, MyTypes);
 
 #ifdef GTEST_HAS_DEATH_TEST
 
-// We rely on the golden file to verify that tests whose test case
+// We rely on the golden file to verify that tests whose __Tests__ case
 // name ends with DeathTest are run first.
 
 TEST(ADeathTest, ShouldRunFirst) {}
 
-// We rely on the golden file to verify that typed tests whose test
+// We rely on the golden file to verify that typed tests whose __Tests__
 // case name ends with DeathTest are run first.
 
 template <typename T>
@@ -795,7 +795,7 @@ TYPED_TEST_SUITE(ATypedDeathTest, NumericTypes);
 TYPED_TEST(ATypedDeathTest, ShouldRunFirst) {}
 
 // We rely on the golden file to verify that type-parameterized tests
-// whose test case name ends with DeathTest are run first.
+// whose __Tests__ case name ends with DeathTest are run first.
 
 template <typename T>
 class ATypeParamDeathTest : public testing::Test {};
@@ -979,7 +979,7 @@ auto dynamic_test = (
                           __FILE__, __LINE__,
                           []() { return new DynamicTest<true>; }));
 
-// Two test environments for testing testing::AddGlobalTestEnvironment().
+// Two __Tests__ environments for testing testing::AddGlobalTestEnvironment().
 
 class FooEnvironment : public testing::Environment {
  public:
@@ -1009,14 +1009,14 @@ TEST_F(TestSuiteThatFailsToSetUp, ShouldNotRun) { std::abort(); }
 
 class TestSuiteThatSkipsInSetUp : public testing::Test {
  public:
-  static void SetUpTestSuite() { GTEST_SKIP() << "Skip entire test suite"; }
+  static void SetUpTestSuite() { GTEST_SKIP() << "Skip entire __Tests__ suite"; }
 };
 TEST_F(TestSuiteThatSkipsInSetUp, ShouldNotRun) { std::abort(); }
 
 // The main function.
 //
 // The idea is to use Google Test to run all the tests we have defined (some
-// of them are intended to fail), and then compare the test results
+// of them are intended to fail), and then compare the __Tests__ results
 // with the "golden" file.
 int main(int argc, char** argv) {
   GTEST_FLAG_SET(print_time, false);
@@ -1025,8 +1025,8 @@ int main(int argc, char** argv) {
   // We will use a separate Python script to compare the output of
   // this program with the golden file.
 
-  // It's hard to test InitGoogleTest() directly, as it has many
-  // global side effects.  The following line serves as a test
+  // It's hard to __Tests__ InitGoogleTest() directly, as it has many
+  // global side effects.  The following line serves as a __Tests__
   // for it.
   testing::InitGoogleTest(&argc, argv);
   bool internal_skip_environment_and_ad_hoc_tests =
@@ -1036,7 +1036,7 @@ int main(int argc, char** argv) {
 #ifdef GTEST_HAS_DEATH_TEST
   if (!GTEST_FLAG_GET(internal_run_death_test).empty()) {
     // Skip the usual output capturing if we're running as the child
-    // process of an threadsafe-style death test.
+    // process of an threadsafe-style death __Tests__.
 #if defined(GTEST_OS_WINDOWS)
     posix::FReopen("nul:", "w", stdout);
 #else
@@ -1048,7 +1048,7 @@ int main(int argc, char** argv) {
 
   if (internal_skip_environment_and_ad_hoc_tests) return RUN_ALL_TESTS();
 
-  // Registers two global test environments.
+  // Registers two global __Tests__ environments.
   // The golden file verifies that they are set up in the order they
   // are registered, and torn down in the reverse order.
   testing::AddGlobalTestEnvironment(new FooEnvironment);

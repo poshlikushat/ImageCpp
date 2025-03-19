@@ -4,7 +4,7 @@
 #
 # CMake build script for Google Mock.
 #
-# To run the tests for Google Mock itself on Linux, use 'make test' or
+# To run the tests for Google Mock itself on Linux, use 'make __Tests__' or
 # ctest. You can select which tests to run using 'ctest -R regex'.
 # For more options, run 'ctest --help'.
 
@@ -128,7 +128,7 @@ install_project(gmock gmock_main)
 
 if (gmock_build_tests)
   # This must be set in the root directory for the tests to be run by
-  # 'make test' or ctest.
+  # 'make __Tests__' or ctest.
   enable_testing()
 
   if (MINGW OR CYGWIN)

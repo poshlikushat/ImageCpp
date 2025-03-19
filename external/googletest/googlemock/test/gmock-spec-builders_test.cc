@@ -979,7 +979,7 @@ TEST(UnexpectedCallTest, GeneratesFailureForVoidFunction) {
   EXPECT_CALL(a1, DoA(1));
   a1.DoA(1);
   // Ideally we should match the failure message against a regex, but
-  // EXPECT_NONFATAL_FAILURE doesn't support that, so we test for
+  // EXPECT_NONFATAL_FAILURE doesn't support that, so we __Tests__ for
   // multiple sub-strings instead.
   EXPECT_NONFATAL_FAILURE(
       a1.DoA(9),
@@ -2295,7 +2295,7 @@ TEST(VerifyAndClearExpectationsTest, CanCallManyTimes) {
 // of its methods has default actions.
 TEST(VerifyAndClearTest, NoMethodHasDefaultActions) {
   MockB b;
-  // If this crashes or generates a failure, the test will catch it.
+  // If this crashes or generates a failure, the __Tests__ will catch it.
   Mock::VerifyAndClear(&b);
   EXPECT_EQ(0, b.DoB());
 }

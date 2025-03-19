@@ -1,4 +1,10 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/kuimovmihail/Documents/GitHub/ImageCpp -B /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug
+CMake Error at CMakeLists.txt:8 (add_subdirectory):
+  The source directory
+
+    /Users/kuimovmihail/Documents/GitHub/ImageCpp/src
+
+  does not contain a CMakeLists.txt file.
+
+
+-- Configuring incomplete, errors occurred!

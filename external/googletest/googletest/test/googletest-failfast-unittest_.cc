@@ -27,13 +27,13 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Unit test for Google Test test filters.
+// Unit __Tests__ for Google Test __Tests__ filters.
 //
-// A user can specify which test(s) in a Google Test program to run via
+// A user can specify which __Tests__(s) in a Google Test program to run via
 // either the GTEST_FILTER environment variable or the --gtest_filter
 // flag.  This is used for testing such functionality.
 //
-// The program will be invoked from a Python unit test.  Don't run it
+// The program will be invoked from a Python unit __Tests__.  Don't run it
 // directly.
 
 #include "gtest/gtest.h"

@@ -172,25 +172,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/test/CMakeFiles/ImageCppTest.dir/rule:
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/test/CMakeFiles/ImageCppTest.dir/rule
-.PHONY : src/test/CMakeFiles/ImageCppTest.dir/rule
+src/test/CMakeFiles/ImageTest.dir/rule:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/test/CMakeFiles/ImageTest.dir/rule
+.PHONY : src/test/CMakeFiles/ImageTest.dir/rule
 
 # Convenience name for target.
-ImageCppTest: src/test/CMakeFiles/ImageCppTest.dir/rule
-.PHONY : ImageCppTest
+ImageTest: src/test/CMakeFiles/ImageTest.dir/rule
+.PHONY : ImageTest
 
 # fast build rule for target.
-ImageCppTest/fast:
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageCppTest.dir/build.make src/test/CMakeFiles/ImageCppTest.dir/build
-.PHONY : ImageCppTest/fast
+ImageTest/fast:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/build
+.PHONY : ImageTest/fast
 
 test.o: test.cpp.o
 .PHONY : test.o
 
 # target to build an object file
 test.cpp.o:
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageCppTest.dir/build.make src/test/CMakeFiles/ImageCppTest.dir/test.cpp.o
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/test.cpp.o
 .PHONY : test.cpp.o
 
 test.i: test.cpp.i
@@ -198,7 +198,7 @@ test.i: test.cpp.i
 
 # target to preprocess a source file
 test.cpp.i:
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageCppTest.dir/build.make src/test/CMakeFiles/ImageCppTest.dir/test.cpp.i
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/test.cpp.i
 .PHONY : test.cpp.i
 
 test.s: test.cpp.s
@@ -206,7 +206,7 @@ test.s: test.cpp.s
 
 # target to generate assembly for a file
 test.cpp.s:
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageCppTest.dir/build.make src/test/CMakeFiles/ImageCppTest.dir/test.cpp.s
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/test.cpp.s
 .PHONY : test.cpp.s
 
 # Help Target
@@ -222,7 +222,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... ImageCppTest"
+	@echo "... ImageTest"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

@@ -32,7 +32,7 @@
 
 from googletest.test import gtest_test_utils
 
-binary_name = 'googletest-param-test-invalid-name1-test_'
+binary_name = 'googletest-param-__Tests__-invalid-name1-test_'
 COMMAND = gtest_test_utils.GetTestExecutablePath(binary_name)
 
 
@@ -44,7 +44,7 @@ def Assert(condition):
 def TestExitCodeAndOutput(command):
   """Runs the given command and verifies its exit code and output."""
 
-  err = 'Parameterized test name \'"InvalidWithQuotes"\' is invalid'
+  err = 'Parameterized __Tests__ name \'"InvalidWithQuotes"\' is invalid'
 
   p = gtest_test_utils.Subprocess(command)
   Assert(p.terminated_by_signal)

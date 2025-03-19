@@ -4,4 +4,4 @@
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-include("/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/ImageCppTest[1]_include.cmake")
+include("/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/ImageTest[1]_include.cmake")

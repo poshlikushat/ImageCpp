@@ -27,11 +27,11 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// This sample shows how to test code relying on some global flag variables.
+// This sample shows how to __Tests__ code relying on some global flag variables.
 // Combine() helps with generating all possible combinations of such flags,
-// and each test is given one combination as a parameter.
+// and each __Tests__ is given one combination as a parameter.
 
-// Use class definitions to test from this header.
+// Use class definitions to __Tests__ from this header.
 #include <tuple>
 
 #include "prime_tables.h"
@@ -84,7 +84,7 @@ using ::testing::Combine;
 using ::testing::TestWithParam;
 using ::testing::Values;
 
-// To test all code paths for HybridPrimeTable we must test it with numbers
+// To __Tests__ all code paths for HybridPrimeTable we must __Tests__ it with numbers
 // both within and outside PreCalculatedPrimeTable's capacity and also with
 // PreCalculatedPrimeTable disabled. We do this by defining fixture which will
 // accept different combinations of parameters for instantiating a
@@ -105,8 +105,8 @@ class PrimeTableTest : public TestWithParam< ::std::tuple<bool, int> > {
 };
 
 TEST_P(PrimeTableTest, ReturnsFalseForNonPrimes) {
-  // Inside the test body, you can refer to the test parameter by GetParam().
-  // In this case, the test parameter is a PrimeTable interface pointer which
+  // Inside the __Tests__ body, you can refer to the __Tests__ parameter by GetParam().
+  // In this case, the __Tests__ parameter is a PrimeTable interface pointer which
   // we can use directly.
   // Please note that you can also save it in the fixture's SetUp() method
   // or constructor and use saved copy in the tests.
@@ -138,7 +138,7 @@ TEST_P(PrimeTableTest, CanGetNextPrime) {
 }
 
 // In order to run value-parameterized tests, you need to instantiate them,
-// or bind them to a list of values which will be used as test parameters.
+// or bind them to a list of values which will be used as __Tests__ parameters.
 // You can instantiate them in a different translation module, or even
 // instantiate them several times.
 //

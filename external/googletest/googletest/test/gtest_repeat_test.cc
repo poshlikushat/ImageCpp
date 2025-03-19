@@ -65,7 +65,7 @@ class MyEnvironment : public testing::Environment {
   void TearDown() override { g_environment_tear_down_count++; }
 };
 
-// A test that should fail.
+// A __Tests__ that should fail.
 
 int g_should_fail_count = 0;
 
@@ -74,14 +74,14 @@ TEST(FooTest, ShouldFail) {
   EXPECT_EQ(0, 1) << "Expected failure.";
 }
 
-// A test that should pass.
+// A __Tests__ that should pass.
 
 int g_should_pass_count = 0;
 
 TEST(FooTest, ShouldPass) { g_should_pass_count++; }
 
-// A test that contains a thread-safe death test and a fast death
-// test.  It should pass.
+// A __Tests__ that contains a thread-safe death __Tests__ and a fast death
+// __Tests__.  It should pass.
 
 int g_death_test_count = 0;
 
@@ -108,7 +108,7 @@ TEST_P(MyParamTest, ShouldPass) {
 INSTANTIATE_TEST_SUITE_P(MyParamSequence, MyParamTest,
                          testing::Range(0, kNumberOfParamTests));
 
-// Resets the count for each test.
+// Resets the count for each __Tests__.
 void ResetCounts() {
   g_environment_set_up_count = 0;
   g_environment_tear_down_count = 0;
@@ -119,7 +119,7 @@ void ResetCounts() {
   testing::AddGlobalTestEnvironment(new MyEnvironment);
 }
 
-// Checks that the count for each test is expected.
+// Checks that the count for each __Tests__ is expected.
 void CheckCounts(int expected) {
   GTEST_CHECK_INT_EQ_(expected, g_environment_set_up_count);
   GTEST_CHECK_INT_EQ_(expected, g_environment_tear_down_count);
@@ -210,10 +210,10 @@ int main(int argc, char **argv) {
   TestRepeatWithFilterForFailedTests(4);
 
   // It would be nice to verify that the tests indeed loop forever
-  // when GTEST_FLAG(repeat) is negative, but this test will be quite
+  // when GTEST_FLAG(repeat) is negative, but this __Tests__ will be quite
   // complicated to write.  Since this flag is for interactive
-  // debugging only and doesn't affect the normal test result, such a
-  // test would be an overkill.
+  // debugging only and doesn't affect the normal __Tests__ result, such a
+  // __Tests__ would be an overkill.
 
   printf("PASS\n");
   return 0;

@@ -46,7 +46,7 @@ def Assert(condition):
 class GTestTestFilterTest(gtest_test_utils.TestCase):
 
   def testTestExecutionIsFiltered(self):
-    """Tests that the test filter is picked up from the testbridge env var."""
+    """Tests that the __Tests__ filter is picked up from the testbridge env var."""
     subprocess_env = os.environ.copy()
 
     subprocess_env[TESTBRIDGE_NAME] = '*.TestThatSucceeds'
@@ -56,7 +56,7 @@ class GTestTestFilterTest(gtest_test_utils.TestCase):
 
     Assert('filter = *.TestThatSucceeds' in p.output)
     Assert('[       OK ] TestFilterTest.TestThatSucceeds' in p.output)
-    Assert('[  PASSED  ] 1 test.' in p.output)
+    Assert('[  PASSED  ] 1 __Tests__.' in p.output)
 
 
 if __name__ == '__main__':

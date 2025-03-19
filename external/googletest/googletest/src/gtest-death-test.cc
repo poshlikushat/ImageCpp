@@ -95,7 +95,7 @@ namespace testing {
 
 // Constants.
 
-// The default death test style.
+// The default death __Tests__ style.
 //
 // This is defined in internal/gtest-port.h as "fast", but can be overridden by
 // a definition in internal/custom/gtest-port.h. The recommended value, which is
@@ -108,10 +108,10 @@ GTEST_DEFINE_string_(
     death_test_style,
     testing::internal::StringFromGTestEnv("death_test_style",
                                           testing::kDefaultDeathTestStyle),
-    "Indicates how to run a death test in a forked child process: "
-    "\"threadsafe\" (child process re-executes the test binary "
-    "from the beginning, running only the specific death test) or "
-    "\"fast\" (child process runs the death test immediately "
+    "Indicates how to run a death __Tests__ in a forked child process: "
+    "\"threadsafe\" (child process re-executes the __Tests__ binary "
+    "from the beginning, running only the specific death __Tests__) or "
+    "\"fast\" (child process runs the death __Tests__ immediately "
     "after forking).");
 
 GTEST_DEFINE_bool_(
@@ -129,11 +129,11 @@ GTEST_DEFINE_bool_(
 GTEST_DEFINE_string_(
     internal_run_death_test, "",
     "Indicates the file, line number, temporal index of "
-    "the single death test to run, and a file descriptor to "
+    "the single death __Tests__ to run, and a file descriptor to "
     "which a success code may be sent, all separated by "
     "the '|' characters.  This flag is specified if and only if the "
     "current process is a sub-process launched for running a thread-safe "
-    "death test.  FOR INTERNAL USE ONLY.");
+    "death __Tests__.  FOR INTERNAL USE ONLY.");
 
 namespace testing {
 
@@ -142,13 +142,13 @@ namespace testing {
 namespace internal {
 
 // Valid only for fast death tests. Indicates the code is running in the
-// child process of a fast style death test.
+// child process of a fast style death __Tests__.
 #if !defined(GTEST_OS_WINDOWS) && !defined(GTEST_OS_FUCHSIA)
 static bool g_in_fast_death_test_child = false;
 #endif
 
 // Returns a Boolean value indicating whether the caller is currently
-// executing in the context of the death test child process.  Tools such as
+// executing in the context of the death __Tests__ child process.  Tools such as
 // Valgrind heap checkers may need this to modify their behavior in death
 // tests.  IMPORTANT: This is an internal utility.  Using it may break the
 // implementation of death tests.  User code MUST NOT use it.
@@ -241,14 +241,14 @@ bool ExitedUnsuccessfully(int exit_status) {
 }
 
 #if !defined(GTEST_OS_WINDOWS) && !defined(GTEST_OS_FUCHSIA)
-// Generates a textual failure message when a death test finds more than
+// Generates a textual failure message when a death __Tests__ finds more than
 // one thread running, or cannot determine the number of threads, prior
 // to executing the given statement.  It is the responsibility of the
 // caller not to pass a thread_count of 1.
 static std::string DeathTestThreadWarning(size_t thread_count) {
   Message msg;
   msg << "Death tests use fork(), which is unsafe particularly"
-      << " in a threaded context. For this test, " << GTEST_NAME_ << " ";
+      << " in a threaded context. For this __Tests__, " << GTEST_NAME_ << " ";
   if (thread_count == 0) {
     msg << "couldn't detect the number of threads.";
   } else {
@@ -258,12 +258,12 @@ static std::string DeathTestThreadWarning(size_t thread_count) {
          "https://github.com/google/googletest/blob/main/docs/"
          "advanced.md#death-tests-and-threads"
       << " for more explanation and suggested solutions, especially if"
-      << " this is the last message you see before your test times out.";
+      << " this is the last message you see before your __Tests__ times out.";
   return msg.GetString();
 }
 #endif  // !GTEST_OS_WINDOWS && !GTEST_OS_FUCHSIA
 
-// Flag characters for reporting a death test that did not die.
+// Flag characters for reporting a death __Tests__ that did not die.
 static const char kDeathTestLived = 'L';
 static const char kDeathTestReturned = 'R';
 static const char kDeathTestThrew = 'T';
@@ -276,23 +276,23 @@ static const int kFuchsiaReadPipeFd = 3;
 
 #endif
 
-// An enumeration describing all of the possible ways that a death test can
-// conclude.  DIED means that the process died while executing the test
-// code; LIVED means that process lived beyond the end of the test code;
-// RETURNED means that the test statement attempted to execute a return
-// statement, which is not allowed; THREW means that the test statement
-// returned control by throwing an exception.  IN_PROGRESS means the test
+// An enumeration describing all of the possible ways that a death __Tests__ can
+// conclude.  DIED means that the process died while executing the __Tests__
+// code; LIVED means that process lived beyond the end of the __Tests__ code;
+// RETURNED means that the __Tests__ statement attempted to execute a return
+// statement, which is not allowed; THREW means that the __Tests__ statement
+// returned control by throwing an exception.  IN_PROGRESS means the __Tests__
 // has not yet concluded.
 enum DeathTestOutcome { IN_PROGRESS, DIED, LIVED, RETURNED, THREW };
 
 // Routine for aborting the program which is safe to call from an
-// exec-style death test child process, in which case the error
+// exec-style death __Tests__ child process, in which case the error
 // message is propagated back to the parent process.  Otherwise, the
 // message is simply printed to stderr.  In either case, the program
 // then exits with status 1.
 [[noreturn]] static void DeathTestAbort(const std::string& message) {
   // On a POSIX system, this function may be called from a threadsafe-style
-  // death test child process, which operates on a very small stack.  Use
+  // death __Tests__ child process, which operates on a very small stack.  Use
   // the heap for any additional non-minuscule memory requirements.
   const InternalRunDeathTestFlag* const flag =
       GetUnitTestImpl()->internal_run_death_test_flag();
@@ -347,8 +347,8 @@ std::string GetLastErrnoDescription() {
   return errno == 0 ? "" : posix::StrError(errno);
 }
 
-// This is called from a death test parent process to read a failure
-// message from the death test child process and log it with the FATAL
+// This is called from a death __Tests__ parent process to read a failure
+// message from the death __Tests__ child process and log it with the FATAL
 // severity. On Windows, the message is read from a pipe handle. On other
 // platforms, it is read from a file descriptor.
 static void FailFromInternalError(int fd) {
@@ -367,24 +367,24 @@ static void FailFromInternalError(int fd) {
     GTEST_LOG_(FATAL) << error.GetString();
   } else {
     const int last_error = errno;
-    GTEST_LOG_(FATAL) << "Error while reading death test internal: "
+    GTEST_LOG_(FATAL) << "Error while reading death __Tests__ internal: "
                       << GetLastErrnoDescription() << " [" << last_error << "]";
   }
 }
 
-// Death test constructor.  Increments the running death test count
-// for the current test.
+// Death __Tests__ constructor.  Increments the running death __Tests__ count
+// for the current __Tests__.
 DeathTest::DeathTest() {
   TestInfo* const info = GetUnitTestImpl()->current_test_info();
   if (info == nullptr) {
     DeathTestAbort(
-        "Cannot run a death test outside of a TEST or "
+        "Cannot run a death __Tests__ outside of a TEST or "
         "TEST_F construct");
   }
 }
 
-// Creates and returns a death test by dispatching to the current
-// death test factory.
+// Creates and returns a death __Tests__ by dispatching to the current
+// death __Tests__ factory.
 bool DeathTest::Create(const char* statement,
                        Matcher<const std::string&> matcher, const char* file,
                        int line, DeathTest** test) {
@@ -433,7 +433,7 @@ class DeathTestImpl : public DeathTest {
   void set_write_fd(int fd) { write_fd_ = fd; }
 
   // Called in the parent process only. Reads the result code of the death
-  // test child process via a pipe, interprets it to set the outcome_
+  // __Tests__ child process via a pipe, interprets it to set the outcome_
   // member, and closes read_fd_.  Outputs diagnostics and terminates in
   // case of unexpected codes.
   void ReadAndInterpretStatusByte();
@@ -447,11 +447,11 @@ class DeathTestImpl : public DeathTest {
   const char* const statement_;
   // A matcher that's expected to match the stderr output by the child process.
   Matcher<const std::string&> matcher_;
-  // True if the death test child process has been successfully spawned.
+  // True if the death __Tests__ child process has been successfully spawned.
   bool spawned_;
   // The exit status of the child process.
   int status_;
-  // How the death test concluded.
+  // How the death __Tests__ concluded.
   DeathTestOutcome outcome_;
   // Descriptor to the read end of the pipe to the child process.  It is
   // always -1 in the child process.  The child keeps its write end of the
@@ -464,7 +464,7 @@ class DeathTestImpl : public DeathTest {
 };
 
 // Called in the parent process only. Reads the result code of the death
-// test child process via a pipe, interprets it to set the outcome_
+// __Tests__ child process via a pipe, interprets it to set the outcome_
 // member, and closes read_fd_.  Outputs diagnostics and terminates in
 // case of unexpected codes.
 void DeathTestImpl::ReadAndInterpretStatusByte() {
@@ -472,7 +472,7 @@ void DeathTestImpl::ReadAndInterpretStatusByte() {
   int bytes_read;
 
   // The read() here blocks until data is available (signifying the
-  // failure of the death test) or until the pipe is closed (signifying
+  // failure of the death __Tests__) or until the pipe is closed (signifying
   // its success), so it's okay to call this in the parent before
   // the child process has exited.
   do {
@@ -496,12 +496,12 @@ void DeathTestImpl::ReadAndInterpretStatusByte() {
         FailFromInternalError(read_fd());  // Does not return.
         break;
       default:
-        GTEST_LOG_(FATAL) << "Death test child process reported "
+        GTEST_LOG_(FATAL) << "Death __Tests__ child process reported "
                           << "unexpected status byte ("
                           << static_cast<unsigned int>(flag) << ")";
     }
   } else {
-    GTEST_LOG_(FATAL) << "Read from death test child process failed: "
+    GTEST_LOG_(FATAL) << "Read from death __Tests__ child process failed: "
                       << GetLastErrnoDescription();
   }
   GTEST_DEATH_TEST_CHECK_SYSCALL_(posix::Close(read_fd()));
@@ -510,12 +510,12 @@ void DeathTestImpl::ReadAndInterpretStatusByte() {
 
 std::string DeathTestImpl::GetErrorLogs() { return GetCapturedStderr(); }
 
-// Signals that the death test code which should have exited, didn't.
-// Should be called only in a death test child process.
+// Signals that the death __Tests__ code which should have exited, didn't.
+// Should be called only in a death __Tests__ child process.
 // Writes a status byte to the child's status file descriptor, then
 // calls _Exit(1).
 void DeathTestImpl::Abort(AbortReason reason) {
-  // The parent process considers the death test to be a failure if
+  // The parent process considers the death __Tests__ to be a failure if
   // it finds any data in our pipe.  So, here we write a single flag byte
   // to the pipe, then exit.
   const char status_ch = reason == TEST_DID_NOT_DIE       ? kDeathTestLived
@@ -534,8 +534,8 @@ void DeathTestImpl::Abort(AbortReason reason) {
   _Exit(1);  // Exits w/o any normal exit hooks (we were supposed to crash)
 }
 
-// Returns an indented copy of stderr output for a death test.
-// This makes distinguishing death test output lines from regular log lines
+// Returns an indented copy of stderr output for a death __Tests__.
+// This makes distinguishing death __Tests__ output lines from regular log lines
 // much easier.
 static ::std::string FormatDeathTestOutput(const ::std::string& output) {
   ::std::string ret;
@@ -552,12 +552,12 @@ static ::std::string FormatDeathTestOutput(const ::std::string& output) {
   return ret;
 }
 
-// Assesses the success or failure of a death test, using both private
+// Assesses the success or failure of a death __Tests__, using both private
 // members which have previously been set, and one argument:
 //
 // Private data members:
-//   outcome:  An enumeration describing how the death test
-//             concluded: DIED, LIVED, THREW, or RETURNED.  The death test
+//   outcome:  An enumeration describing how the death __Tests__
+//             concluded: DIED, LIVED, THREW, or RETURNED.  The death __Tests__
 //             fails in the latter three cases.
 //   status:   The exit status of the child process. On *nix, it is in the
 //             in the format specified by wait(2). On Windows, this is the
@@ -568,11 +568,11 @@ static ::std::string FormatDeathTestOutput(const ::std::string& output) {
 //
 // Argument:
 //   status_ok: true if exit_status is acceptable in the context of
-//              this particular death test, which fails if it is false
+//              this particular death __Tests__, which fails if it is false
 //
 // Returns true if and only if all of the above conditions are met.  Otherwise,
 // the first failing condition, in the order given above, is the one that is
-// reported. Also sets the last death test message string.
+// reported. Also sets the last death __Tests__ message string.
 bool DeathTestImpl::Passed(bool status_ok) {
   if (!spawned()) return false;
 
@@ -581,7 +581,7 @@ bool DeathTestImpl::Passed(bool status_ok) {
   bool success = false;
   Message buffer;
 
-  buffer << "Death test: " << statement() << "\n";
+  buffer << "Death __Tests__: " << statement() << "\n";
   switch (outcome()) {
     case LIVED:
       buffer << "    Result: failed to die.\n"
@@ -594,7 +594,7 @@ bool DeathTestImpl::Passed(bool status_ok) {
              << FormatDeathTestOutput(error_message);
       break;
     case RETURNED:
-      buffer << "    Result: illegal return in test statement.\n"
+      buffer << "    Result: illegal return in __Tests__ statement.\n"
              << " Error msg:\n"
              << FormatDeathTestOutput(error_message);
       break;
@@ -620,7 +620,7 @@ bool DeathTestImpl::Passed(bool status_ok) {
     case IN_PROGRESS:
     default:
       GTEST_LOG_(FATAL)
-          << "DeathTest::Passed somehow called before conclusion of test";
+          << "DeathTest::Passed somehow called before conclusion of __Tests__";
   }
 
   DeathTest::set_last_death_test_message(buffer.GetString());
@@ -665,7 +665,7 @@ static std::vector<char*> CreateArgvFromArgs(std::vector<std::string>& args) {
 //    the pipe will not return when the child terminates.
 // 5. The parent reads child's output through the pipe (outcome code and
 //    any possible error messages) from the pipe, and its stderr and then
-//    determines whether to fail the test.
+//    determines whether to fail the __Tests__.
 //
 // Note: to distinguish Win32 API calls from the local method and function
 // calls, the former are explicitly resolved in the global namespace.
@@ -683,9 +683,9 @@ class WindowsDeathTest : public DeathTestImpl {
   virtual TestRole AssumeRole();
 
  private:
-  // The name of the file in which the death test is located.
+  // The name of the file in which the death __Tests__ is located.
   const char* const file_;
-  // The line number on which the death test is located.
+  // The line number on which the death __Tests__ is located.
   const int line_;
   // Handle to the write end of the pipe to the child process.
   AutoHandle write_handle_;
@@ -698,7 +698,7 @@ class WindowsDeathTest : public DeathTestImpl {
   AutoHandle event_handle_;
 };
 
-// Waits for the child in a death test to exit, returning its exit
+// Waits for the child in a death __Tests__ to exit, returning its exit
 // status, or 0 if no child process exists.  As a side effect, sets the
 // outcome data member.
 int WindowsDeathTest::Wait() {
@@ -738,11 +738,11 @@ int WindowsDeathTest::Wait() {
   return status();
 }
 
-// The AssumeRole process for a Windows death test.  It creates a child
+// The AssumeRole process for a Windows death __Tests__.  It creates a child
 // process with the same executable as the current process to run the
-// death test.  The child process is given the --gtest_filter and
+// death __Tests__.  The child process is given the --gtest_filter and
 // --gtest_internal_run_death_test flags such that it knows to run the
-// current death test only.
+// current death __Tests__ only.
 DeathTest::TestRole WindowsDeathTest::AssumeRole() {
   const UnitTestImpl* const impl = GetUnitTestImpl();
   const InternalRunDeathTestFlag* const flag =
@@ -758,7 +758,7 @@ DeathTest::TestRole WindowsDeathTest::AssumeRole() {
   }
 
   // WindowsDeathTest uses an anonymous pipe to communicate results of
-  // a death test.
+  // a death __Tests__.
   SECURITY_ATTRIBUTES handles_are_inheritable = {sizeof(SECURITY_ATTRIBUTES),
                                                  nullptr, TRUE};
   HANDLE read_handle, write_handle;
@@ -844,9 +844,9 @@ class FuchsiaDeathTest : public DeathTestImpl {
   std::string GetErrorLogs() override;
 
  private:
-  // The name of the file in which the death test is located.
+  // The name of the file in which the death __Tests__ is located.
   const char* const file_;
-  // The line number on which the death test is located.
+  // The line number on which the death __Tests__ is located.
   const int line_;
   // The stderr data captured by the child process.
   std::string captured_stderr_;
@@ -856,7 +856,7 @@ class FuchsiaDeathTest : public DeathTestImpl {
   zx::socket stderr_socket_;
 };
 
-// Waits for the child in a death test to exit, returning its exit
+// Waits for the child in a death __Tests__ to exit, returning its exit
 // status, or 0 if no child process exists.  As a side effect, sets the
 // outcome data member.
 int FuchsiaDeathTest::Wait() {
@@ -946,11 +946,11 @@ int FuchsiaDeathTest::Wait() {
   return status();
 }
 
-// The AssumeRole process for a Fuchsia death test.  It creates a child
+// The AssumeRole process for a Fuchsia death __Tests__.  It creates a child
 // process with the same executable as the current process to run the
-// death test.  The child process is given the --gtest_filter and
+// death __Tests__.  The child process is given the --gtest_filter and
 // --gtest_internal_run_death_test flags such that it knows to run the
-// current death test only.
+// current death __Tests__ only.
 DeathTest::TestRole FuchsiaDeathTest::AssumeRole() {
   const UnitTestImpl* const impl = GetUnitTestImpl();
   const InternalRunDeathTestFlag* const flag =
@@ -1031,7 +1031,7 @@ DeathTest::TestRole FuchsiaDeathTest::AssumeRole() {
   GTEST_DEATH_TEST_CHECK_(status == ZX_OK);
 
   // Spawn the child process.
-  // Note: The test component must have `fuchsia.process.Launcher` declared
+  // Note: The __Tests__ component must have `fuchsia.process.Launcher` declared
   // in its manifest. (Fuchsia integration tests require creating a
   // "Fuchsia Test Component" which contains a "Fuchsia Component Manifest")
   // Launching processes is a privileged operation in Fuchsia, and the
@@ -1064,7 +1064,7 @@ class ForkingDeathTest : public DeathTestImpl {
   void set_child_pid(pid_t child_pid) { child_pid_ = child_pid; }
 
  private:
-  // PID of child process during death test; 0 in the child process itself.
+  // PID of child process during death __Tests__; 0 in the child process itself.
   pid_t child_pid_;
 };
 
@@ -1073,7 +1073,7 @@ ForkingDeathTest::ForkingDeathTest(const char* a_statement,
                                    Matcher<const std::string&> matcher)
     : DeathTestImpl(a_statement, std::move(matcher)), child_pid_(-1) {}
 
-// Waits for the child in a death test to exit, returning its exit
+// Waits for the child in a death __Tests__ to exit, returning its exit
 // status, or 0 if no child process exists.  As a side effect, sets the
 // outcome data member.
 int ForkingDeathTest::Wait() {
@@ -1087,7 +1087,7 @@ int ForkingDeathTest::Wait() {
   return status_value;
 }
 
-// A concrete death test class that forks, then immediately runs the test
+// A concrete death __Tests__ class that forks, then immediately runs the __Tests__
 // in the child process.
 class NoExecDeathTest : public ForkingDeathTest {
  public:
@@ -1096,7 +1096,7 @@ class NoExecDeathTest : public ForkingDeathTest {
   TestRole AssumeRole() override;
 };
 
-// The AssumeRole process for a fork-and-run death test.  It implements a
+// The AssumeRole process for a fork-and-run death __Tests__.  It implements a
 // straightforward fork, with a simple pipe to transmit the status byte.
 DeathTest::TestRole NoExecDeathTest::AssumeRole() {
   const size_t thread_count = GetThreadCount();
@@ -1114,7 +1114,7 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole() {
   // the file descriptors in the child process doesn't throw off the
   // synchronization between descriptors and buffers in the parent process.
   // This is as close to the fork as possible to avoid a race condition in case
-  // there are multiple threads running before the death test, and another
+  // there are multiple threads running before the death __Tests__, and another
   // thread writes to the log file.
   FlushInfoLog();
 
@@ -1129,7 +1129,7 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole() {
     // process and append the child process' output to a log.
     LogToStderr();
     // Event forwarding to the listeners of event listener API mush be shut
-    // down in death test subprocesses.
+    // down in death __Tests__ subprocesses.
     GetUnitTestImpl()->listeners()->SuppressEventForwarding(true);
     g_in_fast_death_test_child = true;
     return EXECUTE_TEST;
@@ -1141,9 +1141,9 @@ DeathTest::TestRole NoExecDeathTest::AssumeRole() {
   }
 }
 
-// A concrete death test class that forks and re-executes the main
+// A concrete death __Tests__ class that forks and re-executes the main
 // program from the beginning, with command-line flags set that cause
-// only this specific death test to be run.
+// only this specific death __Tests__ to be run.
 class ExecDeathTest : public ForkingDeathTest {
  public:
   ExecDeathTest(const char* a_statement, Matcher<const std::string&> matcher,
@@ -1163,14 +1163,14 @@ class ExecDeathTest : public ForkingDeathTest {
 #endif  // defined(GTEST_EXTRA_DEATH_TEST_COMMAND_LINE_ARGS_)
     return args;
   }
-  // The name of the file in which the death test is located.
+  // The name of the file in which the death __Tests__ is located.
   const char* const file_;
-  // The line number on which the death test is located.
+  // The line number on which the death __Tests__ is located.
   const int line_;
 };
 
 // A struct that encompasses the arguments to the child process of a
-// threadsafe-style death test process.
+// threadsafe-style death __Tests__ process.
 struct ExecDeathTestArgs {
   char* const* argv;  // Command-line arguments for the child's call to exec
   int close_fd;       // File descriptor to close; the read end of a pipe
@@ -1179,14 +1179,14 @@ struct ExecDeathTestArgs {
 #ifdef GTEST_OS_QNX
 extern "C" char** environ;
 #else   // GTEST_OS_QNX
-// The main function for a threadsafe-style death test child process.
+// The main function for a threadsafe-style death __Tests__ child process.
 // This function is called in a clone()-ed process and thus must avoid
 // any potentially unsafe operations like malloc or libc functions.
 static int ExecDeathTestChildMain(void* child_arg) {
   ExecDeathTestArgs* const args = static_cast<ExecDeathTestArgs*>(child_arg);
   GTEST_DEATH_TEST_CHECK_SYSCALL_(close(args->close_fd));
 
-  // We need to execute the test program in the same environment where
+  // We need to execute the __Tests__ program in the same environment where
   // it was originally invoked.  Therefore we change to the original
   // working directory first.
   const char* const original_dir =
@@ -1201,7 +1201,7 @@ static int ExecDeathTestChildMain(void* child_arg) {
   // We can safely call execv() as it's almost a direct system call. We
   // cannot use execvp() as it's a libc function and thus potentially
   // unsafe.  Since execv() doesn't search the PATH, the user must
-  // invoke the test program via a valid path that contains at least
+  // invoke the __Tests__ program via a valid path that contains at least
   // one path separator.
   execv(args->argv[0], args->argv);
   DeathTestAbort(std::string("execv(") + args->argv[0] + ", ...) in " +
@@ -1247,7 +1247,7 @@ static bool StackGrowsDown() {
 #endif  // GTEST_HAS_CLONE
 
 // Spawns a child process with the same executable as the current process in
-// a thread-safe manner and instructs it to run the death test.  The
+// a thread-safe manner and instructs it to run the death __Tests__.  The
 // implementation uses fork(2) + exec.  On systems where clone(2) is
 // available, it is used instead, being slightly more thread-safe.  On QNX,
 // fork supports only single-threaded environments, so this function uses
@@ -1263,7 +1263,7 @@ static pid_t ExecDeathTestSpawnChild(char* const* argv, int close_fd) {
   const int cwd_fd = open(".", O_RDONLY);
   GTEST_DEATH_TEST_CHECK_(cwd_fd != -1);
   GTEST_DEATH_TEST_CHECK_SYSCALL_(fcntl(cwd_fd, F_SETFD, FD_CLOEXEC));
-  // We need to execute the test program in the same environment where
+  // We need to execute the __Tests__ program in the same environment where
   // it was originally invoked.  Therefore we change to the original
   // working directory first.
   const char* const original_dir =
@@ -1347,10 +1347,10 @@ static pid_t ExecDeathTestSpawnChild(char* const* argv, int close_fd) {
   return child_pid;
 }
 
-// The AssumeRole process for a fork-and-exec death test.  It re-executes the
+// The AssumeRole process for a fork-and-exec death __Tests__.  It re-executes the
 // main program from the beginning, setting the --gtest_filter
 // and --gtest_internal_run_death_test flags to cause only the current
-// death test to be re-run.
+// death __Tests__ to be re-run.
 DeathTest::TestRole ExecDeathTest::AssumeRole() {
   const UnitTestImpl* const impl = GetUnitTestImpl();
   const InternalRunDeathTestFlag* const flag =
@@ -1401,7 +1401,7 @@ DeathTest::TestRole ExecDeathTest::AssumeRole() {
 
 // Creates a concrete DeathTest-derived class that depends on the
 // --gtest_death_test_style flag, and sets the pointer pointed to
-// by the "test" argument to its address.  If the test should be
+// by the "__Tests__" argument to its address.  If the __Tests__ should be
 // skipped, sets that pointer to NULL.  Returns true, unless the
 // flag is set to an invalid value.
 bool DefaultDeathTestFactory::Create(const char* statement,
@@ -1417,7 +1417,7 @@ bool DefaultDeathTestFactory::Create(const char* statement,
   if (flag != nullptr) {
     if (death_test_index > flag->index()) {
       DeathTest::set_last_death_test_message(
-          "Death test count (" + StreamableToString(death_test_index) +
+          "Death __Tests__ count (" + StreamableToString(death_test_index) +
           ") somehow exceeded expected maximum (" +
           StreamableToString(flag->index()) + ")");
       return false;
@@ -1455,7 +1455,7 @@ bool DefaultDeathTestFactory::Create(const char* statement,
 #endif  // GTEST_OS_WINDOWS
 
   else {  // NOLINT - this is more readable than unbalanced brackets inside #if.
-    DeathTest::set_last_death_test_message("Unknown death test style \"" +
+    DeathTest::set_last_death_test_message("Unknown death __Tests__ style \"" +
                                            GTEST_FLAG_GET(death_test_style) +
                                            "\" encountered");
     return false;

@@ -407,7 +407,7 @@ class FooTest : public testing::Test {
   // be empty.
 
   FooTest() {
-     // You can do set-up work for each test here.
+     // You can do set-up work for each __Tests__ here.
   }
 
   ~FooTest() override {
@@ -415,19 +415,19 @@ class FooTest : public testing::Test {
   }
 
   // If the constructor and destructor are not enough for setting up
-  // and cleaning up each test, you can define the following methods:
+  // and cleaning up each __Tests__, you can define the following methods:
 
   void SetUp() override {
      // Code here will be called immediately after the constructor (right
-     // before each test).
+     // before each __Tests__).
   }
 
   void TearDown() override {
-     // Code here will be called immediately after each test (right
+     // Code here will be called immediately after each __Tests__ (right
      // before the destructor).
   }
 
-  // Class members declared here can be used by all tests in the test suite
+  // Class members declared here can be used by all tests in the __Tests__ suite
   // for Foo.
 };
 

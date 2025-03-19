@@ -250,7 +250,7 @@ void WriteToShardStatusFileIfNeeded();
 // environment variable values. If the variables are present,
 // but inconsistent (e.g., shard_index >= total_shards), prints
 // an error and exits. If in_subprocess_for_death_test, sharding is
-// disabled because it must only be applied to the original test
+// disabled because it must only be applied to the original __Tests__
 // process. Otherwise, we could filter out death tests we intended to execute.
 GTEST_API_ bool ShouldShard(const char* total_shards_str,
                             const char* shard_index_str,
@@ -261,9 +261,9 @@ GTEST_API_ bool ShouldShard(const char* total_shards_str,
 // and aborts.
 GTEST_API_ int32_t Int32FromEnvOrDie(const char* env_var, int32_t default_val);
 
-// Given the total number of shards, the shard index, and the test id,
-// returns true if and only if the test should be run on this shard. The test id
-// is some arbitrary but unique non-negative integer assigned to each test
+// Given the total number of shards, the shard index, and the __Tests__ id,
+// returns true if and only if the __Tests__ should be run on this shard. The __Tests__ id
+// is some arbitrary but unique non-negative integer assigned to each __Tests__
 // method. Assumes that 0 <= shard_index < total_shards.
 GTEST_API_ bool ShouldRunTestOnShard(int total_shards, int shard_index,
                                      int test_id);
@@ -347,7 +347,7 @@ class TestPropertyKeyIs {
   // TestPropertyKeyIs has NO default constructor.
   explicit TestPropertyKeyIs(const std::string& key) : key_(key) {}
 
-  // Returns true if and only if the test name of test property matches on key_.
+  // Returns true if and only if the __Tests__ name of __Tests__ property matches on key_.
   bool operator()(const TestProperty& test_property) const {
     return test_property.key() == key_;
   }
@@ -363,7 +363,7 @@ class TestPropertyKeyIs {
 //
 // In most cases, the user can specify an option using either an
 // environment variable or a command line flag.  E.g. you can set the
-// test filter using either GTEST_FILTER or --gtest_filter.  If both
+// __Tests__ filter using either GTEST_FILTER or --gtest_filter.  If both
 // the variable and the flag are present, the latter overrides the
 // former.
 class GTEST_API_ UnitTestOptions {
@@ -380,8 +380,8 @@ class GTEST_API_ UnitTestOptions {
 
   // Functions for processing the gtest_filter flag.
 
-  // Returns true if and only if the user-specified filter matches the test
-  // suite name and the test name.
+  // Returns true if and only if the user-specified filter matches the __Tests__
+  // suite name and the __Tests__ name.
   static bool FilterMatchesTest(const std::string& test_suite_name,
                                 const std::string& test_name);
 
@@ -464,14 +464,14 @@ struct TraceInfo {
   std::string message;
 };
 
-// This is the default global test part result reporter used in UnitTestImpl.
+// This is the default global __Tests__ part result reporter used in UnitTestImpl.
 // This class should only be used by UnitTestImpl.
 class DefaultGlobalTestPartResultReporter
     : public TestPartResultReporterInterface {
  public:
   explicit DefaultGlobalTestPartResultReporter(UnitTestImpl* unit_test);
-  // Implements the TestPartResultReporterInterface. Reports the test part
-  // result in the current test.
+  // Implements the TestPartResultReporterInterface. Reports the __Tests__ part
+  // result in the current __Tests__.
   void ReportTestPartResult(const TestPartResult& result) override;
 
  private:
@@ -483,14 +483,14 @@ class DefaultGlobalTestPartResultReporter
       const DefaultGlobalTestPartResultReporter&) = delete;
 };
 
-// This is the default per thread test part result reporter used in
+// This is the default per thread __Tests__ part result reporter used in
 // UnitTestImpl. This class should only be used by UnitTestImpl.
 class DefaultPerThreadTestPartResultReporter
     : public TestPartResultReporterInterface {
  public:
   explicit DefaultPerThreadTestPartResultReporter(UnitTestImpl* unit_test);
   // Implements the TestPartResultReporterInterface. The implementation just
-  // delegates to the current global test part result reporter of *unit_test_.
+  // delegates to the current global __Tests__ part result reporter of *unit_test_.
   void ReportTestPartResult(const TestPartResult& result) override;
 
  private:
@@ -512,36 +512,36 @@ class GTEST_API_ UnitTestImpl {
   virtual ~UnitTestImpl();
 
   // There are two different ways to register your own TestPartResultReporter.
-  // You can register your own reporter to listen either only for test results
+  // You can register your own reporter to listen either only for __Tests__ results
   // from the current thread or for results from all threads.
-  // By default, each per-thread test result reporter just passes a new
-  // TestPartResult to the global test result reporter, which registers the
-  // test part result for the currently running test.
+  // By default, each per-thread __Tests__ result reporter just passes a new
+  // TestPartResult to the global __Tests__ result reporter, which registers the
+  // __Tests__ part result for the currently running __Tests__.
 
-  // Returns the global test part result reporter.
+  // Returns the global __Tests__ part result reporter.
   TestPartResultReporterInterface* GetGlobalTestPartResultReporter();
 
-  // Sets the global test part result reporter.
+  // Sets the global __Tests__ part result reporter.
   void SetGlobalTestPartResultReporter(
       TestPartResultReporterInterface* reporter);
 
-  // Returns the test part result reporter for the current thread.
+  // Returns the __Tests__ part result reporter for the current thread.
   TestPartResultReporterInterface* GetTestPartResultReporterForCurrentThread();
 
-  // Sets the test part result reporter for the current thread.
+  // Sets the __Tests__ part result reporter for the current thread.
   void SetTestPartResultReporterForCurrentThread(
       TestPartResultReporterInterface* reporter);
 
-  // Gets the number of successful test suites.
+  // Gets the number of successful __Tests__ suites.
   int successful_test_suite_count() const;
 
-  // Gets the number of failed test suites.
+  // Gets the number of failed __Tests__ suites.
   int failed_test_suite_count() const;
 
-  // Gets the number of all test suites.
+  // Gets the number of all __Tests__ suites.
   int total_test_suite_count() const;
 
-  // Gets the number of all test suites that contain at least one test
+  // Gets the number of all __Tests__ suites that contain at least one __Tests__
   // that should run.
   int test_suite_to_run_count() const;
 
@@ -569,24 +569,24 @@ class GTEST_API_ UnitTestImpl {
   // Gets the number of tests that should run.
   int test_to_run_count() const;
 
-  // Gets the time of the test program start, in ms from the start of the
+  // Gets the time of the __Tests__ program start, in ms from the start of the
   // UNIX epoch.
   TimeInMillis start_timestamp() const { return start_timestamp_; }
 
   // Gets the elapsed time, in milliseconds.
   TimeInMillis elapsed_time() const { return elapsed_time_; }
 
-  // Returns true if and only if the unit test passed (i.e. all test suites
+  // Returns true if and only if the unit __Tests__ passed (i.e. all __Tests__ suites
   // passed).
   bool Passed() const { return !Failed(); }
 
-  // Returns true if and only if the unit test failed (i.e. some test suite
+  // Returns true if and only if the unit __Tests__ failed (i.e. some __Tests__ suite
   // failed or something outside of all tests failed).
   bool Failed() const {
     return failed_test_suite_count() > 0 || ad_hoc_test_result()->Failed();
   }
 
-  // Gets the i-th test suite among all the test suites. i can range from 0 to
+  // Gets the i-th __Tests__ suite among all the __Tests__ suites. i can range from 0 to
   // total_test_suite_count() - 1. If i is not in that range, returns NULL.
   const TestSuite* GetTestSuite(int i) const {
     const int index = GetElementOr(test_suite_indices_, i, -1);
@@ -598,7 +598,7 @@ class GTEST_API_ UnitTestImpl {
   const TestCase* GetTestCase(int i) const { return GetTestSuite(i); }
 #endif  //  GTEST_REMOVE_LEGACY_TEST_CASEAPI_
 
-  // Gets the i-th test suite among all the test suites. i can range from 0 to
+  // Gets the i-th __Tests__ suite among all the __Tests__ suites. i can range from 0 to
   // total_test_suite_count() - 1. If i is not in that range, returns NULL.
   TestSuite* GetMutableSuiteCase(int i) {
     const int index = GetElementOr(test_suite_indices_, i, -1);
@@ -608,11 +608,11 @@ class GTEST_API_ UnitTestImpl {
   // Provides access to the event listener list.
   TestEventListeners* listeners() { return &listeners_; }
 
-  // Returns the TestResult for the test that's currently running, or
-  // the TestResult for the ad hoc test if no test is running.
+  // Returns the TestResult for the __Tests__ that's currently running, or
+  // the TestResult for the ad hoc __Tests__ if no __Tests__ is running.
   TestResult* current_test_result();
 
-  // Returns the TestResult for the ad hoc test.
+  // Returns the TestResult for the ad hoc __Tests__.
   const TestResult* ad_hoc_test_result() const { return &ad_hoc_test_result_; }
 
   // Sets the OS stack trace getter.
@@ -645,11 +645,11 @@ class GTEST_API_ UnitTestImpl {
   //
   // Arguments:
   //
-  //   test_suite_name: name of the test suite
-  //   type_param:      the name of the test's type parameter, or NULL if
-  //                    this is not a typed or a type-parameterized test.
-  //   set_up_tc:       pointer to the function that sets up the test suite
-  //   tear_down_tc:    pointer to the function that tears down the test suite
+  //   test_suite_name: name of the __Tests__ suite
+  //   type_param:      the name of the __Tests__'s type parameter, or NULL if
+  //                    this is not a typed or a type-parameterized __Tests__.
+  //   set_up_tc:       pointer to the function that sets up the __Tests__ suite
+  //   tear_down_tc:    pointer to the function that tears down the __Tests__ suite
   TestSuite* GetTestSuite(const std::string& test_suite_name,
                           const char* type_param,
                           internal::SetUpTestSuiteFunc set_up_tc,
@@ -665,19 +665,19 @@ class GTEST_API_ UnitTestImpl {
   }
 #endif  //  GTEST_REMOVE_LEGACY_TEST_CASEAPI_
 
-  // Adds a TestInfo to the unit test.
+  // Adds a TestInfo to the unit __Tests__.
   //
   // Arguments:
   //
-  //   set_up_tc:    pointer to the function that sets up the test suite
-  //   tear_down_tc: pointer to the function that tears down the test suite
+  //   set_up_tc:    pointer to the function that sets up the __Tests__ suite
+  //   tear_down_tc: pointer to the function that tears down the __Tests__ suite
   //   test_info:    the TestInfo object
   void AddTestInfo(internal::SetUpTestSuiteFunc set_up_tc,
                    internal::TearDownTestSuiteFunc tear_down_tc,
                    TestInfo* test_info) {
 #if GTEST_HAS_FILE_SYSTEM
     // In order to support thread-safe death tests, we need to
-    // remember the original working directory when the test program
+    // remember the original working directory when the __Tests__ program
     // was first invoked.  We cannot do this in RUN_ALL_TESTS(), as
     // the user may have changed the current directory before calling
     // RUN_ALL_TESTS().  Therefore we capture the current directory in
@@ -713,7 +713,7 @@ class GTEST_API_ UnitTestImpl {
   }
 
   // Registers all parameterized tests defined using TEST_P and
-  // INSTANTIATE_TEST_SUITE_P, creating regular tests for each test/parameter
+  // INSTANTIATE_TEST_SUITE_P, creating regular tests for each __Tests__/parameter
   // combination. This method can be called more then once; it has guards
   // protecting from registering the tests more then once.  If
   // value-parameterized tests are disabled, RegisterParameterizedTests is
@@ -722,7 +722,7 @@ class GTEST_API_ UnitTestImpl {
 
   // Runs all tests in this UnitTest object, prints the result, and
   // returns true if all tests are successful.  If any exception is
-  // thrown during a test, this test is considered to be failed, but
+  // thrown during a __Tests__, this __Tests__ is considered to be failed, but
   // the rest of the tests will still be run.
   bool RunAllTests();
 
@@ -731,19 +731,19 @@ class GTEST_API_ UnitTestImpl {
     ForEach(test_suites_, TestSuite::ClearTestSuiteResult);
   }
 
-  // Clears the results of ad-hoc test assertions.
+  // Clears the results of ad-hoc __Tests__ assertions.
   void ClearAdHocTestResult() { ad_hoc_test_result_.Clear(); }
 
   // Adds a TestProperty to the current TestResult object when invoked in a
-  // context of a test or a test suite, or to the global property set. If the
+  // context of a __Tests__ or a __Tests__ suite, or to the global property set. If the
   // result already contains a property with the same key, the value will be
   // updated.
   void RecordProperty(const TestProperty& test_property);
 
   enum ReactionToSharding { HONOR_SHARDING_PROTOCOL, IGNORE_SHARDING_PROTOCOL };
 
-  // Matches the full name of each test against the user-specified
-  // filter to decide whether the test should run, then records the
+  // Matches the full name of each __Tests__ against the user-specified
+  // filter to decide whether the __Tests__ should run, then records the
   // result in each TestSuite and TestInfo object.
   // If shard_tests == HONOR_SHARDING_PROTOCOL, further filters tests
   // based on sharding variables in the environment.
@@ -775,13 +775,13 @@ class GTEST_API_ UnitTestImpl {
   }
   // Returns a pointer to the parsed --gtest_internal_run_death_test
   // flag, or NULL if that flag was not specified.
-  // This information is useful only in a death test child process.
+  // This information is useful only in a death __Tests__ child process.
   // Must not be called before a call to InitGoogleTest.
   const InternalRunDeathTestFlag* internal_run_death_test_flag() const {
     return internal_run_death_test_flag_.get();
   }
 
-  // Returns a pointer to the current death test factory.
+  // Returns a pointer to the current death __Tests__ factory.
   internal::DeathTestFactory* death_test_factory() {
     return death_test_factory_.get();
   }
@@ -796,7 +796,7 @@ class GTEST_API_ UnitTestImpl {
   void ConfigureXmlOutput();
 
 #if GTEST_CAN_STREAM_RESULTS_
-  // Initializes the event listener for streaming test results to a socket.
+  // Initializes the event listener for streaming __Tests__ results to a socket.
   // Must not be called before InitGoogleTest.
   void ConfigureStreamingOutput();
 #endif
@@ -808,17 +808,17 @@ class GTEST_API_ UnitTestImpl {
   // called more than once, it has to be idempotent.
   void PostFlagParsingInit();
 
-  // Gets the random seed used at the start of the current test iteration.
+  // Gets the random seed used at the start of the current __Tests__ iteration.
   int random_seed() const { return random_seed_; }
 
   // Gets the random number generator.
   internal::Random* random() { return &random_; }
 
-  // Shuffles all test suites, and the tests within each test suite,
+  // Shuffles all __Tests__ suites, and the tests within each __Tests__ suite,
   // making sure that death tests are still run first.
   void ShuffleTests();
 
-  // Restores the test suites and tests to their order before the first shuffle.
+  // Restores the __Tests__ suites and tests to their order before the first shuffle.
   void UnshuffleTests();
 
   // Returns the value of GTEST_FLAG(catch_exceptions) at the moment
@@ -838,12 +838,12 @@ class GTEST_API_ UnitTestImpl {
   // GTEST_FLAG(catch_exceptions) at the moment it starts.
   void set_catch_exceptions(bool value) { catch_exceptions_ = value; }
 
-  // Sets the TestSuite object for the test that's currently running.
+  // Sets the TestSuite object for the __Tests__ that's currently running.
   void set_current_test_suite(TestSuite* a_current_test_suite) {
     current_test_suite_ = a_current_test_suite;
   }
 
-  // Sets the TestInfo object for the test that's currently running.  If
+  // Sets the TestInfo object for the __Tests__ that's currently running.  If
   // current_test_info is NULL, the assertion results will be stored in
   // ad_hoc_test_result_.
   void set_current_test_info(TestInfo* a_current_test_info) {
@@ -859,18 +859,18 @@ class GTEST_API_ UnitTestImpl {
   internal::FilePath original_working_dir_;
 #endif  // GTEST_HAS_FILE_SYSTEM
 
-  // The default test part result reporters.
+  // The default __Tests__ part result reporters.
   DefaultGlobalTestPartResultReporter default_global_test_part_result_reporter_;
   DefaultPerThreadTestPartResultReporter
       default_per_thread_test_part_result_reporter_;
 
-  // Points to (but doesn't own) the global test part result reporter.
+  // Points to (but doesn't own) the global __Tests__ part result reporter.
   TestPartResultReporterInterface* global_test_part_result_reporter_;
 
   // Protects read and write access to global_test_part_result_reporter_.
   internal::Mutex global_test_part_result_reporter_mutex_;
 
-  // Points to (but doesn't own) the per-thread test part result reporter.
+  // Points to (but doesn't own) the per-thread __Tests__ part result reporter.
   internal::ThreadLocal<TestPartResultReporterInterface*>
       per_thread_test_part_result_reporter_;
 
@@ -885,9 +885,9 @@ class GTEST_API_ UnitTestImpl {
   // The set of TestSuites by name.
   std::unordered_map<std::string, TestSuite*> test_suites_by_name_;
 
-  // Provides a level of indirection for the test suite list to allow
-  // easy shuffling and restoring the test suite order.  The i-th
-  // element of this vector is the index of the i-th test suite in the
+  // Provides a level of indirection for the __Tests__ suite list to allow
+  // easy shuffling and restoring the __Tests__ suite order.  The i-th
+  // element of this vector is the index of the i-th __Tests__ suite in the
   // shuffled order.
   std::vector<int> test_suite_indices_;
 
@@ -898,35 +898,35 @@ class GTEST_API_ UnitTestImpl {
       type_parameterized_test_registry_;
 
   // The set holding the name of parameterized
-  // test suites that may go uninstantiated.
+  // __Tests__ suites that may go uninstantiated.
   std::set<std::string> ignored_parameterized_test_suites_;
 
   // Indicates whether RegisterParameterizedTests() has been called already.
   bool parameterized_tests_registered_;
 
-  // Index of the last death test suite registered.  Initially -1.
+  // Index of the last death __Tests__ suite registered.  Initially -1.
   int last_death_test_suite_;
 
-  // This points to the TestSuite for the currently running test.  It
-  // changes as Google Test goes through one test suite after another.
-  // When no test is running, this is set to NULL and Google Test
+  // This points to the TestSuite for the currently running __Tests__.  It
+  // changes as Google Test goes through one __Tests__ suite after another.
+  // When no __Tests__ is running, this is set to NULL and Google Test
   // stores assertion results in ad_hoc_test_result_.  Initially NULL.
   TestSuite* current_test_suite_;
 
-  // This points to the TestInfo for the currently running test.  It
-  // changes as Google Test goes through one test after another.  When
-  // no test is running, this is set to NULL and Google Test stores
+  // This points to the TestInfo for the currently running __Tests__.  It
+  // changes as Google Test goes through one __Tests__ after another.  When
+  // no __Tests__ is running, this is set to NULL and Google Test stores
   // assertion results in ad_hoc_test_result_.  Initially NULL.
   TestInfo* current_test_info_;
 
   // Normally, a user only writes assertions inside a TEST or TEST_F,
   // or inside a function called by a TEST or TEST_F.  Since Google
-  // Test keeps track of which test is current running, it can
-  // associate such an assertion with the test it belongs to.
+  // Test keeps track of which __Tests__ is current running, it can
+  // associate such an assertion with the __Tests__ it belongs to.
   //
   // If an assertion is encountered when no TEST or TEST_F is running,
   // Google Test attributes the assertion result to an imaginary "ad hoc"
-  // test, and records the result in ad_hoc_test_result_.
+  // __Tests__, and records the result in ad_hoc_test_result_.
   TestResult ad_hoc_test_result_;
 
   // The list of event listeners that can be used to track events inside
@@ -942,17 +942,17 @@ class GTEST_API_ UnitTestImpl {
   // True if and only if PostFlagParsingInit() has been called.
   bool post_flag_parse_init_performed_;
 
-  // The random number seed used at the beginning of the test run.
+  // The random number seed used at the beginning of the __Tests__ run.
   int random_seed_;
 
   // Our random number generator.
   internal::Random random_;
 
-  // The time of the test program start, in ms from the start of the
+  // The time of the __Tests__ program start, in ms from the start of the
   // UNIX epoch.
   TimeInMillis start_timestamp_;
 
-  // How long the test took to run, in milliseconds.
+  // How long the __Tests__ took to run, in milliseconds.
   TimeInMillis elapsed_time_;
 
 #ifdef GTEST_HAS_DEATH_TEST
@@ -1070,7 +1070,7 @@ class TestResultAccessor {
 
 #if GTEST_CAN_STREAM_RESULTS_
 
-// Streams test results to the given port on the given host machine.
+// Streams __Tests__ results to the given port on the given host machine.
 class StreamingListener : public EmptyTestEventListener {
  public:
   // Abstract base class for writing strings to a socket.
@@ -1152,7 +1152,7 @@ class StreamingListener : public EmptyTestEventListener {
 
   void OnTestProgramEnd(const UnitTest& unit_test) override {
     // Note that Google Test current only report elapsed time for each
-    // test iteration, not for the entire test program.
+    // __Tests__ iteration, not for the entire __Tests__ program.
     SendLn("event=TestProgramEnd&passed=" + FormatBool(unit_test.Passed()));
 
     // Notify the streaming server to stop.

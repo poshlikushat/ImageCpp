@@ -124,7 +124,7 @@ inline std::string GetTypeName(const std::type_info& type) {
 // GetTypeName<T>() returns a human-readable name of type T if and only if
 // RTTI is enabled, otherwise it returns a dummy type name.
 // NB: This function is also used in Google Mock, so don't move it inside of
-// the typed-test-only section below.
+// the typed-__Tests__-only section below.
 template <typename T>
 std::string GetTypeName() {
 #if GTEST_HAS_RTTI

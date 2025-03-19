@@ -27,7 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// This sample shows how to test common properties of multiple
+// This sample shows how to __Tests__ common properties of multiple
 // implementations of the same interface (aka interface tests).
 
 // The interface and its implementations are in this header.
@@ -51,7 +51,7 @@ PrimeTable* CreatePrimeTable<PreCalculatedPrimeTable>() {
   return new PreCalculatedPrimeTable(10000);
 }
 
-// Then we define a test fixture class template.
+// Then we define a __Tests__ fixture class template.
 template <class T>
 class PrimeTableTest : public testing::Test {
  protected:
@@ -61,7 +61,7 @@ class PrimeTableTest : public testing::Test {
 
   ~PrimeTableTest() override { delete table_; }
 
-  // Note that we test an implementation via the base interface
+  // Note that we __Tests__ an implementation via the base interface
   // instead of the actual implementation class.  This is important
   // for keeping the tests close to the real world scenario, where the
   // implementation is invoked via the base interface.  It avoids
@@ -78,22 +78,22 @@ using testing::Types;
 // already know *all* the types you are gonna exercise when you write
 // the tests.
 
-// To write a typed test case, first use
+// To write a typed __Tests__ case, first use
 //
 //   TYPED_TEST_SUITE(TestCaseName, TypeList);
 //
 // to declare it and specify the type parameters.  As with TEST_F,
-// TestCaseName must match the test fixture name.
+// TestCaseName must match the __Tests__ fixture name.
 
-// The list of types we want to test.
+// The list of types we want to __Tests__.
 typedef Types<OnTheFlyPrimeTable, PreCalculatedPrimeTable> Implementations;
 
 TYPED_TEST_SUITE(PrimeTableTest, Implementations);
 
-// Then use TYPED_TEST(TestCaseName, TestName) to define a typed test,
+// Then use TYPED_TEST(TestCaseName, TestName) to define a typed __Tests__,
 // similar to TEST_F.
 TYPED_TEST(PrimeTableTest, ReturnsFalseForNonPrimes) {
-  // Inside the test body, you can refer to the type parameter by
+  // Inside the __Tests__ body, you can refer to the type parameter by
   // TypeParam, and refer to the fixture class by TestFixture.  We
   // don't need them in this example.
 
@@ -133,7 +133,7 @@ TYPED_TEST(PrimeTableTest, CanGetNextPrime) {
 using testing::Types;
 
 // Sometimes, however, you don't yet know all the types that you want
-// to test when you write the tests.  For example, if you are the
+// to __Tests__ when you write the tests.  For example, if you are the
 // author of an interface and expect other people to implement it, you
 // might want to write a set of tests to make sure each implementation
 // conforms to some basic requirements, but you don't know what
@@ -142,21 +142,21 @@ using testing::Types;
 // How can you write the tests without committing to the type
 // parameters?  That's what "type-parameterized tests" can do for you.
 // It is a bit more involved than typed tests, but in return you get a
-// test pattern that can be reused in many contexts, which is a big
+// __Tests__ pattern that can be reused in many contexts, which is a big
 // win.  Here's how you do it:
 
-// First, define a test fixture class template.  Here we just reuse
+// First, define a __Tests__ fixture class template.  Here we just reuse
 // the PrimeTableTest fixture defined earlier:
 
 template <class T>
 class PrimeTableTest2 : public PrimeTableTest<T> {};
 
-// Then, declare the test case.  The argument is the name of the test
-// fixture, and also the name of the test case (as usual).  The _P
+// Then, declare the __Tests__ case.  The argument is the name of the __Tests__
+// fixture, and also the name of the __Tests__ case (as usual).  The _P
 // suffix is for "parameterized" or "pattern".
 TYPED_TEST_SUITE_P(PrimeTableTest2);
 
-// Next, use TYPED_TEST_P(TestCaseName, TestName) to define a test,
+// Next, use TYPED_TEST_P(TestCaseName, TestName) to define a __Tests__,
 // similar to what you do with TEST_F.
 TYPED_TEST_P(PrimeTableTest2, ReturnsFalseForNonPrimes) {
   EXPECT_FALSE(this->table_->IsPrime(-5));
@@ -188,22 +188,22 @@ TYPED_TEST_P(PrimeTableTest2, CanGetNextPrime) {
 // Type-parameterized tests involve one extra step: you have to
 // enumerate the tests you defined:
 REGISTER_TYPED_TEST_SUITE_P(
-    PrimeTableTest2,  // The first argument is the test case name.
-    // The rest of the arguments are the test names.
+    PrimeTableTest2,  // The first argument is the __Tests__ case name.
+    // The rest of the arguments are the __Tests__ names.
     ReturnsFalseForNonPrimes, ReturnsTrueForPrimes, CanGetNextPrime);
 
-// At this point the test pattern is done.  However, you don't have
-// any real test yet as you haven't said which types you want to run
+// At this point the __Tests__ pattern is done.  However, you don't have
+// any real __Tests__ yet as you haven't said which types you want to run
 // the tests with.
 
-// To turn the abstract test pattern into real tests, you instantiate
-// it with a list of types.  Usually the test pattern will be defined
+// To turn the abstract __Tests__ pattern into real tests, you instantiate
+// it with a list of types.  Usually the __Tests__ pattern will be defined
 // in a .h file, and anyone can #include and instantiate it.  You can
 // even instantiate it more than once in the same program.  To tell
 // different instances apart, you give each of them a name, which will
-// become part of the test case name and can be used in test filters.
+// become part of the __Tests__ case name and can be used in __Tests__ filters.
 
-// The list of types we want to test.  Note that it doesn't have to be
+// The list of types we want to __Tests__.  Note that it doesn't have to be
 // defined at the time we write the TYPED_TEST_P()s.
 typedef Types<OnTheFlyPrimeTable, PreCalculatedPrimeTable>
     PrimeTableImplementations;

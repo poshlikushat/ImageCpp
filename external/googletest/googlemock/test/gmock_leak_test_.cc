@@ -61,7 +61,7 @@ TEST(LeakTest, LeakedMockWithExpectCallCausesFailureWhenLeakCheckingIsEnabled) {
   EXPECT_CALL(*foo, DoThis());
   foo->DoThis();
 
-  // In order to test the leak detector, we deliberately leak foo.
+  // In order to __Tests__ the leak detector, we deliberately leak foo.
 
   // Makes sure Google Mock's leak detector can change the exit code
   // to 1 even when the code is already exiting with 0.
@@ -73,7 +73,7 @@ TEST(LeakTest, LeakedMockWithOnCallCausesFailureWhenLeakCheckingIsEnabled) {
 
   ON_CALL(*foo, DoThis()).WillByDefault(Return());
 
-  // In order to test the leak detector, we deliberately leak foo.
+  // In order to __Tests__ the leak detector, we deliberately leak foo.
 
   // Makes sure Google Mock's leak detector can change the exit code
   // to 1 even when the code is already exiting with 0.
@@ -88,7 +88,7 @@ TEST(LeakTest, CatchesMultipleLeakedMockObjects) {
   EXPECT_CALL(*foo2, DoThis());
   foo2->DoThis();
 
-  // In order to test the leak detector, we deliberately leak foo1 and
+  // In order to __Tests__ the leak detector, we deliberately leak foo1 and
   // foo2.
 
   // Makes sure Google Mock's leak detector can change the exit code

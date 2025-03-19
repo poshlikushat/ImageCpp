@@ -28,7 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""Verifies that test shuffling works."""
+"""Verifies that __Tests__ shuffling works."""
 
 import os
 from googletest.test import gtest_test_utils
@@ -36,7 +36,7 @@ from googletest.test import gtest_test_utils
 # Command to run the googletest-shuffle-test_ program.
 COMMAND = gtest_test_utils.GetTestExecutablePath('googletest-shuffle-test_')
 
-# The environment variables for test sharding.
+# The environment variables for __Tests__ sharding.
 TOTAL_SHARDS_ENV_VAR = 'GTEST_TOTAL_SHARDS'
 SHARD_INDEX_ENV_VAR = 'GTEST_SHARD_INDEX'
 
@@ -74,7 +74,7 @@ def RandomSeedFlag(n):
 
 
 def RunAndReturnOutput(extra_env, args):
-  """Runs the test program and returns its output."""
+  """Runs the __Tests__ program and returns its output."""
 
   environ_copy = os.environ.copy()
   environ_copy.update(extra_env)
@@ -83,7 +83,7 @@ def RunAndReturnOutput(extra_env, args):
 
 
 def GetTestsForAllIterations(extra_env, args):
-  """Runs the test program and returns a list of test lists.
+  """Runs the __Tests__ program and returns a list of __Tests__ lists.
 
   Args:
     extra_env: a map from environment variables to their values
@@ -91,7 +91,7 @@ def GetTestsForAllIterations(extra_env, args):
 
   Returns:
     A list where the i-th element is the list of tests run in the i-th
-    test iteration.
+    __Tests__ iteration.
   """
 
   test_iterations = []
@@ -106,13 +106,13 @@ def GetTestsForAllIterations(extra_env, args):
 
 
 def GetTestCases(tests):
-  """Returns a list of test cases in the given full test names.
+  """Returns a list of __Tests__ cases in the given full __Tests__ names.
 
   Args:
-    tests: a list of full test names
+    tests: a list of full __Tests__ names
 
   Returns:
-    A list of test cases from 'tests', in their original order.
+    A list of __Tests__ cases from 'tests', in their original order.
     Consecutive duplicates are removed.
   """
 
@@ -177,7 +177,7 @@ def CalculateTestLists():
 
 
 class GTestShuffleUnitTest(gtest_test_utils.TestCase):
-  """Tests test shuffling."""
+  """Tests __Tests__ shuffling."""
 
   def setUp(self):
     CalculateTestLists()
@@ -246,13 +246,13 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
 
   def testShuffleDoesNotCreateNewTest(self):
     for test in SHUFFLED_ALL_TESTS:
-      self.assertTrue(test in ALL_TESTS, '%s is an invalid test' % (test,))
+      self.assertTrue(test in ALL_TESTS, '%s is an invalid __Tests__' % (test,))
     for test in SHUFFLED_ACTIVE_TESTS:
-      self.assertTrue(test in ACTIVE_TESTS, '%s is an invalid test' % (test,))
+      self.assertTrue(test in ACTIVE_TESTS, '%s is an invalid __Tests__' % (test,))
     for test in SHUFFLED_FILTERED_TESTS:
-      self.assertTrue(test in FILTERED_TESTS, '%s is an invalid test' % (test,))
+      self.assertTrue(test in FILTERED_TESTS, '%s is an invalid __Tests__' % (test,))
     for test in SHUFFLED_SHARDED_TESTS:
-      self.assertTrue(test in SHARDED_TESTS, '%s is an invalid test' % (test,))
+      self.assertTrue(test in SHARDED_TESTS, '%s is an invalid __Tests__' % (test,))
 
   def testShuffleIncludesAllTests(self):
     for test in ALL_TESTS:
@@ -272,7 +272,7 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
       if 'DeathTest.' in test:
         self.assertTrue(
             not non_death_test_found,
-            '%s appears after a non-death test' % (test,),
+            '%s appears after a non-death __Tests__' % (test,),
         )
       else:
         non_death_test_found = True
@@ -296,11 +296,11 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
     self._VerifyTestCasesDoNotInterleave(SHUFFLED_SHARDED_TESTS)
 
   def testShuffleRestoresOrderAfterEachIteration(self):
-    # Get the test lists in all 3 iterations, using random seed 1, 2,
+    # Get the __Tests__ lists in all 3 iterations, using random seed 1, 2,
     # and 3 respectively.  Google Test picks a different seed in each
-    # iteration, and this test depends on the current implementation
+    # iteration, and this __Tests__ depends on the current implementation
     # picking successive numbers.  This dependency is not ideal, but
-    # makes the test much easier to write.
+    # makes the __Tests__ much easier to write.
     # pylint: disable-next=unbalanced-tuple-unpacking
     [tests_in_iteration1, tests_in_iteration2, tests_in_iteration3] = (
         GetTestsForAllIterations(
@@ -317,7 +317,7 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
 
     # Make sure running the tests with random seed 2 gets the same
     # order as in iteration 2 above.  Success means that Google Test
-    # correctly restores the test order before re-shuffling at the
+    # correctly restores the __Tests__ order before re-shuffling at the
     # beginning of iteration 2.
     tests_with_seed2 = GetTestsForAllIterations(
         {}, [ShuffleFlag(), RandomSeedFlag(2)]
@@ -326,7 +326,7 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
 
     # Make sure running the tests with random seed 3 gets the same
     # order as in iteration 3 above.  Success means that Google Test
-    # correctly restores the test order before re-shuffling at the
+    # correctly restores the __Tests__ order before re-shuffling at the
     # beginning of iteration 3.
     tests_with_seed3 = GetTestsForAllIterations(
         {}, [ShuffleFlag(), RandomSeedFlag(3)]

@@ -253,7 +253,7 @@ endif()
 
 # cxx_test_with_flags(name cxx_flags libs srcs...)
 #
-# Creates a named C++ test that depends on the given libs and is built
+# Creates a named C++ __Tests__ that depends on the given libs and is built
 # from the given source files with the given compiler flags.
 function(cxx_test_with_flags name cxx_flags libs)
   cxx_executable_with_flags(${name} "${cxx_flags}" "${libs}" ${ARGN})
@@ -262,9 +262,9 @@ endfunction()
 
 # cxx_test(name libs srcs...)
 #
-# Creates a named test target that depends on the given libs and is
+# Creates a named __Tests__ target that depends on the given libs and is
 # built from the given source files. Unlike cxx_test_with_flags,
-# test/name.cc is already implicitly included in the source file list.
+# __Tests__/name.cc is already implicitly included in the source file list.
 function(cxx_test name libs)
   cxx_test_with_flags("${name}" "${cxx_default}" "${libs}"
     "test/${name}.cc" ${ARGN})
@@ -272,8 +272,8 @@ endfunction()
 
 # py_test(name)
 #
-# Creates a Python test with the given name whose main module is in
-# test/name.py. It does nothing if Python is not installed.
+# Creates a Python __Tests__ with the given name whose main module is in
+# __Tests__/name.py. It does nothing if Python is not installed.
 function(py_test name)
   if (NOT Python3_Interpreter_FOUND)
     return()

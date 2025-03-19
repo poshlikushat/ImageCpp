@@ -85,7 +85,7 @@ GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 \
 
 // DeathTest is a class that hides much of the complexity of the
 // GTEST_DEATH_TEST_ macro.  It is abstract; its static Create method
-// returns a concrete class that depends on the prevailing death test
+// returns a concrete class that depends on the prevailing death __Tests__
 // style, as defined by the --gtest_death_test_style and/or
 // --gtest_internal_run_death_test flags.
 
@@ -99,19 +99,19 @@ GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 \
 class GTEST_API_ DeathTest {
  public:
   // Create returns false if there was an error determining the
-  // appropriate action to take for the current death test; for example,
+  // appropriate action to take for the current death __Tests__; for example,
   // if the gtest_death_test_style flag is set to an invalid value.
   // The LastMessage method will return a more detailed message in that
-  // case.  Otherwise, the DeathTest pointer pointed to by the "test"
-  // argument is set.  If the death test should be skipped, the pointer
+  // case.  Otherwise, the DeathTest pointer pointed to by the "__Tests__"
+  // argument is set.  If the death __Tests__ should be skipped, the pointer
   // is set to NULL; otherwise, it is set to the address of a new concrete
-  // DeathTest object that controls the execution of the current test.
+  // DeathTest object that controls the execution of the current __Tests__.
   static bool Create(const char* statement, Matcher<const std::string&> matcher,
                      const char* file, int line, DeathTest** test);
   DeathTest();
   virtual ~DeathTest() = default;
 
-  // A helper class that aborts a death test when it's deleted.
+  // A helper class that aborts a death __Tests__ when it's deleted.
   class ReturnSentinel {
    public:
     explicit ReturnSentinel(DeathTest* test) : test_(test) {}
@@ -124,13 +124,13 @@ class GTEST_API_ DeathTest {
   };
 
   // An enumeration of possible roles that may be taken when a death
-  // test is encountered.  EXECUTE means that the death test logic should
+  // __Tests__ is encountered.  EXECUTE means that the death __Tests__ logic should
   // be executed immediately.  OVERSEE means that the program should prepare
   // the appropriate environment for a child process to execute the death
-  // test, then wait for it to complete.
+  // __Tests__, then wait for it to complete.
   enum TestRole { OVERSEE_TEST, EXECUTE_TEST };
 
-  // An enumeration of the three reasons that a test might be aborted.
+  // An enumeration of the three reasons that a __Tests__ might be aborted.
   enum AbortReason {
     TEST_ENCOUNTERED_RETURN_STATEMENT,
     TEST_THREW_EXCEPTION,
@@ -140,11 +140,11 @@ class GTEST_API_ DeathTest {
   // Assumes one of the above roles.
   virtual TestRole AssumeRole() = 0;
 
-  // Waits for the death test to finish and returns its status.
+  // Waits for the death __Tests__ to finish and returns its status.
   virtual int Wait() = 0;
 
-  // Returns true if the death test passed; that is, the test process
-  // exited during the test, its exit status matches a user-supplied
+  // Returns true if the death __Tests__ passed; that is, the __Tests__ process
+  // exited during the __Tests__, its exit status matches a user-supplied
   // predicate, and its stderr output matches a user-supplied regular
   // expression.
   // The user-supplied predicate may be a macro expression rather
@@ -152,17 +152,17 @@ class GTEST_API_ DeathTest {
   // be combined.
   virtual bool Passed(bool exit_status_ok) = 0;
 
-  // Signals that the death test did not die as expected.
+  // Signals that the death __Tests__ did not die as expected.
   virtual void Abort(AbortReason reason) = 0;
 
   // Returns a human-readable outcome message regarding the outcome of
-  // the last death test.
+  // the last death __Tests__.
   static const char* LastMessage();
 
   static void set_last_death_test_message(const std::string& message);
 
  private:
-  // A string containing a description of the outcome of the last death test.
+  // A string containing a description of the outcome of the last death __Tests__.
   static std::string last_death_test_message_;
 
   DeathTest(const DeathTest&) = delete;
@@ -191,7 +191,7 @@ class DefaultDeathTestFactory : public DeathTestFactory {
 // by a signal, or exited normally with a nonzero exit code.
 GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
 
-// Traps C++ exceptions escaping statement and reports them as test
+// Traps C++ exceptions escaping statement and reports them as __Tests__
 // failures. Note that trapping SEH exceptions is not implemented here.
 #if GTEST_HAS_EXCEPTIONS
 #define GTEST_EXECUTE_DEATH_TEST_STATEMENT_(statement, death_test)           \
@@ -201,7 +201,7 @@ GTEST_API_ bool ExitedUnsuccessfully(int exit_status);
     fprintf(                                                                 \
         stderr,                                                              \
         "\n%s: Caught std::exception-derived exception escaping the "        \
-        "death test statement. Exception message: %s\n",                     \
+        "death __Tests__ statement. Exception message: %s\n",                     \
         ::testing::internal::FormatFileLocation(__FILE__, __LINE__).c_str(), \
         gtest_exception.what());                                             \
     fflush(stderr);                                                          \

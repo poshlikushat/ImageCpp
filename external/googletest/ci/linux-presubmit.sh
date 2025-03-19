@@ -66,9 +66,9 @@ for cc in /usr/local/bin/gcc /opt/llvm/clang/bin/clang; do
   done
 done
 
-# Do one test with an older version of GCC
+# Do one __Tests__ with an older version of GCC
 # TODO(googletest-team): This currently uses Bazel 5. When upgrading to a
-# version of Bazel that supports Bzlmod, add --enable_bzlmod=false to keep test
+# version of Bazel that supports Bzlmod, add --enable_bzlmod=false to keep __Tests__
 # coverage for the old WORKSPACE dependency management.
 time docker run \
   --volume="${GTEST_ROOT}:/src:ro" \

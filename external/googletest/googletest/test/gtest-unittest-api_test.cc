@@ -52,7 +52,7 @@ struct LessByName {
 
 class UnitTestHelper {
  public:
-  // Returns the array of pointers to all test suites sorted by the test suite
+  // Returns the array of pointers to all __Tests__ suites sorted by the __Tests__ suite
   // name.  The caller is responsible for deleting the array.
   static TestSuite const** GetSortedTestSuites() {
     UnitTest& unit_test = *UnitTest::GetInstance();
@@ -67,7 +67,7 @@ class UnitTestHelper {
     return test_suites;
   }
 
-  // Returns the test suite by its name.  The caller doesn't own the returned
+  // Returns the __Tests__ suite by its name.  The caller doesn't own the returned
   // pointer.
   static const TestSuite* FindTestSuite(const char* name) {
     UnitTest& unit_test = *UnitTest::GetInstance();
@@ -78,8 +78,8 @@ class UnitTestHelper {
     return nullptr;
   }
 
-  // Returns the array of pointers to all tests in a particular test suite
-  // sorted by the test name.  The caller is responsible for deleting the
+  // Returns the array of pointers to all tests in a particular __Tests__ suite
+  // sorted by the __Tests__ name.  The caller is responsible for deleting the
   // array.
   static TestInfo const** GetSortedTests(const TestSuite* test_suite) {
     TestInfo const** const tests = new const TestInfo*[static_cast<size_t>(
@@ -102,9 +102,9 @@ TYPED_TEST(TestSuiteWithCommentTest, Dummy) {}
 const int kTypedTestSuites = 1;
 const int kTypedTests = 1;
 
-// We can only test the accessors that do not change value while tests run.
+// We can only __Tests__ the accessors that do not change value while tests run.
 // Since tests can be run in any order, the values the accessors that track
-// test execution (such as failed_test_count) can not be predicted.
+// __Tests__ execution (such as failed_test_count) can not be predicted.
 TEST(ApiTest, UnitTestImmutableAccessorsWork) {
   const auto& unit_test = UnitTest::GetInstance();
 
@@ -125,7 +125,7 @@ TEST(ApiTest, UnitTestImmutableAccessorsWork) {
   // The following lines initiate actions to verify certain methods in
   // FinalSuccessChecker::TearDown.
 
-  // Records a test property to verify TestResult::GetTestProperty().
+  // Records a __Tests__ property to verify TestResult::GetTestProperty().
   RecordProperty("key", "value");
 }
 

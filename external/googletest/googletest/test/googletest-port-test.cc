@@ -214,7 +214,7 @@ TEST(ImplicitCastTest, CanUseImplicitConstructor) {
 TEST(GtestCheckSyntaxTest, BehavesLikeASingleStatement) {
   if (AlwaysFalse())
     GTEST_CHECK_(false) << "This should never be executed; "
-                           "It's a compilation test only.";
+                           "It's a compilation __Tests__ only.";
 
   if (AlwaysTrue())
     GTEST_CHECK_(true);
@@ -323,12 +323,12 @@ TEST(GetThreadCountTest, ReturnsCorrectValue) {
     void* dummy;
     ASSERT_EQ(0, pthread_join(thread_id, &dummy));
 
-    // Join before we decide whether we need to retry the test. Retry if an
+    // Join before we decide whether we need to retry the __Tests__. Retry if an
     // arbitrary other thread was created or destroyed in the meantime.
     if (thread_count_after_create != starting_count + 1) continue;
 
     // The OS may not immediately report the updated thread count after
-    // joining a thread, causing flakiness in this test. To counter that, we
+    // joining a thread, causing flakiness in this __Tests__. To counter that, we
     // wait for up to .5 seconds for the OS to report the correct value.
     bool thread_count_matches = false;
     for (int i = 0; i < 5; ++i) {
@@ -360,11 +360,11 @@ TEST(GtestCheckDeathTest, DiesWithCorrectOutputOnFailure) {
   const bool a_false_condition = false;
   const char regex[] =
 #ifdef _MSC_VER
-      "googletest-port-test\\.cc\\(\\d+\\):"
+      "googletest-port-__Tests__\\.cc\\(\\d+\\):"
 #elif defined(GTEST_USES_POSIX_RE)
-      "googletest-port-test\\.cc:[0-9]+"
+      "googletest-port-__Tests__\\.cc:[0-9]+"
 #else
-      "googletest-port-test\\.cc:\\d+"
+      "googletest-port-__Tests__\\.cc:\\d+"
 #endif  // _MSC_VER
       ".*a_false_condition.*Extra info.*";
 
@@ -387,7 +387,7 @@ TEST(GtestCheckDeathTest, LivesSilentlyOnSuccess) {
 #endif  // GTEST_HAS_DEATH_TEST
 
 // Verifies that Google Test choose regular expression engine appropriate to
-// the platform. The test will produce compiler errors in case of failure.
+// the platform. The __Tests__ will produce compiler errors in case of failure.
 // For simplicity, we only cover the most important platforms here.
 TEST(RegexEngineSelectionTest, SelectsCorrectRegexEngine) {
 #ifdef GTEST_HAS_ABSL
@@ -956,7 +956,7 @@ TEST(CaptureDeathTest, CannotReenterStdoutCapture) {
                             "Only one stdout capturer can exist at a time");
   GetCapturedStdout();
 
-  // We cannot test stderr capturing using death tests as they use it
+  // We cannot __Tests__ stderr capturing using death tests as they use it
   // themselves.
 }
 
@@ -1024,7 +1024,7 @@ TEST(ThreadWithParamTest, ConstructorExecutesThreadFunc) {
 
 TEST(MutexDeathTest, AssertHeldShouldAssertWhenNotLocked) {
   // AssertHeld() is flaky only in the presence of multiple threads accessing
-  // the lock. In this case, the test is robust.
+  // the lock. In this case, the __Tests__ is robust.
   EXPECT_DEATH_IF_SUPPORTED(
       {
         Mutex m;

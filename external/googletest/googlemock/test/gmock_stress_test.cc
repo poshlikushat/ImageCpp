@@ -39,11 +39,11 @@ namespace {
 // From gtest-port.h.
 using ::testing::internal::ThreadWithParam;
 
-// The maximum number of test threads (not including helper threads)
+// The maximum number of __Tests__ threads (not including helper threads)
 // to create.
 const int kMaxTestThreads = 50;
 
-// How many times to repeat a task in a test thread.
+// How many times to repeat a task in a __Tests__ thread.
 const int kRepeat = 50;
 
 class MockFoo {
@@ -193,7 +193,7 @@ TEST(StressTest, CanUseGMockWithThreads) {
   const int kTestThreads = kCopiesOfEachRoutine * kRoutines;
   ThreadWithParam<Dummy>* threads[kTestThreads] = {};
   for (int i = 0; i < kTestThreads; i++) {
-    // Creates a thread to run the test function.
+    // Creates a thread to run the __Tests__ function.
     threads[i] = new ThreadWithParam<Dummy>(test_routines[i % kRoutines],
                                             Dummy(), nullptr);
     GTEST_LOG_(INFO) << "Thread #" << i << " running . . .";
