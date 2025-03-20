@@ -66,17 +66,17 @@ class Water {
 int Water::allocated_ = 0;
 
 // This event listener monitors how many Water objects are created and
-// destroyed by each __Tests__, and reports a failure if a __Tests__ leaks some Water
+// destroyed by each test, and reports a failure if a test leaks some Water
 // objects. It does this by comparing the number of live Water objects at
-// the beginning of a __Tests__ and at the end of a __Tests__.
+// the beginning of a test and at the end of a test.
 class LeakChecker : public EmptyTestEventListener {
  private:
-  // Called before a __Tests__ starts.
+  // Called before a test starts.
   void OnTestStart(const TestInfo& /* test_info */) override {
     initially_allocated_ = Water::allocated();
   }
 
-  // Called after a __Tests__ ends.
+  // Called after a test ends.
   void OnTestEnd(const TestInfo& /* test_info */) override {
     int difference = Water::allocated() - initially_allocated_;
 
@@ -118,14 +118,14 @@ int main(int argc, char** argv) {
   if (check_for_leaks) {
     TestEventListeners& listeners = UnitTest::GetInstance()->listeners();
 
-    // Adds the leak checker to the end of the __Tests__ event listener list,
+    // Adds the leak checker to the end of the test event listener list,
     // after the default text output printer and the default XML report
     // generator.
     //
     // The order is important - it ensures that failures generated in the
     // leak checker's OnTestEnd() method are processed by the text and XML
     // printers *before* their OnTestEnd() methods are called, such that
-    // they are attributed to the right __Tests__. Remember that a listener
+    // they are attributed to the right test. Remember that a listener
     // receives an OnXyzStart event *after* listeners preceding it in the
     // list received that event, and receives an OnXyzEnd event *before*
     // listeners preceding it.

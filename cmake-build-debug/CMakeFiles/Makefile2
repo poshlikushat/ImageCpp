@@ -175,31 +175,18 @@ external/googletest/googletest/clean: external/googletest/googletest/CMakeFiles/
 # Directory level rules for directory src
 
 # Recursive "all" directory target.
-src/all: src/test/all
+src/all: src/CMakeFiles/ImageTest.dir/all
+src/all: src/CMakeFiles/ImageCpp.dir/all
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
-src/preinstall: src/test/preinstall
+src/preinstall:
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
-src/clean: src/test/clean
+src/clean: src/CMakeFiles/ImageTest.dir/clean
+src/clean: src/CMakeFiles/ImageCpp.dir/clean
 .PHONY : src/clean
-
-#=============================================================================
-# Directory level rules for directory src/test
-
-# Recursive "all" directory target.
-src/test/all: src/test/CMakeFiles/ImageTest.dir/all
-.PHONY : src/test/all
-
-# Recursive "preinstall" directory target.
-src/test/preinstall:
-.PHONY : src/test/preinstall
-
-# Recursive "clean" directory target.
-src/test/clean: src/test/CMakeFiles/ImageTest.dir/clean
-.PHONY : src/test/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Experimental.dir
@@ -936,7 +923,7 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 external/googletest/googlemock/CMakeFiles/gmock.dir/all: external/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock.dir/build.make external/googletest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock.dir/build.make external/googletest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=6,7 "Built target gmock"
 .PHONY : external/googletest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -963,7 +950,7 @@ external/googletest/googlemock/CMakeFiles/gmock_main.dir/all: external/googletes
 external/googletest/googlemock/CMakeFiles/gmock_main.dir/all: external/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make external/googletest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make external/googletest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=8,9 "Built target gmock_main"
 .PHONY : external/googletest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -989,7 +976,7 @@ external/googletest/googlemock/CMakeFiles/gmock_main.dir/clean:
 external/googletest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest.dir/build.make external/googletest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest.dir/build.make external/googletest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=10,11 "Built target gtest"
 .PHONY : external/googletest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1015,7 +1002,7 @@ external/googletest/googletest/CMakeFiles/gtest.dir/clean:
 external/googletest/googletest/CMakeFiles/gtest_main.dir/all: external/googletest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest_main.dir/build.make external/googletest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest_main.dir/build.make external/googletest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=9,10 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=12,13 "Built target gtest_main"
 .PHONY : external/googletest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1035,31 +1022,57 @@ external/googletest/googletest/CMakeFiles/gtest_main.dir/clean:
 .PHONY : external/googletest/googletest/CMakeFiles/gtest_main.dir/clean
 
 #=============================================================================
-# Target rules for target src/test/CMakeFiles/ImageTest.dir
+# Target rules for target src/CMakeFiles/ImageTest.dir
 
 # All Build rule for target.
-src/test/CMakeFiles/ImageTest.dir/all: external/googletest/googletest/CMakeFiles/gtest.dir/all
-src/test/CMakeFiles/ImageTest.dir/all: external/googletest/googletest/CMakeFiles/gtest_main.dir/all
-	$(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/depend
-	$(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target ImageTest"
-.PHONY : src/test/CMakeFiles/ImageTest.dir/all
+src/CMakeFiles/ImageTest.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=4,5 "Built target ImageTest"
+.PHONY : src/CMakeFiles/ImageTest.dir/all
 
 # Build rule for subdir invocation for target.
-src/test/CMakeFiles/ImageTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/test/CMakeFiles/ImageTest.dir/all
+src/CMakeFiles/ImageTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ImageTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles 0
-.PHONY : src/test/CMakeFiles/ImageTest.dir/rule
+.PHONY : src/CMakeFiles/ImageTest.dir/rule
 
 # Convenience name for target.
-ImageTest: src/test/CMakeFiles/ImageTest.dir/rule
+ImageTest: src/CMakeFiles/ImageTest.dir/rule
 .PHONY : ImageTest
 
 # clean rule for target.
-src/test/CMakeFiles/ImageTest.dir/clean:
-	$(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/clean
-.PHONY : src/test/CMakeFiles/ImageTest.dir/clean
+src/CMakeFiles/ImageTest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/clean
+.PHONY : src/CMakeFiles/ImageTest.dir/clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/ImageCpp.dir
+
+# All Build rule for target.
+src/CMakeFiles/ImageCpp.dir/all: external/googletest/googletest/CMakeFiles/gtest.dir/all
+src/CMakeFiles/ImageCpp.dir/all: external/googletest/googletest/CMakeFiles/gtest_main.dir/all
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target ImageCpp"
+.PHONY : src/CMakeFiles/ImageCpp.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMakeFiles/ImageCpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ImageCpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/CMakeFiles 0
+.PHONY : src/CMakeFiles/ImageCpp.dir/rule
+
+# Convenience name for target.
+ImageCpp: src/CMakeFiles/ImageCpp.dir/rule
+.PHONY : ImageCpp
+
+# clean rule for target.
+src/CMakeFiles/ImageCpp.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/clean
+.PHONY : src/CMakeFiles/ImageCpp.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

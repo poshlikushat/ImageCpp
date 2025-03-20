@@ -11,7 +11,7 @@ void Image::create(const int rows, const int cols, const int channels) {
   imgData_->channels = channels;
   imgData_->countRef = 1;
   imgData_->data = new unsigned char[rows*cols*channels]();
-
+  imgData_->ownsData = true;
   }
 
 Image::Image() : imgData_(nullptr) {}  // Создаем пустое изображение
@@ -23,6 +23,7 @@ Image::Image(const int rows, const int cols, const int channels) : Image() {
 Image::Image(const int rows, const int cols, const int channels, unsigned char* data): Image() {
   create(rows, cols, channels);
   imgData_->data = data;
+  imgData_->ownsData = false;
 }
 
 Image::Image(const Image& image) : imgData_(image.imgData_) {
@@ -49,7 +50,7 @@ Image::~Image() {
 void Image::release() {
   if (imgData_) {
     if (--(imgData_->countRef) == 0) {
-      delete[] imgData_->data;
+      if (imgData_->ownsData) delete[] imgData_->data;
       delete imgData_;
       imgData_ = nullptr;
     }
@@ -121,7 +122,7 @@ void Image::Mirror(const MirrorType type) {
   const int channels = this->channels();
 
   switch (type) {
-    case MirrorType::Vertical:
+    case MirrorType::Horizontal:
       for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols / 2; ++j) {
           for (int c = 0; c < channels; ++c) {
@@ -132,7 +133,7 @@ void Image::Mirror(const MirrorType type) {
         }
       }
     break;
-    case MirrorType::Horizontal:
+    case MirrorType::Vertical:
       for (int i = 0; i < rows / 2; ++i) {
           for (int j = 0; j < cols; ++j) {
             for (int c = 0; c < channels; ++c) {

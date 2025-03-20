@@ -4,7 +4,7 @@
 #
 # CMake build script for Google Test.
 #
-# To run the tests for Google Test itself on Linux, use 'make __Tests__' or
+# To run the tests for Google Test itself on Linux, use 'make test' or
 # ctest. You can select which tests to run using 'ctest -R regex'.
 # For more options, run 'ctest --help'.
 
@@ -191,7 +191,7 @@ endif()
 
 if (gtest_build_tests)
   # This must be set in the root directory for the tests to be run by
-  # 'make __Tests__' or ctest.
+  # 'make test' or ctest.
   enable_testing()
 
   ############################################################

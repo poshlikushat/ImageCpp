@@ -55,7 +55,7 @@ NO_STACKTRACE_SUPPORT_FLAG = '--no_stacktrace_support'
 IS_LINUX = os.name == 'posix' and os.uname()[0] == 'Linux'
 IS_WINDOWS = os.name == 'nt'
 
-GOLDEN_NAME = 'googletest-output-__Tests__-golden-lin.txt'
+GOLDEN_NAME = 'googletest-output-test-golden-lin.txt'
 
 PROGRAM_PATH = gtest_test_utils.GetTestExecutablePath('googletest-output-test_')
 
@@ -170,12 +170,12 @@ def NormalizeToCurrentPlatform(test_output):
 
 
 def RemoveTestCounts(output):
-  """Removes __Tests__ counts from a Google Test program's output."""
+  """Removes test counts from a Google Test program's output."""
 
   output = re.sub(r'\d+ tests?, listed below', '? tests, listed below', output)
   output = re.sub(r'\d+ FAILED TESTS', '? FAILED TESTS', output)
   output = re.sub(
-      r'\d+ tests? from \d+ __Tests__ cases?', '? tests from ? __Tests__ cases', output
+      r'\d+ tests? from \d+ test cases?', '? tests from ? test cases', output
   )
   output = re.sub(r'\d+ tests? from ([a-zA-Z_])', r'? tests from \1', output)
   return re.sub(r'\d+ tests?\.', '? tests.', output)
@@ -184,12 +184,12 @@ def RemoveTestCounts(output):
 def RemoveMatchingTests(test_output, pattern):
   """Removes output of specified tests from a Google Test program's output.
 
-  This function strips not only the beginning and the end of a __Tests__ but also
+  This function strips not only the beginning and the end of a test but also
   all output in between.
 
   Args:
-    test_output:       A string containing the __Tests__ output.
-    pattern:           A regex string that matches names of __Tests__ cases or tests
+    test_output:       A string containing the test output.
+    pattern:           A regex string that matches names of test cases or tests
       to remove.
 
   Returns:
@@ -314,7 +314,7 @@ class GTestOutputTest(gtest_test_utils.TestCase):
     golden = ToUnixLineEnding(golden_file.read().decode())
     golden_file.close()
 
-    # We want the __Tests__ to pass regardless of certain features being
+    # We want the test to pass regardless of certain features being
     # supported or not.
 
     # We still have to remove type name specifics in all cases.
@@ -377,7 +377,7 @@ if __name__ == '__main__':
       message = """Unable to write a golden file when compiled in an environment
 that does not support all the required features (death tests,
 typed tests, stack traces, and multiple threads).
-Please build this __Tests__ and generate the golden file using Blaze on Linux."""
+Please build this test and generate the golden file using Blaze on Linux."""
 
       sys.stderr.write(message)
       sys.exit(1)

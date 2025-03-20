@@ -32,7 +32,7 @@
 // This file implements some matchers that depend on gmock-matchers.h.
 //
 // Note that tests are implemented in gmock-matchers_test.cc rather than
-// gmock-more-matchers-__Tests__.cc.
+// gmock-more-matchers-test.cc.
 
 // IWYU pragma: private, include "gmock/gmock.h"
 // IWYU pragma: friend gmock/.*

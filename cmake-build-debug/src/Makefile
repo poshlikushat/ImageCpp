@@ -171,6 +171,85 @@ depend:
 	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+src/CMakeFiles/ImageTest.dir/rule:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ImageTest.dir/rule
+.PHONY : src/CMakeFiles/ImageTest.dir/rule
+
+# Convenience name for target.
+ImageTest: src/CMakeFiles/ImageTest.dir/rule
+.PHONY : ImageTest
+
+# fast build rule for target.
+ImageTest/fast:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/build
+.PHONY : ImageTest/fast
+
+# Convenience name for target.
+src/CMakeFiles/ImageCpp.dir/rule:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ImageCpp.dir/rule
+.PHONY : src/CMakeFiles/ImageCpp.dir/rule
+
+# Convenience name for target.
+ImageCpp: src/CMakeFiles/ImageCpp.dir/rule
+.PHONY : ImageCpp
+
+# fast build rule for target.
+ImageCpp/fast:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/build
+.PHONY : ImageCpp/fast
+
+Image.o: Image.cpp.o
+.PHONY : Image.o
+
+# target to build an object file
+Image.cpp.o:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/Image.cpp.o
+.PHONY : Image.cpp.o
+
+Image.i: Image.cpp.i
+.PHONY : Image.i
+
+# target to preprocess a source file
+Image.cpp.i:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/Image.cpp.i
+.PHONY : Image.cpp.i
+
+Image.s: Image.cpp.s
+.PHONY : Image.s
+
+# target to generate assembly for a file
+Image.cpp.s:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/Image.cpp.s
+.PHONY : Image.cpp.s
+
+ImageTest.o: ImageTest.cpp.o
+.PHONY : ImageTest.o
+
+# target to build an object file
+ImageTest.cpp.o:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/ImageTest.cpp.o
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o
+.PHONY : ImageTest.cpp.o
+
+ImageTest.i: ImageTest.cpp.i
+.PHONY : ImageTest.i
+
+# target to preprocess a source file
+ImageTest.cpp.i:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/ImageTest.cpp.i
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.i
+.PHONY : ImageTest.cpp.i
+
+ImageTest.s: ImageTest.cpp.s
+.PHONY : ImageTest.s
+
+# target to generate assembly for a file
+ImageTest.cpp.s:
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/ImageTest.cpp.s
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.s
+.PHONY : ImageTest.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -184,6 +263,14 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... ImageCpp"
+	@echo "... ImageTest"
+	@echo "... Image.o"
+	@echo "... Image.i"
+	@echo "... Image.s"
+	@echo "... ImageTest.o"
+	@echo "... ImageTest.i"
+	@echo "... ImageTest.s"
 .PHONY : help
 
 

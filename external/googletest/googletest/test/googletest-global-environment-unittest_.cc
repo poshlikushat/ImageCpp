@@ -27,9 +27,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Unit __Tests__ for Google Test global __Tests__ environments.
+// Unit test for Google Test global test environments.
 //
-// The program will be invoked from a Python unit __Tests__.  Don't run it
+// The program will be invoked from a Python unit test.  Don't run it
 // directly.
 
 #include "gtest/gtest.h"
@@ -46,7 +46,7 @@ class FailingEnvironment final : public ::testing::Environment {
 auto* const g_environment_ =
     ::testing::AddGlobalTestEnvironment(new FailingEnvironment);
 
-// A __Tests__ that doesn't actually run.
+// A test that doesn't actually run.
 TEST(SomeTest, DoesFoo) { FAIL() << "Unexpected call"; }
 
 }  // namespace

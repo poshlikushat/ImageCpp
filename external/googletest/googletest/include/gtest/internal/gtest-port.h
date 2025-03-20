@@ -286,8 +286,8 @@
 #define GTEST_INTERNAL_HAS_INCLUDE(...) 0
 #endif
 
-// Detect C++ feature __Tests__ macros as gracefully as possible.
-// MSVC >= 19.15, Clang >= 3.4.1, and GCC >= 4.1.2 support feature __Tests__ macros.
+// Detect C++ feature test macros as gracefully as possible.
+// MSVC >= 19.15, Clang >= 3.4.1, and GCC >= 4.1.2 support feature test macros.
 #if GTEST_INTERNAL_CPLUSPLUS_LANG >= 202002L && \
     (!defined(__has_include) || GTEST_INTERNAL_HAS_INCLUDE(<version>))
 #include <version>  // C++20 and later
@@ -651,7 +651,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 
 #endif  // GTEST_HAS_CLONE
 
-// Determines whether to support stream redirection. This is used to __Tests__
+// Determines whether to support stream redirection. This is used to test
 // output correctness and to implement death tests.
 #ifndef GTEST_HAS_STREAM_REDIRECTION
 // By default, we assume that stream redirection is supported on all
@@ -703,7 +703,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 #define GTEST_WIDE_STRING_USES_UTF16_ 0
 #endif
 
-// Determines whether __Tests__ results can be streamed to a socket.
+// Determines whether test results can be streamed to a socket.
 #if defined(GTEST_OS_LINUX) || defined(GTEST_OS_GNU_KFREEBSD) || \
     defined(GTEST_OS_DRAGONFLY) || defined(GTEST_OS_FREEBSD) ||  \
     defined(GTEST_OS_NETBSD) || defined(GTEST_OS_OPENBSD) ||     \
@@ -1293,7 +1293,7 @@ class GTEST_API_ Notification {
     cv_.notify_all();
   }
 
-  // Blocks until the controller thread notifies. Must be called from a __Tests__
+  // Blocks until the controller thread notifies. Must be called from a test
   // thread.
   void WaitForNotification() {
     std::unique_lock<std::mutex> lock(mu_);

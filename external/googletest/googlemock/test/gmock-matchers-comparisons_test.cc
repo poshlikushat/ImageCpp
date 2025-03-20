@@ -578,7 +578,7 @@ TEST(MatcherCastTest, NonImplicitlyConstructibleTypeWithOperatorEq) {
 // and when in the same namespace can interact with other tests. In particular,
 // if it is in the same namespace as other tests and one removes
 //   NonImplicitlyConstructibleTypeWithOperatorEq::operator==(int lhs, ...);
-// then the corresponding __Tests__ still compiles (and it should not!) by implicitly
+// then the corresponding test still compiles (and it should not!) by implicitly
 // converting NonImplicitlyConstructibleTypeWithOperatorEq to ConvertibleFromAny
 // in m3.Matcher().
 namespace convertible_from_any {
@@ -1018,7 +1018,7 @@ struct MoveHelper {
   MOCK_METHOD1(Call, void(MoveOnly));
 };
 
-// Disable this __Tests__ in VS 2015 (version 14), where it fails when SEH is enabled
+// Disable this test in VS 2015 (version 14), where it fails when SEH is enabled
 #if defined(_MSC_VER) && (_MSC_VER < 1910)
 TEST(ComparisonBaseTest, DISABLED_WorksWithMoveOnly) {
 #else

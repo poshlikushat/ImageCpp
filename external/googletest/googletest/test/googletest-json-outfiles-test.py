@@ -28,7 +28,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""Unit __Tests__ for the gtest_json_output module."""
+"""Unit test for the gtest_json_output module."""
 
 import json
 import os
@@ -114,7 +114,7 @@ EXPECTED_2 = {
 
 
 class GTestJsonOutFilesTest(gtest_test_utils.TestCase):
-  """Unit __Tests__ for Google Test's JSON output functionality."""
+  """Unit test for Google Test's JSON output functionality."""
 
   def setUp(self):
     # We want the trailing '/' that the last "" provides in os.path.join, for

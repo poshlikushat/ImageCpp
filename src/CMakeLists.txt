@@ -1,3 +1,9 @@
-set(CMAKE_CXX_STANDARD 17)
-add_subdirectory(__Tests__)
-add_executable(ImageCpp main.cpp Image.cpp)
+if(BUILD_TESTING)
+    add_executable(ImageTest ImageTest.cpp)
+    add_executable(ImageCpp Image.cpp
+            ImageTest.cpp)
+    target_link_libraries(ImageCpp PRIVATE GTest::gtest_main)
+
+    include(GoogleTest)
+    gtest_discover_tests(ImageTest)
+endif()

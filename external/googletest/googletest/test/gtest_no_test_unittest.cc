@@ -27,7 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Tests that a Google Test program that has no __Tests__ defined can run
+// Tests that a Google Test program that has no test defined can run
 // successfully.
 
 #include "gtest/gtest.h"
@@ -40,8 +40,8 @@ int main(int argc, char **argv) {
   // This serves three purposes:
   //
   // 1. It verifies that an ad-hoc assertion can be executed even if
-  //    no __Tests__ is defined.
-  // 2. It verifies that a failed ad-hoc assertion causes the __Tests__
+  //    no test is defined.
+  // 2. It verifies that a failed ad-hoc assertion causes the test
   //    program to fail.
   // 3. We had a bug where the XML output won't be generated if an
   //    assertion is executed before RUN_ALL_TESTS() is called, even

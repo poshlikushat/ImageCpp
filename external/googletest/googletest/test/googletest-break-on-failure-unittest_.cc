@@ -27,14 +27,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Unit __Tests__ for Google Test's break-on-failure mode.
+// Unit test for Google Test's break-on-failure mode.
 //
 // A user can ask Google Test to seg-fault when an assertion fails, using
 // either the GTEST_BREAK_ON_FAILURE environment variable or the
 // --gtest_break_on_failure flag.  This file is used for testing such
 // functionality.
 //
-// This program will be invoked from a Python unit __Tests__.  It is
+// This program will be invoked from a Python unit test.  It is
 // expected to fail.  Don't run it directly.
 
 #include "gtest/gtest.h"
@@ -46,7 +46,7 @@
 
 namespace {
 
-// A __Tests__ that's expected to fail.
+// A test that's expected to fail.
 TEST(Foo, Bar) { EXPECT_EQ(2, 3); }
 
 #if GTEST_HAS_SEH && !defined(GTEST_OS_WINDOWS_MOBILE)

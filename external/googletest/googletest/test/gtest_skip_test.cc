@@ -35,7 +35,7 @@
 using ::testing::Test;
 
 TEST(SkipTest, DoesSkip) {
-  GTEST_SKIP() << "skipping single __Tests__";
+  GTEST_SKIP() << "skipping single test";
   EXPECT_EQ(0, 1);
 }
 

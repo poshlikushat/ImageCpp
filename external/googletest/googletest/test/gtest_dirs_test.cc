@@ -69,7 +69,7 @@ bool StartsWith(const std::string& str, const std::string& prefix) {
 }
 
 TEST(TempDirTest, InEnvironment) {
-  // Since the __Tests__ infrastructure might be verifying directory existence or
+  // Since the test infrastructure might be verifying directory existence or
   // even creating subdirectories, we need to be careful that the directories we
   // specify are actually valid.
   MakeTempDir temp_dir("TempDirTest_InEnvironment");
@@ -83,7 +83,7 @@ TEST(TempDirTest, NotInEnvironment) {
 }
 
 TEST(SrcDirTest, InEnvironment) {
-  // Since the __Tests__ infrastructure might be verifying directory existence or
+  // Since the test infrastructure might be verifying directory existence or
   // even creating subdirectories, we need to be careful that the directories we
   // specify are actually valid.
   MakeTempDir temp_dir("SrcDirTest_InEnvironment");

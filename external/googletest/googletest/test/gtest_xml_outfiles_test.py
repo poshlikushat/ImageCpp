@@ -29,7 +29,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""Unit __Tests__ for the gtest_xml_output module."""
+"""Unit test for the gtest_xml_output module."""
 
 import os
 from xml.dom import minidom, Node
@@ -79,7 +79,7 @@ EXPECTED_XML_2 = """<?xml version="1.0" encoding="UTF-8"?>
 
 
 class GTestXMLOutFilesTest(gtest_xml_test_utils.GTestXMLTestCase):
-  """Unit __Tests__ for Google Test's XML output functionality."""
+  """Unit test for Google Test's XML output functionality."""
 
   def setUp(self):
     # We want the trailing '/' that the last "" provides in os.path.join, for

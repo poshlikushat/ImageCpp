@@ -27,13 +27,13 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Unit __Tests__ for Google Test XML output.
+// Unit test for Google Test XML output.
 //
 // A user can specify XML output in a Google Test program to run via
 // either the GTEST_OUTPUT environment variable or the --gtest_output
 // flag.  This is used for testing such functionality.
 //
-// This program will be invoked from a Python unit __Tests__.  Don't run it
+// This program will be invoked from a Python unit test.  Don't run it
 // directly.
 // clang-format off
 
@@ -66,7 +66,7 @@ class DisabledTest : public Test {
 };
 
 TEST_F(DisabledTest, DISABLED_test_not_run) {
-  FAIL() << "Unexpected failure: Disabled __Tests__ should not be run";
+  FAIL() << "Unexpected failure: Disabled test should not be run";
 }
 
 class SkippedTest : public Test {
@@ -77,12 +77,12 @@ TEST_F(SkippedTest, Skipped) {
 }
 
 TEST_F(SkippedTest, SkippedWithMessage) {
-  GTEST_SKIP() << "It is good practice to tell why you skip a __Tests__.";
+  GTEST_SKIP() << "It is good practice to tell why you skip a test.";
 }
 
 TEST_F(SkippedTest, SkippedAfterFailure) {
   EXPECT_EQ(1, 2);
-  GTEST_SKIP() << "It is good practice to tell why you skip a __Tests__.";
+  GTEST_SKIP() << "It is good practice to tell why you skip a test.";
 }
 
 TEST(MixedResultTest, Succeeds) {
@@ -96,7 +96,7 @@ TEST(MixedResultTest, Fails) {
 }
 
 TEST(MixedResultTest, DISABLED_test) {
-  FAIL() << "Unexpected failure: Disabled __Tests__ should not be run";
+  FAIL() << "Unexpected failure: Disabled test should not be run";
 }
 
 TEST(XmlQuotingTest, OutputsCData) {
@@ -104,7 +104,7 @@ TEST(XmlQuotingTest, OutputsCData) {
             "<?xml encoding=\"utf-8\"><top><![CDATA[cdata text]]></top>";
 }
 
-// Helps to __Tests__ that invalid characters produced by __Tests__ code do not make
+// Helps to test that invalid characters produced by test code do not make
 // it into the XML file.
 TEST(InvalidCharactersTest, InvalidCharactersInMessage) {
   FAIL() << "Invalid characters in brackets [\x1\x2]";
@@ -178,7 +178,7 @@ class TearDownFailTest : public ::testing::Test {
 
 TEST_F(TearDownFailTest, NoopPassingTest) {}
 
-// Verifies that the __Tests__ parameter value is output in the 'value_param'
+// Verifies that the test parameter value is output in the 'value_param'
 // XML attribute for value-parameterized tests.
 class ValueParamTest : public TestWithParam<int> {};
 TEST_P(ValueParamTest, HasValueParamAttribute) {}

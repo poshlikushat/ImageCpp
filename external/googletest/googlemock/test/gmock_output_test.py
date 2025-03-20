@@ -66,7 +66,7 @@ def RemoveReportHeaderAndFooter(output):
 
   output = re.sub(r'.*gtest_main.*\n', '', output)
   output = re.sub(r'\[.*\d+ tests.*\n', '', output)
-  output = re.sub(r'\[.* __Tests__ environment .*\n', '', output)
+  output = re.sub(r'\[.* test environment .*\n', '', output)
   output = re.sub(r'\[=+\] \d+ tests .* ran.*', '', output)
   output = re.sub(r'.* FAILED TESTS\n', '', output)
   return output
@@ -95,34 +95,34 @@ def NormalizeErrorMarker(output):
 
 
 def RemoveMemoryAddresses(output):
-  """Removes memory addresses from the __Tests__ output."""
+  """Removes memory addresses from the test output."""
 
   return re.sub(r'@\w+', '@0x#', output)
 
 
 def RemoveTestNamesOfLeakedMocks(output):
-  """Removes the __Tests__ names of leaked mock objects from the __Tests__ output."""
+  """Removes the test names of leaked mock objects from the test output."""
 
-  return re.sub(r'\(used in __Tests__ .+\) ', '', output)
+  return re.sub(r'\(used in test .+\) ', '', output)
 
 
 def GetLeakyTests(output):
-  """Returns a list of __Tests__ names that leak mock objects."""
+  """Returns a list of test names that leak mock objects."""
 
   # findall() returns a list of all matches of the regex in output.
-  # For example, if '(used in __Tests__ FooTest.Bar)' is in output, the
+  # For example, if '(used in test FooTest.Bar)' is in output, the
   # list will contain 'FooTest.Bar'.
-  return re.findall(r'\(used in __Tests__ (.+)\)', output)
+  return re.findall(r'\(used in test (.+)\)', output)
 
 
 def GetNormalizedOutputAndLeakyTests(output):
   """Normalizes the output of gmock_output_test_.
 
   Args:
-    output: The __Tests__ output.
+    output: The test output.
 
   Returns:
-    A tuple (the normalized __Tests__ output, the list of __Tests__ names that have
+    A tuple (the normalized test output, the list of test names that have
     leaked mocks).
   """
 
@@ -167,7 +167,7 @@ class GMockOutputTest(gmock_test_utils.TestCase):
     self.assertEqual(golden, output)
 
     # The raw output should contain 2 leaked mock object errors for
-    # __Tests__ GMockOutputTest.CatchesLeakedMocks.
+    # test GMockOutputTest.CatchesLeakedMocks.
     self.assertEqual(
         [
             'GMockOutputTest.CatchesLeakedMocks',

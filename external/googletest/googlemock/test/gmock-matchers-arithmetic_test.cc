@@ -463,7 +463,7 @@ TEST(AllOfTest, MatchesWhenAllMatch) {
   EXPECT_FALSE(m.Matches(3));
 
   // The following tests for varying number of sub-matchers. Due to the way
-  // the sub-matchers are handled it is enough to __Tests__ every sub-matcher once
+  // the sub-matchers are handled it is enough to test every sub-matcher once
   // with sub-matchers using the same matcher type. Varying matcher types are
   // checked for above.
   AllOfMatches(2, AllOf(Ne(1), Ne(2)));
@@ -652,7 +652,7 @@ TEST(AnyOfTest, MatchesWhenAnyMatches) {
   EXPECT_FALSE(m.Matches(2));
 
   // The following tests for varying number of sub-matchers. Due to the way
-  // the sub-matchers are handled it is enough to __Tests__ every sub-matcher once
+  // the sub-matchers are handled it is enough to test every sub-matcher once
   // with sub-matchers using the same matcher type. Varying matcher types are
   // checked for above.
   AnyOfMatches(2, AnyOf(1, 2));

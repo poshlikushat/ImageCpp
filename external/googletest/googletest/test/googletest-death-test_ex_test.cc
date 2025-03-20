@@ -46,12 +46,12 @@
 #include <exception>  // For std::exception.
 
 // Tests that death tests report thrown exceptions as failures and that the
-// exceptions do not escape death __Tests__ macros.
+// exceptions do not escape death test macros.
 TEST(CxxExceptionDeathTest, ExceptionIsFailure) {
   try {
     EXPECT_NONFATAL_FAILURE(EXPECT_DEATH(throw 1, ""), "threw an exception");
   } catch (...) {  // NOLINT
-    FAIL() << "An exception escaped a death __Tests__ macro invocation "
+    FAIL() << "An exception escaped a death test macro invocation "
            << "with catch_exceptions "
            << (GTEST_FLAG_GET(catch_exceptions) ? "enabled" : "disabled");
   }

@@ -22,7 +22,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/external/googletest/googletest/cmake/gtest_main.pc.in"
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/external/googletest/googletest/cmake/internal_utils.cmake"
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/src/CMakeLists.txt"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/src/__Tests__/CMakeLists.txt"
   "/opt/homebrew/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
   "/opt/homebrew/share/cmake/Modules/CMakeCInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake"
@@ -93,7 +92,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "external/googletest/googletest/generated/gtest_main.pc"
   "external/googletest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "src/__Tests__/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -130,6 +128,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "external/googletest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "external/googletest/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   "external/googletest/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
+  "src/CMakeFiles/ImageTest.dir/DependInfo.cmake"
   "src/CMakeFiles/ImageCpp.dir/DependInfo.cmake"
-  "src/__Tests__/CMakeFiles/ImageTest.dir/DependInfo.cmake"
   )

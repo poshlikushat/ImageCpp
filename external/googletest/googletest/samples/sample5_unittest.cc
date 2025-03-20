@@ -27,19 +27,19 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// This sample teaches how to reuse a __Tests__ fixture in multiple __Tests__
+// This sample teaches how to reuse a test fixture in multiple test
 // cases by deriving sub-fixtures from it.
 //
-// When you define a __Tests__ fixture, you specify the name of the __Tests__
-// case that will use this fixture.  Therefore, a __Tests__ fixture can
-// be used by only one __Tests__ case.
+// When you define a test fixture, you specify the name of the test
+// case that will use this fixture.  Therefore, a test fixture can
+// be used by only one test case.
 //
-// Sometimes, more than one __Tests__ cases may want to use the same or
-// slightly different __Tests__ fixtures.  For example, you may want to
+// Sometimes, more than one test cases may want to use the same or
+// slightly different test fixtures.  For example, you may want to
 // make sure that all tests for a GUI library don't leak important
 // system resources like fonts and brushes.  In Google Test, you do
 // this by putting the shared logic in a super (as in "super class")
-// __Tests__ fixture, and then have each __Tests__ case use a fixture derived
+// test fixture, and then have each test case use a fixture derived
 // from this super fixture.
 
 #include <limits.h>
@@ -49,35 +49,35 @@
 #include "sample3-inl.h"
 #include "gtest/gtest.h"
 namespace {
-// In this sample, we want to ensure that every __Tests__ finishes within
-// ~5 seconds.  If a __Tests__ takes longer to run, we consider it a
+// In this sample, we want to ensure that every test finishes within
+// ~5 seconds.  If a test takes longer to run, we consider it a
 // failure.
 //
-// We put the code for timing a __Tests__ in a __Tests__ fixture called
+// We put the code for timing a test in a test fixture called
 // "QuickTest".  QuickTest is intended to be the super fixture that
-// other fixtures derive from, therefore there is no __Tests__ case with
+// other fixtures derive from, therefore there is no test case with
 // the name "QuickTest".  This is OK.
 //
-// Later, we will derive multiple __Tests__ fixtures from QuickTest.
+// Later, we will derive multiple test fixtures from QuickTest.
 class QuickTest : public testing::Test {
  protected:
-  // Remember that SetUp() is run immediately before a __Tests__ starts.
+  // Remember that SetUp() is run immediately before a test starts.
   // This is a good place to record the start time.
   void SetUp() override { start_time_ = time(nullptr); }
 
-  // TearDown() is invoked immediately after a __Tests__ finishes.  Here we
-  // check if the __Tests__ was too slow.
+  // TearDown() is invoked immediately after a test finishes.  Here we
+  // check if the test was too slow.
   void TearDown() override {
-    // Gets the time when the __Tests__ finishes
+    // Gets the time when the test finishes
     const time_t end_time = time(nullptr);
 
-    // Asserts that the __Tests__ took no more than ~5 seconds.  Did you
+    // Asserts that the test took no more than ~5 seconds.  Did you
     // know that you can use assertions in SetUp() and TearDown() as
     // well?
-    EXPECT_TRUE(end_time - start_time_ <= 5) << "The __Tests__ took too long.";
+    EXPECT_TRUE(end_time - start_time_ <= 5) << "The test took too long.";
   }
 
-  // The UTC time (in seconds) when the __Tests__ starts
+  // The UTC time (in seconds) when the test starts
   time_t start_time_;
 };
 
@@ -89,7 +89,7 @@ class IntegerFunctionTest : public QuickTest {
   // Therefore the body is empty.
 };
 
-// Now we can write tests in the IntegerFunctionTest __Tests__ case.
+// Now we can write tests in the IntegerFunctionTest test case.
 
 // Tests Factorial()
 TEST_F(IntegerFunctionTest, Factorial) {
@@ -128,12 +128,12 @@ TEST_F(IntegerFunctionTest, IsPrime) {
   EXPECT_TRUE(IsPrime(23));
 }
 
-// The next __Tests__ case (named "QueueTest") also needs to be quick, so
+// The next test case (named "QueueTest") also needs to be quick, so
 // we derive another fixture from QuickTest.
 //
-// The QueueTest __Tests__ fixture has some logic and shared objects in
+// The QueueTest test fixture has some logic and shared objects in
 // addition to what's in QuickTest already.  We define the additional
-// stuff inside the body of the __Tests__ fixture, as usual.
+// stuff inside the body of the test fixture, as usual.
 class QueueTest : public QuickTest {
  protected:
   void SetUp() override {
@@ -182,7 +182,7 @@ TEST_F(QueueTest, Dequeue) {
   delete n;
 }
 }  // namespace
-// If necessary, you can derive further __Tests__ fixtures from a derived
+// If necessary, you can derive further test fixtures from a derived
 // fixture itself.  For example, you can derive another fixture from
 // QueueTest.  Google Test imposes no limit on how deep the hierarchy
 // can be.  In practice, however, you probably don't want it to be too

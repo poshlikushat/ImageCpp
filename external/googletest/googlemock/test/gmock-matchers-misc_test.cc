@@ -589,7 +589,7 @@ TEST_P(BipartiteRandomTest, LargerNets) {
     EXPECT_EQ(FindBacktrackingMaxBPM(graph).size(),
               internal::FindMaxBipartiteMatching(graph).size())
         << " graph: " << graph.DebugString()
-        << "\nTo reproduce the failure, rerun the __Tests__ with the flag"
+        << "\nTo reproduce the failure, rerun the test with the flag"
            " --"
         << GTEST_FLAG_PREFIX_ << "random_seed=" << seed;
   }
@@ -1614,7 +1614,7 @@ TEST(AnyOfArrayTest, BasicForms) {
 }
 
 TEST(AnyOfArrayTest, Matchers) {
-  // We negate __Tests__ AllOfArrayTest.Matchers.
+  // We negate test AllOfArrayTest.Matchers.
   // vector
   std::vector<Matcher<int>> matchers{Lt(1), Ge(2)};
   EXPECT_THAT(0, AnyOfArray(matchers));
@@ -1627,7 +1627,7 @@ TEST(AnyOfArrayTest, Matchers) {
 
 TEST_P(AnyOfArrayTestP, ExplainsMatchResultCorrectly) {
   // AnyOfArray and AllOfArray use the same underlying template-template,
-  // thus it is sufficient to __Tests__ one here.
+  // thus it is sufficient to test one here.
   const std::vector<int> v0{};
   const std::vector<int> v1{1};
   const std::vector<int> v2{2, 3};

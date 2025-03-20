@@ -93,7 +93,7 @@ using testing::internal::StreamMatchResultListener;
 using testing::internal::Strings;
 
 // Helper for testing container-valued matchers in mock method context. It is
-// important to __Tests__ matchers in this context, since it requires additional type
+// important to test matchers in this context, since it requires additional type
 // deduction beyond what EXPECT_THAT does, thus making it more restrictive.
 struct ContainerHelper {
   MOCK_METHOD1(Call, void(std::vector<std::unique_ptr<int>>));

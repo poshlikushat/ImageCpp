@@ -27,9 +27,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// This sample shows how to __Tests__ common properties of multiple
+// This sample shows how to test common properties of multiple
 // implementations of an interface (aka interface tests) using
-// value-parameterized tests. Each __Tests__ in the __Tests__ case has
+// value-parameterized tests. Each test in the test case has
 // a parameter that is an interface pointer to an implementation
 // tested.
 
@@ -41,10 +41,10 @@ namespace {
 using ::testing::TestWithParam;
 using ::testing::Values;
 
-// As a general rule, to prevent a __Tests__ from affecting the tests that come
-// after it, you should create and destroy the tested objects for each __Tests__
+// As a general rule, to prevent a test from affecting the tests that come
+// after it, you should create and destroy the tested objects for each test
 // instead of reusing them.  In this sample we will define a simple factory
-// function for PrimeTable objects.  We will instantiate objects in __Tests__'s
+// function for PrimeTable objects.  We will instantiate objects in test's
 // SetUp() method and delete them in TearDown() method.
 typedef PrimeTable* CreatePrimeTableFunc();
 
@@ -55,8 +55,8 @@ PrimeTable* CreatePreCalculatedPrimeTable() {
   return new PreCalculatedPrimeTable(max_precalculated);
 }
 
-// Inside the __Tests__ body, fixture constructor, SetUp(), and TearDown() you
-// can refer to the __Tests__ parameter by GetParam().  In this case, the __Tests__
+// Inside the test body, fixture constructor, SetUp(), and TearDown() you
+// can refer to the test parameter by GetParam().  In this case, the test
 // parameter is a factory function which we call in fixture's SetUp() to
 // create and store an instance of PrimeTable.
 class PrimeTableTestSmpl7 : public TestWithParam<CreatePrimeTableFunc*> {
@@ -100,7 +100,7 @@ TEST_P(PrimeTableTestSmpl7, CanGetNextPrime) {
 }
 
 // In order to run value-parameterized tests, you need to instantiate them,
-// or bind them to a list of values which will be used as __Tests__ parameters.
+// or bind them to a list of values which will be used as test parameters.
 // You can instantiate them in a different translation module, or even
 // instantiate them several times.
 //

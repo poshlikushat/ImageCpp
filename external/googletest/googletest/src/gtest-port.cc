@@ -386,7 +386,7 @@ void Mutex::ThreadSafeLazyInit() {
         ::InterlockedCompareExchange(&critical_section_init_phase_, 1L, 0L)) {
       case 0:
         // If critical_section_init_phase_ was 0 before the exchange, we
-        // are the first to __Tests__ it and need to perform the initialization.
+        // are the first to test it and need to perform the initialization.
         owner_thread_id_ = 0;
         {
           // Use RAII to flag that following mem alloc is never deallocated.
@@ -876,7 +876,7 @@ bool ValidateRegex(const char* regex) {
 // expression.  The regex atom is defined as c if escaped is false,
 // or \c otherwise.  repeat is the repetition meta character (?, *,
 // or +).  The behavior is undefined if str contains too many
-// characters to be indexable by size_t, in which case the __Tests__ will
+// characters to be indexable by size_t, in which case the test will
 // probably time out anyway.  We are fine with this limitation as
 // std::string has it too.
 bool MatchRepetitionAndRegexAtHead(bool escaped, char c, char repeat,
@@ -1084,7 +1084,7 @@ class CapturedStream {
         << "Unable to open temporary file " << temp_file_path;
     filename_ = temp_file_path;
 #else
-    // There's no guarantee that a __Tests__ has write access to the current
+    // There's no guarantee that a test has write access to the current
     // directory, so we create the temporary file in a temporary directory.
     std::string name_template;
 
@@ -1143,7 +1143,7 @@ class CapturedStream {
     if (captured_fd == -1) {
       GTEST_LOG_(WARNING)
           << "Failed to create tmp file " << name_template
-          << " for __Tests__; does the __Tests__ have access to the /tmp directory?";
+          << " for test; does the test have access to the /tmp directory?";
     }
     filename_ = std::move(name_template);
 #endif  // GTEST_OS_WINDOWS

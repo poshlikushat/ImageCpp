@@ -29,7 +29,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""Unit __Tests__ for Google Test's break-on-failure mode.
+"""Unit test for Google Test's break-on-failure mode.
 
 A user can ask Google Test to seg-fault when an assertion fails, using
 either the GTEST_BREAK_ON_FAILURE environment variable or the
@@ -66,7 +66,7 @@ EXE_PATH = gtest_test_utils.GetTestExecutablePath(
 environ = gtest_test_utils.environ
 SetEnvVar = gtest_test_utils.SetEnvVar
 
-# Tests in this file run a Google-Test-based __Tests__ program and expect it
+# Tests in this file run a Google-Test-based test program and expect it
 # to terminate prematurely.  Therefore they are incompatible with
 # the premature-exit-file protocol by design.  Unset the
 # premature-exit filepath to prevent Google Test from creating
@@ -88,7 +88,7 @@ def Run(command):
 
 
 class GTestBreakOnFailureUnitTest(gtest_test_utils.TestCase):
-  """Unit __Tests__ for Google Test's break-on-failure mode.
+  """Unit test for Google Test's break-on-failure mode.
 
   Tests using the GTEST_BREAK_ON_FAILURE environment variable or
   the --gtest_break_on_failure flag to turn assertion failures into

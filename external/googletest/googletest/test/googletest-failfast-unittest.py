@@ -28,10 +28,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""Unit __Tests__ for Google Test fail_fast.
+"""Unit test for Google Test fail_fast.
 
-A user can specify if a Google Test program should continue __Tests__ execution
-after a __Tests__ failure via the GTEST_FAIL_FAST environment variable or the
+A user can specify if a Google Test program should continue test execution
+after a test failure via the GTEST_FAIL_FAST environment variable or the
 --gtest_fail_fast flag. The default value of the flag can also be changed
 by Bazel fail fast environment variable TESTBRIDGE_TEST_RUNNER_FAIL_FAST.
 
@@ -90,7 +90,7 @@ def SetEnvVar(env_var, value):
 
 
 def RunAndReturnOutput(test_suite=None, fail_fast=None, run_disabled=False):
-  """Runs the __Tests__ program and returns its output."""
+  """Runs the test program and returns its output."""
 
   args = []
   xml_path = os.path.join(
@@ -113,7 +113,7 @@ def RunAndReturnOutput(test_suite=None, fail_fast=None, run_disabled=False):
     return txt_out, xml_file.read()
 
 
-# The unit __Tests__.
+# The unit test.
 class GTestFailFastUnitTest(gtest_test_utils.TestCase):
   """Tests the env variable or the command line flag for fail_fast."""
 
@@ -208,7 +208,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
 
     txt, _ = RunAndReturnOutput(test_suite='HasSkipTest', fail_fast=False)
     self.assertIn('3 FAILED TEST', txt)
-    self.assertIn('[  SKIPPED ] 1 __Tests__', txt)
+    self.assertIn('[  SKIPPED ] 1 test', txt)
     for expected_count, callback in [
         (1, 'OnTestSuiteStart'),
         (5, 'OnTestStart'),
@@ -249,7 +249,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
       suppressed_count,
       run_disabled=False,
   ):
-    """Assert XML and text output of a __Tests__ execution."""
+    """Assert XML and text output of a test execution."""
 
     txt, xml = RunAndReturnOutput(test_suite, fail_fast, run_disabled)
     if failure_count > 0:
@@ -362,7 +362,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
     )
 
   def testFlag_HasDisabledTest(self):
-    """Tests the behavior of fail_fast and Disabled __Tests__ cases."""
+    """Tests the behavior of fail_fast and Disabled test cases."""
     self.assertFailFastBehavior(
         test_suite='HasDisabledTest',
         passed_count=1,
@@ -381,7 +381,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
     )
 
   def testFlag_HasDisabledRunDisabledTest(self):
-    """Tests the behavior of fail_fast and Disabled __Tests__ cases enabled."""
+    """Tests the behavior of fail_fast and Disabled test cases enabled."""
     self.assertFailFastBehavior(
         test_suite='HasDisabledTest',
         passed_count=1,
@@ -400,7 +400,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
     )
 
   def testFlag_HasDisabledSuiteTest(self):
-    """Tests the behavior of fail_fast and Disabled __Tests__ suites."""
+    """Tests the behavior of fail_fast and Disabled test suites."""
     self.assertFailFastBehavior(
         test_suite='DISABLED_HasDisabledSuite',
         passed_count=0,
@@ -419,7 +419,7 @@ class GTestFailFastUnitTest(gtest_test_utils.TestCase):
     )
 
   def testFlag_HasDisabledSuiteRunDisabledTest(self):
-    """Tests the behavior of fail_fast and Disabled __Tests__ suites enabled."""
+    """Tests the behavior of fail_fast and Disabled test suites enabled."""
     self.assertFailFastBehavior(
         test_suite='DISABLED_HasDisabledSuite',
         passed_count=1,

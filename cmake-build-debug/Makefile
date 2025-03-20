@@ -597,8 +597,21 @@ ImageTest: cmake_check_build_system
 
 # fast build rule for target.
 ImageTest/fast:
-	$(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/ImageTest.dir/build.make src/test/CMakeFiles/ImageTest.dir/build
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/build
 .PHONY : ImageTest/fast
+
+#=============================================================================
+# Target rules for targets named ImageCpp
+
+# Build rule for target.
+ImageCpp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ImageCpp
+.PHONY : ImageCpp
+
+# fast build rule for target.
+ImageCpp/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/build
+.PHONY : ImageCpp/fast
 
 # Help Target
 help:
@@ -641,6 +654,7 @@ help:
 	@echo "... NightlySubmit"
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
+	@echo "... ImageCpp"
 	@echo "... ImageTest"
 	@echo "... gmock"
 	@echo "... gmock_main"

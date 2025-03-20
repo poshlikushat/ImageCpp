@@ -588,6 +588,19 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
+# Target rules for targets named ImageTest
+
+# Build rule for target.
+ImageTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ImageTest
+.PHONY : ImageTest
+
+# fast build rule for target.
+ImageTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageTest.dir/build.make src/CMakeFiles/ImageTest.dir/build
+.PHONY : ImageTest/fast
+
+#=============================================================================
 # Target rules for targets named ImageCpp
 
 # Build rule for target.
@@ -599,19 +612,6 @@ ImageCpp: cmake_check_build_system
 ImageCpp/fast:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ImageCpp.dir/build.make src/CMakeFiles/ImageCpp.dir/build
 .PHONY : ImageCpp/fast
-
-#=============================================================================
-# Target rules for targets named ImageTest
-
-# Build rule for target.
-ImageTest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ImageTest
-.PHONY : ImageTest
-
-# fast build rule for target.
-ImageTest/fast:
-	$(MAKE) $(MAKESILENT) -f src/__Tests__/CMakeFiles/ImageTest.dir/build.make src/__Tests__/CMakeFiles/ImageTest.dir/build
-.PHONY : ImageTest/fast
 
 # Help Target
 help:

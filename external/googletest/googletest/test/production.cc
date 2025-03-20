@@ -28,7 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //
-// This is part of the unit __Tests__ for gtest_prod.h.
+// This is part of the unit test for gtest_prod.h.
 
 #include "production.h"
 

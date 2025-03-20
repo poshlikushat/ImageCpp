@@ -28,7 +28,7 @@
 
 // This sample shows how to use Google Test listener API to implement
 // an alternative console output and how to use the UnitTest reflection API
-// to enumerate __Tests__ suites and tests and to inspect their results.
+// to enumerate test suites and tests and to inspect their results.
 
 #include <stdio.h>
 
@@ -46,16 +46,16 @@ namespace {
 // information about tests.
 class TersePrinter : public EmptyTestEventListener {
  private:
-  // Called before any __Tests__ activity starts.
+  // Called before any test activity starts.
   void OnTestProgramStart(const UnitTest& /* unit_test */) override {}
 
-  // Called after all __Tests__ activities have ended.
+  // Called after all test activities have ended.
   void OnTestProgramEnd(const UnitTest& unit_test) override {
     fprintf(stdout, "TEST %s\n", unit_test.Passed() ? "PASSED" : "FAILED");
     fflush(stdout);
   }
 
-  // Called before a __Tests__ starts.
+  // Called before a test starts.
   void OnTestStart(const TestInfo& test_info) override {
     fprintf(stdout, "*** Test %s.%s starting.\n", test_info.test_suite_name(),
             test_info.name());
@@ -71,7 +71,7 @@ class TersePrinter : public EmptyTestEventListener {
     fflush(stdout);
   }
 
-  // Called after a __Tests__ ends.
+  // Called after a test ends.
   void OnTestEnd(const TestInfo& test_info) override {
     fprintf(stdout, "*** Test %s.%s ending.\n", test_info.test_suite_name(),
             test_info.name());
@@ -80,7 +80,7 @@ class TersePrinter : public EmptyTestEventListener {
 };  // class TersePrinter
 
 TEST(CustomOutputTest, PrintsMessage) {
-  printf("Printing something from the __Tests__ body...\n");
+  printf("Printing something from the test body...\n");
 }
 
 TEST(CustomOutputTest, Succeeds) {
@@ -89,7 +89,7 @@ TEST(CustomOutputTest, Succeeds) {
 
 TEST(CustomOutputTest, Fails) {
   EXPECT_EQ(1, 2)
-      << "This __Tests__ fails in order to demonstrate alternative failure messages";
+      << "This test fails in order to demonstrate alternative failure messages";
 }
 }  // namespace
 
@@ -125,7 +125,7 @@ int main(int argc, char** argv) {
   }
   int ret_val = RUN_ALL_TESTS();
 
-  // This is an example of using the UnitTest reflection API to inspect __Tests__
+  // This is an example of using the UnitTest reflection API to inspect test
   // results. Here we discount failures from the tests we expected to fail.
   int unexpectedly_failed_tests = 0;
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
@@ -141,7 +141,7 @@ int main(int argc, char** argv) {
     }
   }
 
-  // Test that were meant to fail should not affect the __Tests__ program outcome.
+  // Test that were meant to fail should not affect the test program outcome.
   if (unexpectedly_failed_tests == 0) ret_val = 0;
 
   return ret_val;

@@ -36,7 +36,7 @@
 #include "gtest/gtest.h"
 
 // NOTE: if this file is left without tests for some reason, put a dummy
-// __Tests__ here to make references to symbols in the gtest library and avoid
+// test here to make references to symbols in the gtest library and avoid
 // 'undefined symbol' linker errors in gmock_main:
 
 TEST(DummyTest, Dummy) {}

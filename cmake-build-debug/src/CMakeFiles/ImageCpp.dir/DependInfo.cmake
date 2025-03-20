@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/kuimovmihail/Documents/GitHub/ImageCpp/src/Image.cpp" "src/CMakeFiles/ImageCpp.dir/Image.cpp.o" "gcc" "src/CMakeFiles/ImageCpp.dir/Image.cpp.o.d"
-  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/src/main.cpp" "src/CMakeFiles/ImageCpp.dir/main.cpp.o" "gcc" "src/CMakeFiles/ImageCpp.dir/main.cpp.o.d"
+  "/Users/kuimovmihail/Documents/GitHub/ImageCpp/src/ImageTest.cpp" "src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o" "gcc" "src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

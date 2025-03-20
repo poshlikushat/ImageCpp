@@ -711,7 +711,7 @@ class GTEST_API_ ExpectationBase {
   virtual void MaybeDescribeExtraMatcherTo(::std::ostream* os) = 0;
 
   // Do not rely on this for correctness.
-  // This is only for making human-readable __Tests__ output easier to understand.
+  // This is only for making human-readable test output easier to understand.
   void UntypedDescription(std::string description) {
     description_ = std::move(description);
   }
@@ -925,7 +925,7 @@ class TypedExpectation<R(Args...)> : public ExpectationBase {
   }
 
   // Do not rely on this for correctness.
-  // This is only for making human-readable __Tests__ output easier to understand.
+  // This is only for making human-readable test output easier to understand.
   TypedExpectation& Description(std::string name) {
     ExpectationBase::UntypedDescription(std::move(name));
     return *this;
@@ -1969,7 +1969,7 @@ using SignatureOfT = typename SignatureOf<F>::type;
 
 // A MockFunction<F> type has one mock method whose type is
 // internal::SignatureOfT<F>.  It is useful when you just want your
-// __Tests__ code to emit some messages and have Google Mock verify the
+// test code to emit some messages and have Google Mock verify the
 // right messages are sent (and perhaps at the right times).  For
 // example, if you are exercising code:
 //

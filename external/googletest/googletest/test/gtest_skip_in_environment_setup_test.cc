@@ -27,7 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-// This __Tests__ verifies that skipping in the environment results in the
+// This test verifies that skipping in the environment results in the
 // testcases being skipped.
 
 #include <iostream>

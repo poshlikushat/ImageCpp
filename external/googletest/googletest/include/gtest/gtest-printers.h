@@ -45,7 +45,7 @@
 //      global namespace.
 // * Prefer AbslStringify(..) to operator<<(..), per https://abseil.io/tips/215.
 // * Define foo::PrintTo(..) if the type already has AbslStringify(..), but an
-//   alternative presentation in __Tests__ results is of interest.
+//   alternative presentation in test results is of interest.
 //
 // However if T is an STL-style container then it is printed element-wise
 // unless foo::PrintTo(const T&, ostream*) is defined. Note that
@@ -536,7 +536,7 @@ GTEST_API_ void PrintTo(__int128_t v, ::std::ostream* os);
 #endif  // __SIZEOF_INT128__
 
 // The default resolution used to print floating-point values uses only
-// 6 digits, which can be confusing if a __Tests__ compares two values whose
+// 6 digits, which can be confusing if a test compares two values whose
 // difference lies in the 7th digit.  So we'd like to print out numbers
 // in full precision.
 // However if the value is something simple like 1.1, full will print a

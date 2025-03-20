@@ -32,7 +32,7 @@
 // such static initialization logic for a translation unit in a common,
 // internal function.  Since Google's build system restricts how much
 // stack space a function can use, there's a limit on how many TEST()s
-// one can put in a single C++ __Tests__ file.  This __Tests__ ensures that a large
+// one can put in a single C++ test file.  This test ensures that a large
 // number of TEST()s can be defined in the same translation unit.
 
 #include "gtest/gtest.h"

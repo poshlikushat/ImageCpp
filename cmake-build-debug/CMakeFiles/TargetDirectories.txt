@@ -65,6 +65,8 @@
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/external/googletest/googletest/CMakeFiles/install.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/external/googletest/googletest/CMakeFiles/install/local.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/external/googletest/googletest/CMakeFiles/install/strip.dir
+/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/ImageTest.dir
+/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/ImageCpp.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/test.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/edit_cache.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
@@ -72,11 +74,3 @@
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/install.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/install/local.dir
 /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/CMakeFiles/install/strip.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/ImageTest.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/test.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/edit_cache.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/rebuild_cache.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/list_install_components.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/install.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/install/local.dir
-/Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/src/test/CMakeFiles/install/strip.dir

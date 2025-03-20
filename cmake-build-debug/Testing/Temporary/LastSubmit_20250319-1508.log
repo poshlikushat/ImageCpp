@@ -1,9 +1,0 @@
-Upload files:
-0	Update.xml
-1	Configure.xml
-2	Build.xml
-3	Done.xml
-	Upload file: /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/Testing/20250319-1508/Update.xml to MacBook-Air-2.local___Darwin-c++___20250319-1508-Continuous___XML___Update.xml
-   Error when uploading file: /Users/kuimovmihail/Documents/GitHub/ImageCpp/cmake-build-debug/Testing/20250319-1508/Update.xml
-   Error message was: URL rejected: No host part in the URL
-   Problems when submitting via HTTP

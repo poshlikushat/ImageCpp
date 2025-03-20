@@ -41,7 +41,7 @@ TEST_MULTIPLE_LEAKS = [PROGRAM_PATH, '--gtest_filter=*MultipleLeaked*']
 environ = gmock_test_utils.environ
 SetEnvVar = gmock_test_utils.SetEnvVar
 
-# Tests in this file run a Google-Test-based __Tests__ program and expect it
+# Tests in this file run a Google-Test-based test program and expect it
 # to terminate prematurely.  Therefore they are incompatible with
 # the premature-exit-file protocol by design.  Unset the
 # premature-exit filepath to prevent Google Test from creating

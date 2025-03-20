@@ -27,13 +27,13 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Unit __Tests__ for Google Test's --gtest_list_tests flag.
+// Unit test for Google Test's --gtest_list_tests flag.
 //
 // A user can ask Google Test to list all tests that will run
 // so that when using a filter, a user will know what
 // tests to look for. The tests will not be run after listing.
 //
-// This program will be invoked from a Python unit __Tests__.
+// This program will be invoked from a Python unit test.
 // Don't run it directly.
 
 #include <ostream>
@@ -41,7 +41,7 @@
 
 #include "gtest/gtest.h"
 
-// Several different __Tests__ cases and tests that will be listed.
+// Several different test cases and tests that will be listed.
 TEST(Foo, Bar1) {}
 
 TEST(Foo, Bar2) {}

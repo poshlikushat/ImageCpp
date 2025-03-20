@@ -72,24 +72,10 @@ include src/CMakeFiles/ImageCpp.dir/flags.make
 src/CMakeFiles/ImageCpp.dir/codegen:
 .PHONY : src/CMakeFiles/ImageCpp.dir/codegen
 
-src/CMakeFiles/ImageCpp.dir/main.cpp.o: src/CMakeFiles/ImageCpp.dir/flags.make
-src/CMakeFiles/ImageCpp.dir/main.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/main.cpp
-src/CMakeFiles/ImageCpp.dir/main.cpp.o: src/CMakeFiles/ImageCpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ImageCpp.dir/main.cpp.o"
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ImageCpp.dir/main.cpp.o -MF CMakeFiles/ImageCpp.dir/main.cpp.o.d -o CMakeFiles/ImageCpp.dir/main.cpp.o -c /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/main.cpp
-
-src/CMakeFiles/ImageCpp.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ImageCpp.dir/main.cpp.i"
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/main.cpp > CMakeFiles/ImageCpp.dir/main.cpp.i
-
-src/CMakeFiles/ImageCpp.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ImageCpp.dir/main.cpp.s"
-	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/main.cpp -o CMakeFiles/ImageCpp.dir/main.cpp.s
-
 src/CMakeFiles/ImageCpp.dir/Image.cpp.o: src/CMakeFiles/ImageCpp.dir/flags.make
 src/CMakeFiles/ImageCpp.dir/Image.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/Image.cpp
 src/CMakeFiles/ImageCpp.dir/Image.cpp.o: src/CMakeFiles/ImageCpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/ImageCpp.dir/Image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ImageCpp.dir/Image.cpp.o"
 	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ImageCpp.dir/Image.cpp.o -MF CMakeFiles/ImageCpp.dir/Image.cpp.o.d -o CMakeFiles/ImageCpp.dir/Image.cpp.o -c /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/Image.cpp
 
 src/CMakeFiles/ImageCpp.dir/Image.cpp.i: cmake_force
@@ -100,17 +86,33 @@ src/CMakeFiles/ImageCpp.dir/Image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ImageCpp.dir/Image.cpp.s"
 	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/Image.cpp -o CMakeFiles/ImageCpp.dir/Image.cpp.s
 
+src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o: src/CMakeFiles/ImageCpp.dir/flags.make
+src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o: /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/ImageTest.cpp
+src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o: src/CMakeFiles/ImageCpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o"
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o -MF CMakeFiles/ImageCpp.dir/ImageTest.cpp.o.d -o CMakeFiles/ImageCpp.dir/ImageTest.cpp.o -c /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/ImageTest.cpp
+
+src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ImageCpp.dir/ImageTest.cpp.i"
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/ImageTest.cpp > CMakeFiles/ImageCpp.dir/ImageTest.cpp.i
+
+src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ImageCpp.dir/ImageTest.cpp.s"
+	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kuimovmihail/Documents/GitHub/ImageCpp/src/ImageTest.cpp -o CMakeFiles/ImageCpp.dir/ImageTest.cpp.s
+
 # Object files for target ImageCpp
 ImageCpp_OBJECTS = \
-"CMakeFiles/ImageCpp.dir/main.cpp.o" \
-"CMakeFiles/ImageCpp.dir/Image.cpp.o"
+"CMakeFiles/ImageCpp.dir/Image.cpp.o" \
+"CMakeFiles/ImageCpp.dir/ImageTest.cpp.o"
 
 # External object files for target ImageCpp
 ImageCpp_EXTERNAL_OBJECTS =
 
-src/ImageCpp: src/CMakeFiles/ImageCpp.dir/main.cpp.o
 src/ImageCpp: src/CMakeFiles/ImageCpp.dir/Image.cpp.o
+src/ImageCpp: src/CMakeFiles/ImageCpp.dir/ImageTest.cpp.o
 src/ImageCpp: src/CMakeFiles/ImageCpp.dir/build.make
+src/ImageCpp: lib/libgtest_main.a
+src/ImageCpp: lib/libgtest.a
 src/ImageCpp: src/CMakeFiles/ImageCpp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ImageCpp"
 	cd /Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ImageCpp.dir/link.txt --verbose=$(VERBOSE)

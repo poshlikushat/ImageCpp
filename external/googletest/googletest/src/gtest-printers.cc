@@ -139,7 +139,7 @@ void PrintBytesInObjectTo(const unsigned char* obj_bytes, size_t count,
 //   - as a special escape sequence (e.g. '\r', '\n').
 enum CharFormat { kAsIs, kHexEscape, kSpecialEscape };
 
-// Returns true if c is a printable ASCII character.  We __Tests__ the
+// Returns true if c is a printable ASCII character.  We test the
 // value of c directly instead of calling isprint(), which is buggy on
 // Windows Mobile.
 inline bool IsPrintableAscii(char32_t c) { return 0x20 <= c && c <= 0x7E; }
