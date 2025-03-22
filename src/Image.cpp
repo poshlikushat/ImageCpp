@@ -34,8 +34,8 @@ Image::Image(const Image& image) : imgData_(image.imgData_) {
 
 Image& Image::operator=(const Image& image) {
   if (this != &image) {
-    if (imgData_ && --(imgData_->countRef) == 0)
-      delete imgData_;
+    if (imgData_ && (imgData_->countRef))
+      release();
     imgData_ = image.imgData_;
     if (imgData_)
       ++(imgData_->countRef);
@@ -59,7 +59,7 @@ void Image::release() {
 
 
 int Image::rows() const {
-  return imgData_ ? imgData_->rows : 0;
+  return imgData_->rows;
 }
 
 int Image::cols() const {
@@ -91,8 +91,7 @@ const unsigned char &Image::at(const int index) const {
 
 
 Image Image::clone() const {
-  Image copy = *this;
-  return copy;
+  return {*this};
 }
 
 size_t Image::countRef() const {
@@ -204,7 +203,6 @@ void Image::copyTo(Image& image) const {
   if (empty()) return;
   image = *this;
 }
-
 
 
 

@@ -43,6 +43,7 @@ TEST(ImageTest, MirrorTypeVertical) {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width / 2; ++j) {
             const int idx = (i * width + j) * channels;
+            img.data()[0] =       0;
             img.data()[idx]     = 255;
             img.data()[idx + 1] = 255;
             img.data()[idx + 2] = 255;
