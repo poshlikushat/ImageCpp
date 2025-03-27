@@ -20,9 +20,16 @@ Image::Image(const int rows, const int cols, const int channels) : Image() {
   create(rows, cols, channels);
 }
 
-Image::Image(const int rows, const int cols, const int channels, unsigned char* data): Image() {
-  create(rows, cols, channels);
+Image::Image(const int rows, const int cols, const int channels, unsigned char* data) {
+  if (rows <= 0 || cols <= 0 || channels <= 0) {
+    throw std::invalid_argument("Invalid image size");
+  }
+  imgData_ = new ImageData;
+  imgData_->rows = rows;
+  imgData_->cols = cols;
+  imgData_->channels = channels;
   imgData_->data = data;
+  imgData_->countRef = 1;
   imgData_->ownsData = false;
 }
 
@@ -63,19 +70,19 @@ int Image::rows() const {
 }
 
 int Image::cols() const {
-  return imgData_ ? imgData_->cols : 0;
+  return imgData_->cols;
 }
 
 int Image::channels() const {
-  return imgData_ ? imgData_->channels : 0;
+  return imgData_->channels;
 }
 
 int Image::total() const {
-  return imgData_ ? imgData_->rows * imgData_->cols * imgData_->channels : 0;
+  return imgData_->rows * imgData_->cols * imgData_->channels;
 }
 
 unsigned char &Image::at(const int index) {
-  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels)) {
+  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels) || index < 0) {
     throw std::out_of_range("Invalid index");
   }
   return imgData_->data[index];
@@ -83,7 +90,7 @@ unsigned char &Image::at(const int index) {
 
 
 const unsigned char &Image::at(const int index) const {
-  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels)) {
+  if (!imgData_ || index >= (imgData_->rows * imgData_->cols * imgData_->channels) || index < 0) {
     throw std::out_of_range("Invalid index");
   }
   return imgData_->data[index];
@@ -95,7 +102,7 @@ Image Image::clone() const {
 }
 
 size_t Image::countRef() const {
-  return imgData_ ? imgData_->countRef : 0;
+  return imgData_->countRef;
 }
 
 unsigned char* Image::data() {
@@ -153,8 +160,7 @@ bool Image::empty() const {
   return imgData_ == nullptr;
 }
 
-Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) const {
-  if (empty()) throw std::out_of_range("Image is empty");
+Image Image::values(const int rows, const int cols, const int channels, const unsigned char value) {
   Image img(rows, cols, channels);
   std::memset(img.data(), value, img.total());
   return img;
