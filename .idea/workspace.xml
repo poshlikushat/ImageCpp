@@ -64,13 +64,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0a0b138-a6e1-478f-8a17-9c578ad4b1f1" name="Changes" comment="added copyTo and updated Rotated">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/src/ImageCpp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/src/ImageCpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image.hpp" afterDir="false" />
-    </list>
+    <list default="true" id="c0a0b138-a6e1-478f-8a17-9c578ad4b1f1" name="Changes" comment="added copyTo and updated Rotated" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -397,7 +391,7 @@
       <workItem from="1741588760664" duration="8836000" />
       <workItem from="1742396994762" duration="1854000" />
       <workItem from="1742398953563" duration="12744000" />
-      <workItem from="1743041552820" duration="3312000" />
+      <workItem from="1743041552820" duration="3711000" />
     </task>
     <task id="LOCAL-00001" summary="deleted total pole">
       <option name="closed" value="true" />
