@@ -1,5 +1,0 @@
-if(EXISTS "/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src/__Tests__/ImageCppTest[1]_tests.cmake")
-  include("/Users/kuimovmihail/Documents/GitHub/ImageCpp/build/src/__Tests__/ImageCppTest[1]_tests.cmake")
-else()
-  add_test(ImageCppTest_NOT_BUILT ImageCppTest_NOT_BUILT)
-endif()
